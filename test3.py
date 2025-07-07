@@ -20,8 +20,8 @@ tts = TTS(model_name="tts_models/multilingual/multi-dataset/xtts_v2")
 
 # Generate speech to a file
 tts.tts_to_file(
-    text="こんにちは、元気ですか？",            # Japanese input
-    speaker_wav=r"C:\Users\Rioss\Downloads\jp_001.mp3.wav",                 # Path to your voice sample (must be WAV, ~3+ seconds)
+    text="こんにちは、元気ですか？わたしのなまえはりおです",            # Japanese input
+    speaker_wav=r"/mnt/c/Users/Rioss/Documents/Sound Recordings/Recording (2).wav",                 # Path to your voice sample (must be WAV, ~3+ seconds)
     language="ja",                             # Japanese language code
     file_path="output.wav"                     # Output file
 )

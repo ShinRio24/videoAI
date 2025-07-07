@@ -14,13 +14,10 @@ from genAudio import genAUDIO
 from genImg import genIMG
 from combineMedia import combineMedia
 from imgSearch import imgSearch
-<<<<<<< HEAD
 load_dotenv()
-GEMINI_API_KEY = os.getenv("gemeniKey", "")
+GEMENIKEY = os.getenv("gemeniKey", "")
 import re
 from pydub import AudioSegment
-=======
->>>>>>> ba30b9d9baa7a07152c5361186d1d5364c81d0d4
 
 def extract_json_between_markers(llm_output):
     # Regular expression pattern to find JSON content between ```json and ```
@@ -32,7 +29,6 @@ def extract_json_between_markers(llm_output):
         json_pattern = r"\{.*?\}"
         matches = re.findall(json_pattern, llm_output, re.DOTALL)
 
-<<<<<<< HEAD
     for json_string in matches:
         json_string = json_string.strip()
         try:
@@ -55,10 +51,9 @@ def generate_video_script():
     Generates a YouTube short video script based on a given theme.
     Returns a list of parsed statements from the script.
     """
-    gemini_client = genai.Client(api_key=GEMINI_API_KEY)
 
     script_prompt = ("""
-    Generate a script in Japanese for a YouTube video that should be around 25 minutes long, or approximately 5000 words. The video should explore several prominent philosophical theories in great depth, explaining their key concepts, key philosophers who developed them, and their lasting impact on modern thought. The script should also include real-world examples of how these theories apply to contemporary issues or everyday life, making the content engaging and relatable for a broad audience.
+    Generate a script in Japanese for a YouTube video that should be around 1 minutes long, or approximately 500 words. The video should explore several prominent philosophical theories in great depth, explaining their key concepts, key philosophers who developed them, and their lasting impact on modern thought. The script should also include real-world examples of how these theories apply to contemporary issues or everyday life, making the content engaging and relatable for a broad audience.
 
 The focus should be on:
 
@@ -87,22 +82,13 @@ The output should be in the following JSON format:
     }]}
     ONLY RETURN THE RAW JSON FILE, DO NOT REUTURN ANYTHING ELSE""")
     
-    response = gemini_client.models.generate_content(
-    model="gemini-2.5-flash",
-    contents=script_prompt
-    )
-    print(response.text)
+    response = prompt(script_prompt)
+    print(response)
 
 
     
-    return extract_json_between_markers(response.text)
+    return extract_json_between_markers(response)
 
-
-# Example usage (this part won't execute video creation here):
-# If you run this Python script on your local machine,
-# it will print the FFmpeg commands for you to use.
-# n_images_audios = 3 # Replace with your actual number of pairs
-# create_youtube_shorts_video(n_images_audios)
 
 import json
 
@@ -111,18 +97,11 @@ def generate_youtube_short_video():
     data = jsonOutput["Script"]
     combined = AudioSegment.empty()
     for i,x in enumerate(data):
-        genAUDIO(x['text'],"media/"+str(i)+'.mp3')
+        genAUDIO(x['text'],"media/au"+str(i))
         combined += AudioSegment.from_mp3("media/"+str(i)+'.mp3')
     combined.export('media/final.mp3', format="mp3")
     
    
-=======
-def generate_youtube_short_video(theme):
-    
-    text = prompt(theme)
-    genAUDIO(text,99)
-            
->>>>>>> ba30b9d9baa7a07152c5361186d1d5364c81d0d4
 
 if __name__ =='__main__':
     # The user's original line is commented out to avoid immediate image generation on load,
@@ -131,8 +110,4 @@ if __name__ =='__main__':
     #combineMedia(5)
 
     # Call the main video generation method. You can change the theme.
-<<<<<<< HEAD
     generate_youtube_short_video()
-=======
-    generate_youtube_short_video("generate a script for a video about top universities in the world, in japanese. make the script be approximately 10 minutes long.")
->>>>>>> ba30b9d9baa7a07152c5361186d1d5364c81d0d4

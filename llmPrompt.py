@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 from google import genai
 
 load_dotenv()
-GEMINI_API_KEY = os.getenv("gemeniKey", "")
-gemini_client = genai.Client(api_key=GEMINI_API_KEY)
+GEMENIKEY = os.getenv("GEMENIKEY", "")
+gemini_client = genai.Client(api_key=GEMENIKEY)
 
 def prompt(prompt):
 

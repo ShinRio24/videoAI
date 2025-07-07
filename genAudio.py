@@ -3,13 +3,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 TTS_API_KEY = os.getenv("gemeniKey", "")
-
+import requests
 import wave
 import re
 import subprocess
 from pydub import AudioSegment
 
-def split_text_smart(text, max_len=100):
+
+
+def split_text_smart(text, max_len=2500):
     sentences = re.split(r'(?<=[。、「」！？])', text)
     chunks = []
     current = ''
@@ -38,83 +40,76 @@ def change_speed(sound, speed=1.0):
 
 
 def genAUDIO(context,output):
-    genTiktok(context,output)
+    genSpeechify(context,output)
 
-<<<<<<< HEAD
+
+
+def genSpeechify(context,output):
+
+    url = "https://audio.api.speechify.com/v3/synthesis/get"
+
+    with open("bearer.txt", "r") as file:
+        bearer_token = file.read().strip()
+
+
+    chunk = split_text_smart(context)
+    #print(chunk)
+    combined = AudioSegment.empty()
+    cleanUp = []
+    response =''
+
+    for i,context in enumerate(chunk):  
+    
+        while not (hasattr(response, "status_code") and (response.status_code!='Status: 200')):
+            headers = {
+                "Authorization": bearer_token,
+                "Content-Type": "application/json",
+                "x-speechify-client": "WebApp",
+                "x-speechify-client-version": "2.22.1",
+                "Origin": "https://app.speechify.com",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+            }
+            json_data = {
+                "ssml": "<speak>{}</speak>".format(context),
+                "voice": "mayu",
+                "forcedAudioFormat": "mp3",
+            }
+
+            response = requests.post(url, headers=headers, json=json_data)
+            print("Status:", response.status_code)
+            print("Text content:", response.text)
+            if response.status_code!='Status: 200':
+                print("Input Bearer code")
+                bearer_token=input()               
+                with open("bearer.txt", "w") as file:
+                    file.write(bearer_token)
+
+        
+
+
+
+        with open(output+str(i)+".mp3", "wb") as f:
+            f.write(response.content)
+
+        print("Saved output.mp3")
+        
+        combined += AudioSegment.from_mp3(output+str(i)+'.mp3')
+        cleanUp.append(output+str(i)+'.mp3')
+    
+    combined = change_speed(combined, 1.1)
+    combined.export(output, format="mp3")
+    for file_path in cleanUp:
+        os.remove(file_path)
+    print(output)
+
+
+
 def genTiktok(context,output):
     chunk = split_text_smart(context)
     #print(chunk)
     combined = AudioSegment.empty()
     cleanUp = []
     for i,context in enumerate(chunk):  
-=======
-
-def genAUDIO(context,num):
-    google= False
-    if google:
-        genWGoogle(context,num)
-    else:
-        genLib(context,num)
-
-def genLib(context,num):
-    from melo.api import TTS
-
-    # Speed is adjustable
-    speed = 1.2
-    device = 'cpu' # or cuda:0
-
-    text = context
-
-    client = genai.Client(api_key=TTS_API_KEY)
-    model = TTS(language='JP', device=device)
-    speaker_ids = model.hps.data.spk2id
-
-    output_path = f'media/audio-{num}.wav'
-    model.tts_to_file(text, speaker_ids['JP'], output_path, speed=speed)
-
-def genWGoogle(context,num):
-
-    @contextlib.contextmanager
-    def wave_file(filename, channels=1, rate=24000, sample_width=2):
-        with wave.open(filename, "wb") as wf:
-            wf.setnchannels(channels)
-            wf.setsampwidth(sample_width)
-            wf.setframerate(rate)
-            yield wf
-
-    def play_audio_blob(blob):
-        fname = f'media/audio-{num}.wav'
-        with wave_file(fname) as wav:
-            wav.writeframes(blob.data)
-
-        return Audio(fname, autoplay=True)
-
-    def play_audio(response):
-        return play_audio_blob(response.candidates[0].content.parts[0].inline_data)
-
-    client = genai.Client(api_key=TTS_API_KEY)
-
-    MODEL_ID="gemini-2.5-flash-preview-tts"
-    voice_name = "kore" # @param ["Zephyr", "Puck", "Charon", "Kore", "Fenrir", "Leda", "Orus", "Aoede", "Callirhoe", "Autonoe", "Enceladus", "Iapetus", "Umbriel", "Algieba", "Despina", "Erinome", "Algenib", "Rasalgethi", "Laomedeia", "Achernar", "Alnilam", "Schedar", "Gacrux", "Pulcherrima", "Achird", "Zubenelgenubi", "Vindemiatrix", "Sadachbia", "Sadaltager", "Sulafar"]
-    #https://ai.google.dev/gemini-api/docs/speech-generation#voices
-
-    response = client.models.generate_content(
-    model=MODEL_ID,
-    contents=context,
-    config={
-        "response_modalities": ['Audio'],
-        "speech_config": {
-            "voice_config": {
-                "prebuilt_voice_config": {
-                    "voice_name": voice_name
-                }
-            }
-        }
-    },
-    )
-
-    play_audio(response)
->>>>>>> ba30b9d9baa7a07152c5361186d1d5364c81d0d4
         
         # Path to your JavaScript file
         js_file_path = r"C:\Users\Rioss\Desktop\Code\videoAI\index.js"
@@ -143,8 +138,4 @@ def genWGoogle(context,num):
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
     genAUDIO("皆さん、こんにちは！「知の探求」へようこそ。このチャンネルでは、私たちの世界の見方、考え方。", "media/test.mp3")
-=======
-    genAUDIO("彼は毎朝ジョギングgoogleをして体を健康に保っています。",99)
->>>>>>> ba30b9d9baa7a07152c5361186d1d5364c81d0d4

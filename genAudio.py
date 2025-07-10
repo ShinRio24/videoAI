@@ -48,6 +48,8 @@ def genSpeechify(context,output):
 
     url = "https://audio.api.speechify.com/v3/synthesis/get"
 
+
+
     with open("bearer.txt", "r") as file:
         bearer_token = file.read().strip()
 
@@ -77,16 +79,14 @@ def genSpeechify(context,output):
 
             response = requests.post(url, headers=headers, json=json_data)
             print("Status:", response.status_code)
-            print("Text content:", response.text)
-            if response.status_code!='Status: 200':
+            print(type(response.status_code))
+            #print("Text content:", response.text)
+            if response.status_code!=200:
                 print("Input Bearer code")
                 bearer_token=input()               
                 with open("bearer.txt", "w") as file:
                     file.write(bearer_token)
-
         
-
-
 
         with open(output+str(i)+".mp3", "wb") as f:
             f.write(response.content)
@@ -97,7 +97,7 @@ def genSpeechify(context,output):
         cleanUp.append(output+str(i)+'.mp3')
     
     combined = change_speed(combined, 1.1)
-    combined.export(output, format="mp3")
+    combined.export(output+'.mp3', format="mp3")
     for file_path in cleanUp:
         os.remove(file_path)
     print(output)

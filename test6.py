@@ -1,18 +1,12 @@
-import re
-import os
+from imageGetter import download
+from imageDescription import describe
 
-def next_available_filename(folder='media', prefix='video', extension='.mp4'):
-    pattern = re.compile(rf'^{re.escape(prefix)}(\d+){re.escape(extension)}$')
-    existing_numbers = set()
 
-    for filename in os.listdir(folder):
-        match = pattern.match(filename)
-        if match:
-            existing_numbers.add(int(match.group(1)))
+l=download("jeff Bezos")
+descriptions = []
 
-    i = 1
-    while i in existing_numbers:
-        i += 1
+print(l)
+for x in l:
+    descriptions.append(describe(x))
 
-    return f"media/{prefix}{i}{extension}"
-print(next_available_filename())
+print(descriptions)

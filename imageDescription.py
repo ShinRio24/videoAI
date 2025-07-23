@@ -22,5 +22,14 @@ def describe(path):
     caption = processor.decode(out[0], skip_special_tokens=True)
     return caption
 
+def descriptions(l):
+    files =[]
+    descrips = []
+    for x in l:
+        descrips.append(describe(x))
+        files.append(x)
+        
+    return descrips,files
+
 if __name__ =='__main__':
     print(describe('media/refImgs/img_5.jpeg'))

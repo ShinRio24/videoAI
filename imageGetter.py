@@ -16,17 +16,18 @@ def download(query):
     for f in files:
         os.remove(f)
 
-    downloader(
-        query=query,
-        limit=5,
-        output_dir=folder,
-        adult_filter_off=True,
-        force_replace=False,
-        timeout=60,
-        filter="photo",  # Options: "line", "photo", "clipart", "gif", "transparent"
-        verbose=True,
-        badsites=["stock.adobe.com", "shutterstock.com"],
-        name="img",
-        max_workers=8  # Parallel downloads
-    )
+    for i,x in enumerate(query):
+        downloader(
+            query=x,
+            limit=50,
+            output_dir=folder,
+            adult_filter_off=True,
+            force_replace=False,
+            timeout=60,
+            filter="photo",  # Options: "line", "photo", "clipart", "gif", "transparent"
+            verbose=True,
+            badsites=["stock.adobe.com", "shutterstock.com"],
+            name="img"+str(i),
+            max_workers=8  # Parallel downloads
+        )
     return glob.glob(os.path.join(folder, "*"))

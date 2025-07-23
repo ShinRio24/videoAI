@@ -8,7 +8,7 @@ import wave
 import re
 import subprocess
 from pydub import AudioSegment
-
+from getBearer import getBearer
 
 
 def split_text_smart(text, max_len=2500):
@@ -62,7 +62,7 @@ def genSpeechify(context,output):
 
     for i,context in enumerate(chunk):  
     
-        while not (hasattr(response, "status_code") and (response.status_code!='Status: 200')):
+        while not (hasattr(response, "status_code") and (response.status_code==200)):
             headers = {
                 "Authorization": bearer_token,
                 "Content-Type": "application/json",
@@ -73,20 +73,25 @@ def genSpeechify(context,output):
             }
             json_data = {
                 "ssml": "<speak>{}</speak>".format(context),
-                "voice": "mayu",
+                #"voice": "mayu",
+                "voice": "keita",
+                #"voice": "nanami",
+                #"voice": "shiori",
+                #"voice": "daichi",
+                #"voice": "naoki",
                 "forcedAudioFormat": "mp3",
             }
 
             response = requests.post(url, headers=headers, json=json_data)
-            print("Status:", response.status_code)
-            print(type(response.status_code))
+            print("Status:", response.status_code, context)
+            #print(type(response.status_code))
             #print("Text content:", response.text)
             if response.status_code!=200:
-                print("Input Bearer code")
-                bearer_token=input()               
-                with open("bearer.txt", "w") as file:
-                    file.write(bearer_token)
-        
+                getBearer()
+                print('got bearer')
+                with open("bearer.txt", "r") as file:
+                    bearer_token = file.read().strip()
+
 
         with open(output+str(i)+".mp3", "wb") as f:
             f.write(response.content)
@@ -129,7 +134,7 @@ def genTiktok(context,output):
         #print(result.stdout)
         #print(result.stderr)
     
-    combined = change_speed(combined, 1.25)
+    combined = change_speed(combined, 1.3)
     combined.export(output, format="mp3")
     for file_path in cleanUp:
         os.remove(file_path)
@@ -138,4 +143,4 @@ def genTiktok(context,output):
 
 
 if __name__ == '__main__':
-    genAUDIO("皆さん、こんにちは！「知の探求」へようこそ。このチャンネルでは、私たちの世界の見方、考え方。", "media/test.mp3")
+    genAUDIO("Amazonのインパクトは計り知れません。私たちの買い物体験を根底から変えただけでなく、AWS（アマゾン・ウェブ・サービス）がインターネットの膨大なサービスを裏で支えてるんです。NetflixもAdobeも、AWSのお世話になってるって聞いたら、もうAmazonが世界のインフラだってことが分かるはず！", "media/test")

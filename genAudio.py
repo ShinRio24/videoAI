@@ -101,7 +101,7 @@ def genSpeechify(context,output):
         combined += AudioSegment.from_mp3(output+str(i)+'.mp3')
         cleanUp.append(output+str(i)+'.mp3')
     
-    combined = change_speed(combined, 1.1)
+    combined = change_speed(combined, 1.4)
     combined.export(output+'.mp3', format="mp3")
     for file_path in cleanUp:
         os.remove(file_path)

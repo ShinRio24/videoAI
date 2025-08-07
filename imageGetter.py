@@ -10,16 +10,13 @@ from download import downloader
 
 
 def download(query):
-    folder = "media/refImgs"
+    folder= "media/refImgs"
 
-    files = glob.glob(os.path.join(folder, "*"))
-    for f in files:
-        os.remove(f)
 
     for i,x in enumerate(query):
         downloader(
             query=x,
-            limit=50,
+            limit=5,
             output_dir=folder,
             adult_filter_off=True,
             force_replace=False,
@@ -31,3 +28,6 @@ def download(query):
             max_workers=8  # Parallel downloads
         )
     return glob.glob(os.path.join(folder, "*"))
+
+if __name__=='__main__':
+    print(download(['dog']))

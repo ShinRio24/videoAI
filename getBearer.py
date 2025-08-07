@@ -53,3 +53,7 @@ def getBearer():
         time.sleep(5)
 
         browser.close()
+
+
+if __name__=='__main__':
+    getBearer()

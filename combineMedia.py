@@ -95,12 +95,11 @@ def addTextBlock(
 
 
 def combineMedia(title, imgMatches,output_filename="media/final_video.mp4"):
-    n_pairs = len(imgMatches)
 
 
     allClips = []
     for i,x in enumerate(imgMatches):
-        #basePath = f'media/'
+        print(x)
         input_video = x['path']
         input_audio = x['audio']
         text_to_add = x['phrase']

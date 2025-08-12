@@ -38,9 +38,27 @@ def change_speed(sound, speed=1.0):
     altered_frame_rate = int(sound.frame_rate * speed)
     return sound._spawn(sound.raw_data, overrides={'frame_rate': altered_frame_rate}).set_frame_rate(sound.frame_rate)
 
+from pydub import AudioSegment
+
+
+
+import pyrubberband as pyrb
+import soundfile as sf
+
+def change_speedFile(input_path, speed):
+    # Read audio file (supports stereo)
+    y, sr = sf.read(input_path)
+    
+    # Time-stretch audio using pyrubberband
+    y_fast = pyrb.time_stretch(y, sr, speed)  # speed >1 speeds up audio
+    
+    # Overwrite the input file or save to new file if you want
+    sf.write(input_path, y_fast, sr)
+
 
 def genAUDIO(context,output):
-    genSpeechify(context,output)
+    genTikTokV2(context,output)
+    #genSpeechify(context,output)
 
 
 
@@ -108,7 +126,13 @@ def genSpeechify(context,output):
     print(output)
 
 
+from tiktok_voice import tts, Voice
+def genTikTokV2(context,output,speed = 1.25):
+    tts(context, Voice.JP_FEMALE_KAORISHOJI, output+'.mp3')
+    change_speedFile(output+'.mp3', speed)
 
+
+#version usin my own TTS code
 def genTiktok(context,output):
     chunk = split_text_smart(context)
     #print(chunk)
@@ -143,4 +167,5 @@ def genTiktok(context,output):
 
 
 if __name__ == '__main__':
-    genAUDIO("Amazonのインパクトは計り知れません。私たちの買い物体験を根底から変えただけでなく、AWS（アマゾン・ウェブ・サービス）がインターネットの膨大なサービスを裏で支えてるんです。NetflixもAdobeも、AWSのお世話になってるって聞いたら、もうAmazonが世界のインフラだってことが分かるはず！", "media/test")
+    text = """1995年、地下鉄サリン事件は日本中を震撼させました。オウム真理教というカルト教団が東京の地下鉄に猛毒のサリンガスを散布し、13人が死亡、数千人が負傷しました。"""
+    genAUDIO(text, "output")

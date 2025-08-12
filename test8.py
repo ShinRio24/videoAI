@@ -1,18 +1,18 @@
 import torch
 from diffusers import StableDiffusionPipeline
 
-# Load model
+
+
 pipe = StableDiffusionPipeline.from_pretrained(
     "runwayml/stable-diffusion-v1-5",  # You can use other models too
     torch_dtype=torch.float16,         # Use float16 to save VRAM
-    revision="fp16"
 ).to("cuda")  # Use GPU
-
+pipe.enable_xformers_memory_efficient_attention()
 # Prompt for image generation
-prompt = "a futuristic city at sunset, cyberpunk, highly detailed"
+prompts = "woman with a book"
 
 # Generate image
-image = pipe(prompt).images[0]
+image = pipe(prompts).images[0]
 
 # Save the result
-image.save("output.png")
+image.save("output"+".png")

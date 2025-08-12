@@ -31,8 +31,9 @@ def imgMatch(input_str,options,files):
     return files[options.index(difflib.get_close_matches(input_str, options, n=1, cutoff=0.0)[0])]
 
 
-theme = 'ロシア・ウクライナ紛争'
-title = 'ロシア・ウクライナ紛争'
+title = 'あさま山荘事件'
+theme = title
+
 
 def generate_video_script():
 
@@ -51,11 +52,12 @@ Go straight into the section, without a intro
 Add alot of commas,
 Each section should be around 1 sentance
 You do not have to have the quote end on a punctuation, and can have it pick up in the next quote
-Feels like a YouTube short or TikTok script: casual, punchy
+Feels like a YouTube short or TikTok script
 Is written in natural spoken Japanese, not stiff formal writing
 Keeps viewer interest high with fun transitions, questions, and real-world references
 Do not add excess text such as 笑 「 」
-
+Make the video script around 60 seconds long
+The personality of the script should be like a documentary, but with a fun and engaging tone, like a YouTuber. The character talks about past events, and historical characters.
 
 The output should be in the following JSON format:
 {{

@@ -1,0 +1,54 @@
+
+# filepath: requirements.txt
+
+# Core dependencies
+python-dotenv
+requests
+pydub
+moviepy
+Pillow
+whisper
+yt-dlp
+google-generativeai
+funasr
+diffusers
+torch
+
+# For TTS (coqui-ai-TTS)
+TTS
+
+# If using OpenAI Whisper (already included above)
+# whisper
+
+# If using the TikTok-Voice-TTS library (optional, for genTikTokV2)
+
+# For image downloading (used in imageGetter.py)
+# The actual downloader may have its own requirements, e.g.:
+# better_bing_image_downloader
+
+# If using Jupyter notebooks
+notebook
+
+# For audio manipulation
+wave
+
+# For running subprocesses (standard library, no need to install)
+# subprocess
+
+# For JSON handling (standard library, no need to install)
+# json
+
+# For regular expressions (standard library, no need to install)
+# re
+
+
+python-dotenv
+requests
+pydub
+moviepy
+Pillow
+whisper
+yt-dlp
+google-generativeai
+funasr
+diffusers

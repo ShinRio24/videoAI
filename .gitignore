@@ -204,3 +204,4 @@ cython_debug/
 client_secrets.json
 
 discordBot.py
+token.pickle

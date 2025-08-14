@@ -4,7 +4,13 @@ from google import genai
 import re
 import json
 import requests
+import json
+from datetime import date
+import sys
 
+
+
+LAST_FAILURE_FILE = "tools/last_failure.json"
 
 load_dotenv()
 GEMENIKEY = os.getenv("GEMENIKEY", "")
@@ -41,19 +47,60 @@ def extract_json_between_markers(llm_output):
 
     return None 
 
+def get_last_failure_date():
+    with open(LAST_FAILURE_FILE, "r") as f:
+        data = json.load(f)
+        return date.fromisoformat(data.get("last_failure"))
+
+def set_last_failure_date(failure_date):
+    with open(LAST_FAILURE_FILE, "w") as f:
+        json.dump({"last_failure": failure_date.isoformat()}, f)
+
 
 def prompt(prompt):
-    #return ollama_prompt(prompt)
-    return promptGemeni(prompt)
 
-def ollama_prompt(prompt, model="gpt-oss:latest"):
-    url = "http://127.0.0.1:11434/api/generate"
+    print(f"START OF PROMPT  --------------------------------------------\n {prompt}")
+
+    today = date.today()
+    last_failure = get_last_failure_date()
+
+    if last_failure == today:
+        # Already failed today, skip function_a
+        output = ollama_prompt(prompt)
+    else:
+        try:
+            output = promptGemeni(prompt)
+        except Exception as e:
+            print(f"function_a failed: {e}", file=sys.__stderr__)
+            set_last_failure_date(today)
+            output = ollama_prompt(prompt)
+        
+    #output = promptGemeni(prompt)
+    print(f"END OF PROMPT  --------------------------------------------\n")
+    print(f"LLM output: {output}")
+    print(f"END OF LLM OUTPUT --------------------------------------------\n")
+
+    extracted = extract_json_between_markers(output)
+
+    return extracted
+
+def ollama_prompt(prompt, model="deepseek-r1:latest"):
+    #chat will give the thinking process, generate will give the final answer
+    #url = "http://localhost:11434/api/chat"
+    #Sure! In Ollama’s /chat API, each message has a role that tells the model how to interpret the text. In your example:
+    url = "http://localhost:11434/api/generate"
     payload = {
         "model": model,
-        "prompt": prompt
+        "prompt": prompt,
+        "stream": False
     }
-    response = requests.post(url, json=payload)
-    return response.text
+    r = requests.post(url, json=payload)
+    r.raise_for_status()
+    output = r.json()["response"]
+
+    # Remove <think>...</think> block if present
+    output = re.sub(r"<think>.*?</think>", "", output, flags=re.DOTALL).strip()
+    return output
 
 
 def promptGemeni(prompt):
@@ -63,5 +110,9 @@ def promptGemeni(prompt):
     )
     return response.text
 
+from prompts import *
+
 if __name__ == '__main__':
-    print(prompt('hello'))
+    text  = genScript_template.format(theme="韓国のトップ大学")
+
+    print(ollama_prompt(text))

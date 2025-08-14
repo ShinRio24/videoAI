@@ -1,3 +1,6 @@
+import sys
+sys.path.append("/home/riosshin/code/videoAI")
+
 from pydub import AudioSegment
 
 combined = AudioSegment.empty()

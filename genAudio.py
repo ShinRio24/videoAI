@@ -69,7 +69,7 @@ def genSpeechify(context,output):
 
 
 
-    with open("bearer.txt", "r") as file:
+    with open("tools/bearer.txt", "r") as file:
         bearer_token = file.read().strip()
 
 
@@ -108,7 +108,7 @@ def genSpeechify(context,output):
             if response.status_code!=200:
                 getBearer()
                 print('got bearer')
-                with open("bearer.txt", "r") as file:
+                with open("tools/bearer.txt", "r") as file:
                     bearer_token = file.read().strip()
 
 

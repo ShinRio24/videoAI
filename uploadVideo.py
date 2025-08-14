@@ -11,7 +11,7 @@ import pickle
 
 # Scope for uploading videos to YouTube
 SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
-TOKEN_PATH = "token.pickle"  # Path to store/load tokens
+TOKEN_PATH = "tools/token.pickle"  # Path to store/load tokens
 
 
 def uploadYoutube(
@@ -21,7 +21,7 @@ def uploadYoutube(
         """,
     tags=None,
     privacy_status="public",
-    client_secrets_file="client_secrets.json"
+    client_secrets_file="tools/client_secrets.json"
 ):
     creds = None
     if os.path.exists(TOKEN_PATH):
@@ -88,7 +88,7 @@ if __name__ == "__main__":
     url = uploadYoutube(
         video_file="media/finalUploads/final_video.mp4",
         title="test",
-        tags=["動画", "#shorts"],
+        tags=["動画", "shorts","事件", "雑学","豆知識"],
         privacy_status="public",
     )
     print('done')

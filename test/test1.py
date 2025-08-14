@@ -1,3 +1,6 @@
+import sys
+sys.path.append("/home/riosshin/code/videoAI")
+
 from vvclient import Client
 import asyncio
 

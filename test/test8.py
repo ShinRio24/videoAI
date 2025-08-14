@@ -1,3 +1,11 @@
+import sys
+import os
+
+# Use the WSL-resolved Linux path
+videoAI_path = "/home/riosshin/code/videoAI"
+sys.path.append(videoAI_path)
+
+
 import torch
 from diffusers import StableDiffusionPipeline
 

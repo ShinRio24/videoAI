@@ -1,2 +1,4 @@
-import os
-print(os.path.join(os.path.dirname(__file__), "better_bing_image_downloader", "better_bing_image_downloader"))
+t= "やっぱり唯一無二だ"
+
+dog  = 'test bro what is {} happening'.format(t)
+print(dog)

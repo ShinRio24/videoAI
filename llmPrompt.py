@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 from google import genai
 import re
 import json
+import requests
+
 
 load_dotenv()
 GEMENIKEY = os.getenv("GEMENIKEY", "")
@@ -41,7 +43,20 @@ def extract_json_between_markers(llm_output):
 
 
 def prompt(prompt):
+    #return ollama_prompt(prompt)
+    return promptGemeni(prompt)
 
+def ollama_prompt(prompt, model="gpt-oss:latest"):
+    url = "http://127.0.0.1:11434/api/generate"
+    payload = {
+        "model": model,
+        "prompt": prompt
+    }
+    response = requests.post(url, json=payload)
+    return response.text
+
+
+def promptGemeni(prompt):
     response = gemini_client.models.generate_content(
     model="gemini-2.5-flash",
     contents=prompt

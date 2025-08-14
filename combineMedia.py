@@ -94,9 +94,9 @@ def addTextBlock(
     return final_clip
 
 
-def combineMedia(title, imgMatches,output_filename="media/final_video.mp4"):
+def combineMedia(title, imgMatches,output_filename="media/finalUploads/{}.mp4"):
 
-
+    output_filename = output_filename.format(title)
     allClips = []
     for i,x in enumerate(imgMatches):
         print(x)
@@ -117,7 +117,7 @@ def combineMedia(title, imgMatches,output_filename="media/final_video.mp4"):
     final_video.write_videofile(output_filename, codec="libx264", fps=30, audio_codec="aac")
 
     print(f"\nSuccessfully created '{output_filename}'")
-
+    return output_filename
 
 
 

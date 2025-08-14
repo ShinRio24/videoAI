@@ -12,7 +12,8 @@ from getBearer import getBearer
 
 
 def split_text_smart(text, max_len=2500):
-    sentences = re.split(r'(?<=[。、「」！？])', text)
+    #sentences = re.split(r'(?<=[。、「」！？])', text)
+    sentences = re.split(r'(?<=[。、！？])', text)
     chunks = []
     current = ''
 
@@ -127,8 +128,9 @@ def genSpeechify(context,output):
 
 
 from tiktok_voice import tts, Voice
-def genTikTokV2(context,output,speed = 1.25):
-    tts(context, Voice.JP_FEMALE_KAORISHOJI, output+'.mp3')
+def genTikTokV2(context,output,speed = 1.15):
+    tts(context, Voice.JP_FEMALE_FUJICOCHAN
+, output+'.mp3')
     change_speedFile(output+'.mp3', speed)
 
 

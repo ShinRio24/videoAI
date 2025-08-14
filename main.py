@@ -24,29 +24,27 @@ import re
 from pydub import AudioSegment
 from moviepy import VideoFileClip, TextClip, CompositeVideoClip, ImageClip, AudioFileClip, ColorClip, concatenate_videoclips
 from imageGetter import download
-
+from uploadVideo import uploadYoutube
+import sys
 
 
 def imgMatch(input_str,options,files):
     return files[options.index(difflib.get_close_matches(input_str, options, n=1, cutoff=0.0)[0])]
 
 
-title = 'あさま山荘事件'
-theme = title
-
-
-def generate_video_script():
+def generate_video_script(title):
 
 
     script_prompt = (f"""
     You are a professional Japanese YouTube scriptwriter.
 Please write a short-form YouTube script in Japanese, designed to be entertaining, fun to watch, and natural-sounding, as if spoken by a charismatic YouTuber.
 
-The theme of the section you are writing a script for is: {theme}
+The theme of the section you are writing a script for is: {title}
 
 Because acompanying images will be given for each section of the script, break up the script accordingly. Place sentances that say similar things in the same quote, but do not make each one two long or the viewer may loose attention.
 
 Make sure the script:
+Has strong hooks to keep the viewer engaged - and is easy for the viewer to follow
 The video should cover the topic in depth.
 Go straight into the section, without a intro
 Add alot of commas,
@@ -96,14 +94,14 @@ def resizeImage(path, target_size):
     img.save(path)
     return path
 
-def generate_youtube_short_video():
+def generate_youtube_short_video(title):
     folder = "media/refImgs"
 
     files = glob.glob(os.path.join(folder, "*"))
     for f in files:
         os.remove(f)
 
-    jsonOutput=generate_video_script()
+    jsonOutput=generate_video_script(title)
     data = jsonOutput["Script"]
     print(data)
     #combined = AudioSegment.empty()
@@ -111,22 +109,46 @@ def generate_youtube_short_video():
     imgAudioData=[]
     for i,x in enumerate(data):
         temp ={}
-        temp['audio'] ="media/au"+str(i)+".mp3"
+        temp['audio'] ="media/audio/au"+str(i)+".mp3"
 
-        genAUDIO(x,"media/au"+str(i))
+        genAUDIO(x,"media/audio/au"+str(i))
         temp['path']= imgSearch(title,x)
         temp['phrase']=x
         imgAudioData.append(temp)
 
     print(title,imgAudioData)
-    combineMedia(title, imgAudioData)
-        #audio = AudioFileClip(tempAudioPath+".mp3")
-        #imgFile = imgMatch(x['image_description'], description,files)
-    
+    file = combineMedia(title, imgAudioData)
+    #audio = AudioFileClip(tempAudioPath+".mp3")
+    #imgFile = imgMatch(x['image_description'], description,files)
+    video_id = uploadYoutube(
+        video_file= file,
+        title= title,
+        tags=["動画", "#shorts"],
+        privacy_status="public",
+    )
+    print('complete, video has been uploaded to YouTube with ID:', video_id)
+    print('title:', title)
 
 
+
+import time
 def main():
-    generate_youtube_short_video()
+    title = sys.argv[1]
+    print("generating video script for title:", title)
+
+    tt = time.time()
+    url = generate_youtube_short_video(title)
+
+    print("Total time taken:", (time.time() - tt)/ 60, "minutes")
+
+    import json
+
+    result = {"file": url}
+    with open("finalURL.json", "w") as f:
+        json.dump(result, f)
+
+    return url
+
 
 if __name__ =='__main__':
     # The user's original line is commented out to avoid immediate image generation on load,

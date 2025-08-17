@@ -1,207 +1,796 @@
 START OF PROMPT  --------------------------------------------
  
+### Instruction:
 あなたはプロの日本語YouTubeスクリプトライターです。
 
 タスク：
-テーマ「麻原」についての短編YouTubeスクリプトを日本語で作成してください。面白く、楽しく、自然な口語で、カリスマ的なYouTuberが話すような口調で書いてください。
+テーマ「住吉会」について短編YouTubeスクリプトを日本語で作成してください。カリスマ的なYouTuberが話すような自然な口語で、面白く楽しく語ってください。
 
 要件：
-- スクリプト全体は**約300文字**で、60秒動画に適しています。
-- YouTube ShortsやTikTok向けに短い文に分けてください。
-- 類似するアイデアはまとめつつ、各文は短く魅力的にしてください。
-- 自然な話し言葉の流れのために、文中に適度に読点を入れてください。
-- 必ず最初にフック（興味を引く一文や謎めいた一文）を置き、名前や本題はその後に明かす構成にしてください。
-  例： 「少年法で守られ調子に乗っていたが」→「詰んでしまった凶悪犯、小林、小森、芳賀は…」
-- イントロなしで、すぐに内容に入ってください。
-- フック、楽しい切り替え、質問、実際の事例などを盛り込んでください。
-- 書き言葉ではなく、自然な口語で書いてください。
-- トーンはドキュメンタリー風ですが、楽しく魅力的にしてください。
-- 「笑」「「」「」」や引用符などの余計な文字は入れないでください。
-- 各文は、終止符なしで次の文に続けても構いません。
+- スクリプト全体は必ず約600文字（±5%以内）
+- 各フレーズは30文字前後、長くても50文字以内
+- 各フレーズをJSONリストに分割してください（画像表示用のブレイクポイント）
+- 同じ画像が9秒以上表示されないように調整してください
+- 各フレーズは文として完結していなくても良いが、全体の流れで意味が通ること
+- 必ず最初にフックを置き、その後に本題を明かす
+- イントロや挨拶は不要、すぐに本題へ
+- 背景・経緯・原因・影響・裏話・意外なポイントを盛り込み、深く掘り下げてください
+- トーンはドキュメンタリー風だが楽しく魅力的に
+- **禁止事項：**
+  - 「」や""などの引用符を一切使わないこと
+  - 「笑」や特殊記号を使わないこと
+  - JSON以外の出力をしないこと
+- 句読点は「、」と「。」のみ使用可
 
-出力：
-以下のJSON形式に**完全に従い**、他のテキストは一切出力しないでください：
+出力形式：
+必ず次のフォーマットに従ってください。他のテキストは絶対に出力しないでください。
 
+正しい形式の例：
 json```
 {
   "Script": [
-    "文1を引用符で囲む",
-    "文2を引用符で囲む"
+    "文1",
+    "文2",
+    "文3"
   ]
 }```
 
-- キーは必ず **"Script"** としてください。
-- 値は文字列のリストである必要があります。
-- リストだけや、他のJSON構造は出力しないでください。
-- JSONオブジェクトの外に文字を出力しないでください。
+END OF PROMPT  --------------------------------------------
+
+LLM output: json```
+{
+  "Script": [
+    "ヤクザ組織って、怖いとか物騒とか、そんなイメージありますよね。",
+    "でも実は、内部には意外なルールや歴史が隠されているんです。",
+    "今日掘り下げるのは、日本を代表する指定暴力団、住吉会。",
+    "彼らが他の組織と一線を画す、驚きの特徴があるんですよ。",
+    "関東にその地盤を持つ住吉会は、明治時代から続く古い歴史を持つ組織です。",
+    "通常、組長が全てを決めるトップダウン型が多い中、住吉会は違います。",
+    "彼らが採用しているのは「合議制」という、まさかの集団指導体制。",
+    "幹部たちが集まり、議論して物事を決定するんです。",
+    "だからこそ、組織内部の激しい抗争が比較的少ないと言われています。",
+    "他の組織との「友好」を重んじる点も、住吉会ならではの特徴です。",
+    "特に有名なのが、稲川会との「五分の兄弟盃」と呼ばれる関係。",
+    "ヤクザ社会では最高峰の友好関係で、非常に珍しい事例なんですよ。",
+    "かつてはライバルだった二大組織が、兄弟の盃を交わすなんて衝撃ですよね。",
+    "しかし、彼らの歴史は常に平和だったわけではありません。",
+    "日本最大の山口組との激しい抗争を経験してきた過去もあります。",
+    "山一抗争の際には、中立の立場を保ち、その影響力は絶大でした。",
+    "彼らの戦略的で冷静な動きは、闇社会の裏で常に注目されてきたんです。",
+    "近年では、特定抗争指定暴力団に指定され、活動は厳しく制限されています。",
+    "社会情勢の変化と共に、その存在も大きく変わらざるを得ない状況です。",
+    "まるで企業のような堅実な組織運営、意外な友好関係。",
+    "暴力団という危険な存在の裏側には、緻密な戦略と人間模様が詰まっています。",
+    "いかがでしたか。闇社会の一端が垣間見えましたか。"
+  ]
+}
+```
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+You are an AI assistant whose role is to generate Google search queries to find the most suitable images for quotes in a video.
+
+Given information:
+Video title (context): 住吉会
+Quote to visualize: ヤクザ組織って、怖いとか物騒とか、そんなイメージありますよね。
+
+Instructions:
+Create a single search query that is highly relevant to the quote, the video title, and the specific subject.
+Always include some reference to the specific subject from the title.
+In some cases, if the quote adds important context about the subject, include it as well.
+Example: If the title is “Trump” and the quote is referencing “G7 summit,” it makes most sense to find an image of the G7 summit, possibly with all leaders present to clarify context.
+The search query should be specific enough to get meaningful images but not so narrow that almost no results appear.
+The search query can be in English or Japanese, whichever is likely to yield the best results.
+
+Output must be in strict JSON format only, using the following template:
+
+```json
+{
+  "query": "Enter the generated search query here"
+}
+```
 
 END OF PROMPT  --------------------------------------------
 
 LLM output: ```json
 {
-  "Script": [
-    "「天才プログラマーって謎すぎるよな？麻原彰晃ってあの事件の犯人だけど、自称『超能力者』とか言いふらしてて…ちょっと待て！'",
-    "本名は松井聨だか？いやいや、麻原って通称でしょ。でもこの“天才”と“謎”が混ざったキャラ設定が可愛いんだよね。「エリート」という言葉にも矛盾がある。",
-    "実際に起きた事件の回想、ちょっと怖いけど笑っちゃう話もあるんだよな？「みんなで幸せになろう」って言ってて、結局は大惨事に。天才すぎて凡人の頭じゃ理解できない感じがしてる。",
-    "でもね、この“変人”ってのが実はすごく賢いって証明してくれてるよ。プログラマーとしての能力を武器に、国際情勢すら分析できるなんて言うんだからね。",
-    "事件後も、麻原は変わらずに「自分は正しい」と主張してて、その強迫観念が逆にも怖さと笑いの両方を生んでる。まるで悪役だけどヒーローみたいだよね？",
-    "小林聨子や芳賀正Susも含めてね。",
-    "こんな矛盾あふれた人物に、どう説得されるかってのがまた面白いんだよな？「あなたたちの思考パターンが低すぎるから」とか言ってて。頭がいいけど精神的にちょっと歪んでる感じがますってる。",
-    "でもこれが逆にYouTuber界隈で人気者になったんだよね。天才とクズの境界が曖昧だから、みんな好き勝手解釈できるってところがポイントかな？",
-    "今や彼はYouTubeの素材そのもの。犯罪者のナレーション風に語り出すだけで、視聴者は自然と「へえ」と思っちゃう。",
-    "麻原彰晃の“天才”な思考回路をどう応用するか考えてみる？"
-  ]
+  "query": "住吉会 ヤクザ"
 }
 ```
 END OF LLM OUTPUT --------------------------------------------
 
-START OF PROMPT  --------------------------------------------
- 
-あなたはAIアシスタントで、動画内の引用文に最適な画像を見つけるための **Google検索クエリ** を生成する役割を持っています。
 
-与えられる情報：
+  0%|[32m                                                            [0m 0/15 imgs | Speed: ?img/s | ETA: ?[0m[A[%] Downloading Image #1 from https://i.ytimg.com/vi/FUNycLeoTrg/maxresdefault.jpg
+[%] Downloading Image #2 from https://i.ytimg.com/vi/pXkn6lZrF34/hqdefault.jpg
+[%] Downloading Image #3 from https://i.ytimg.com/vi/ZXu3IODh-0U/oardefault.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs=AOn4CLD4LnOhrlY79MZktAp36muyqwv69w
+[%] Downloading Image #4 from https://i0.wp.com/yakuzasden.org/wp-content/uploads/2015/02/2513.png?w=640&amp;ssl=1
+[%] Downloading Image #5 from https://assets.st-note.com/production/uploads/images/86239961/picture_pc_3dfa6cfbc8d99e43690f6a9479b77a47.jpg
+[%] Downloading Image #6 from https://i0.wp.com/yakuzasden.org/wp-content/uploads/2014/04/fukunaka1.png?fit=640%2C465&amp;ssl=1
+[%] Downloading Image #7 from https://auctions.c.yimg.jp/images.auctions.yahoo.co.jp/image/dr000/auc0402/users/e80704bc696e0d2e73fb5908e9d2bc8d426d38cd/i-img1200x900-1675719542gs7ips595865.jpg
+[%] Downloading Image #8 from https://i0.wp.com/yakuzasden.org/wp-content/uploads/2016/02/capture-2016-02-28-7.52.19.png?fit=800%2C601&amp;ssl=1
+ERROR:root:Network error while saving image https://i0.wp.com/yakuzasden.org/wp-content/uploads/2016/02/capture-2016-02-28-7.52.19.png?fit=800%2C601&amp;ssl=1: HTTP Error 404: Not Found
+[%] Downloading Image #9 from https://i0.wp.com/yakuzasden.org/wp-content/uploads/2014/04/musashi1.png?fit=640%2C551&amp;ssl=1
+ERROR:root:Network error while saving image https://i0.wp.com/yakuzasden.org/wp-content/uploads/2014/04/fukunaka1.png?fit=640%2C465&amp;ssl=1: HTTP Error 404: Not Found
+ERROR:root:Network error while saving image https://i0.wp.com/yakuzasden.org/wp-content/uploads/2015/02/2513.png?w=640&amp;ssl=1: HTTP Error 404: Not Found
+[%] Downloading Image #10 from https://i0.wp.com/yakuzasden.org/wp-content/uploads/2016/11/cap-2016-11-25-13.06.19.jpg?fit=951%2C640&amp;ssl=1
+[%] Downloading Image #11 from https://i1.wp.com/yakuzasden.org/wp-content/uploads/2017/09/ab9af025d5a2980930d64a4c1f90fbfb.jpg?w=1008&amp;ssl=1
+[%] File #2 Downloaded!
 
-- 動画のタイトル（コンテキスト）：麻原
-- 表現したい引用文：「天才プログラマーって謎すぎるよな？麻原彰晃ってあの事件の犯人だけど、自称『超能力者』とか言いふらしてて…ちょっと待て！'
+[%] Downloading Image #12 from https://i0.wp.com/yakuzasden.org/wp-content/uploads/2017/02/0dbd67087868ebc4086663994a75b7f2.jpg?resize=725%2C481&amp;ssl=1
 
-指示：
+  7%|[32m███▍                                                [0m 1/15 imgs | Speed:  1.34img/s | ETA: 00:10[0m[A[%] File #1 Downloaded!
 
-1. 引用文と動画タイトルに非常に関連する **単一の検索クエリ** を作成してください。
-2. 意味のある画像が取得できる程度に **具体的** である必要がありますが、検索結果がほとんど出ないほど狭くしないでください。
-3. 引用文が一般的または曖昧な場合は、検索クエリに動画タイトルを優先的に反映してください。
-4. 検索クエリは **英語または日本語** のいずれでも構いません。LLMが最も適切な結果を得られると判断した言語で作成してください。
-5. 出力は **厳密にJSON形式** のみとし、以下のフォーマットに従ってください：
+[%] Downloading Image #13 from https://i1.wp.com/yakuzasden.org/wp-content/uploads/2014/04/daikou1.png?fit=640%2C434&amp;ssl=1
 
-```json
-{
-  "query": "ここに生成された検索クエリを入力"
-}
-```
-
-END OF PROMPT  --------------------------------------------
-
-LLM output: {
-  "query": "麻原彰晃 自称超能力者"
-}
-END OF LLM OUTPUT --------------------------------------------
+ 13%|[32m██████▉                                             [0m 2/15 imgs | Speed:  2.50img/s | ETA: 00:05[0m[AERROR:root:Network error while saving image https://i0.wp.com/yakuzasden.org/wp-content/uploads/2016/11/cap-2016-11-25-13.06.19.jpg?fit=951%2C640&amp;ssl=1: HTTP Error 404: Not Found
+[%] Downloading Image #14 from https://i2.wp.com/yakuzasden.org/wp-content/uploads/2020/06/9e0fe8c9c7cf76ccc8775f25e08c3c63.jpg?fit=925%2C610&amp;ssl=1
+ERROR:root:Network error while saving image https://i0.wp.com/yakuzasden.org/wp-content/uploads/2014/04/musashi1.png?fit=640%2C551&amp;ssl=1: HTTP Error 404: Not Found
+[%] Downloading Image #15 from https://i0.wp.com/yakuzasden.org/wp-content/uploads/2014/09/2184.png?fit=640%2C517&amp;ssl=1
+[%] File #3 Downloaded!
 
 
-  0%|[32m                                                             [0m 0/5 imgs | Speed: ?img/s | ETA: ?[0m[A[%] Downloading Image #1 from https://image.iaproject.app/167449431820952625.png
-[%] Downloading Image #2 from https://image.iaproject.app/168157551567953145.jpg
-[%] Downloading Image #3 from https://img.cdn.nimg.jp/s/nicovideo/thumbnails/1072376/1072376.original/r1280x720l?key=e04794f7ab3577e00830a955e3d4cac4a03ca8563d4acab16bf1e96f0432458e
-[%] Downloading Image #4 from https://i.ytimg.com/vi/MFU4c3J6bmM/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4Ac4FgAKACooCDAgAEAEYciBSKEQwDw==&amp;rs=AOn4CLDyQfKvtDfM_7AuDGAz96u83XKeFg
-[%] Downloading Image #5 from https://i.ytimg.com/vi/xH4GD1Q2ZTc/maxresdefault.jpg
+ 20%|[32m██████████▍                                         [0m 3/15 imgs | Speed:  3.50img/s | ETA: 00:03[0m[AERROR:root:Network error while saving image https://i1.wp.com/yakuzasden.org/wp-content/uploads/2017/09/ab9af025d5a2980930d64a4c1f90fbfb.jpg?w=1008&amp;ssl=1: HTTP Error 404: Not Found
+ERROR:root:Network error while saving image https://i0.wp.com/yakuzasden.org/wp-content/uploads/2017/02/0dbd67087868ebc4086663994a75b7f2.jpg?resize=725%2C481&amp;ssl=1: HTTP Error 404: Not Found
+ERROR:root:Network error while saving image https://i1.wp.com/yakuzasden.org/wp-content/uploads/2014/04/daikou1.png?fit=640%2C434&amp;ssl=1: HTTP Error 404: Not Found
+ERROR:root:Network error while saving image https://i0.wp.com/yakuzasden.org/wp-content/uploads/2014/09/2184.png?fit=640%2C517&amp;ssl=1: HTTP Error 404: Not Found
+ERROR:root:Network error while saving image https://i2.wp.com/yakuzasden.org/wp-content/uploads/2020/06/9e0fe8c9c7cf76ccc8775f25e08c3c63.jpg?fit=925%2C610&amp;ssl=1: HTTP Error 404: Not Found
 [%] File #5 Downloaded!
 
 
- 20%|[32m██████████▌                                          [0m 1/5 imgs | Speed:  1.03img/s | ETA: 00:03[0m[A[%] File #4 Downloaded!
+ 27%|[32m█████████████▊                                      [0m 4/15 imgs | Speed:  3.71img/s | ETA: 00:02[0m[A[%] File #7 Downloaded!
 
 
- 40%|[32m█████████████████████▏                               [0m 2/5 imgs | Speed:  2.05img/s | ETA: 00:01[0m[A[%] File #3 Downloaded!
+ 33%|[32m█████████████████▎                                  [0m 5/15 imgs | Speed:  3.00img/s | ETA: 00:03[0m[A[%] Downloading Image #6 from https://bunshun.jp/mwimgs/7/d/1200wm/img_7d3da9e98e04ad5db8a91168855421b4543986.jpg
+[%] Downloading Image #7 from https://bunshun.jp/mwimgs/2/a/1200wm/img_2ac9439c07eab4793a46d9f8cb9f3839222122.jpg
+[%] Downloading Image #8 from https://bunshun.jp/mwimgs/e/3/1200wm/img_e33a7841b46f12500fc0235069db2f95274381.jpg
+[%] Downloading Image #9 from https://auctions.c.yimg.jp/images.auctions.yahoo.co.jp/image/dr000/auc0401/users/fdeda28e811dcf8eaa6b87cac0f144f69209e94c/i-img900x1200-1673737708zt5ame114276.jpg
+[%] Downloading Image #10 from https://auctions.c.yimg.jp/images.auctions.yahoo.co.jp/image/dr000/auc0405/users/dd44cd071c82f9ced8bae6dfa90f35fabd898f4c/i-img1200x1200-1683854877kyiv4y17007.jpg
+[%] Downloading Image #11 from https://data.smart-flash.jp/wp-content/uploads/2023/04/13140759/yamagutigumi1_1.jpg
+[%] Downloading Image #12 from https://auctions.c.yimg.jp/images.auctions.yahoo.co.jp/image/dr000/auc0101/user/13af3c187b7282f96869204b9fa0a1f87d494b5012d02cab67fe7271be784ee8/i-img1200x1200-17371078745338d1okrn3355.jpg
+[%] Downloading Image #13 from https://blog-imgs-167.fc2.com/y/a/k/yakuzanews/2023052220020400e.jpg
+ERROR:root:Network error while saving image https://auctions.c.yimg.jp/images.auctions.yahoo.co.jp/image/dr000/auc0405/users/dd44cd071c82f9ced8bae6dfa90f35fabd898f4c/i-img1200x1200-1683854877kyiv4y17007.jpg: HTTP Error 403: Forbidden
+[%] Downloading Image #14 from https://data.smart-flash.jp/wp-content/uploads/2023/03/09141905/sumiyoshikai_1_thumb.jpg
+[%] File #13 Downloaded!
+
+[%] Downloading Image #15 from https://data.smart-flash.jp/wp-content/uploads/2023/04/26174937/kyokutoukai1_thumb.jpg
+
+ 40%|[32m████████████████████▊                               [0m 6/15 imgs | Speed:  2.05img/s | ETA: 00:04[0m[A[%] File #11 Downloaded!
 
 
- 60%|[32m███████████████████████████████▊                     [0m 3/5 imgs | Speed:  2.35img/s | ETA: 00:00[0m[A[%] File #2 Downloaded!
+ 47%|[32m████████████████████████▎                           [0m 7/15 imgs | Speed:  2.23img/s | ETA: 00:03[0m[A[%] File #9 Downloaded!
 
 
- 80%|[32m██████████████████████████████████████████▍          [0m 4/5 imgs | Speed:  2.94img/s | ETA: 00:00[0m[A[%] File #1 Downloaded!
+ 53%|[32m███████████████████████████▋                        [0m 8/15 imgs | Speed:  2.49img/s | ETA: 00:02[0m[A[%] File #12 Downloaded!
 
 
-100%|[32m█████████████████████████████████████████████████████[0m 5/5 imgs | Speed:  3.41img/s | ETA: 00:00[0m[A100%|[32m█████████████████████████████████████████████████████[0m 5/5 imgs | Speed:  3.41img/s | ETA: 00:00[0m
+ 60%|[32m███████████████████████████████▏                    [0m 9/15 imgs | Speed:  2.78img/s | ETA: 00:02[0m[A[%] File #14 Downloaded!
+
+
+ 67%|[32m██████████████████████████████████                 [0m 10/15 imgs | Speed:  3.00img/s | ETA: 00:01[0m[A[%] File #15 Downloaded!
+
+
+ 73%|[32m█████████████████████████████████████▍             [0m 11/15 imgs | Speed:  3.23img/s | ETA: 00:01[0m[A[%] File #8 Downloaded!
+
+
+ 80%|[32m████████████████████████████████████████▊          [0m 12/15 imgs | Speed:  2.76img/s | ETA: 00:01[0m[A[%] File #7 Downloaded!
+
+
+ 87%|[32m████████████████████████████████████████████▏      [0m 13/15 imgs | Speed:  2.98img/s | ETA: 00:00[0m[A[%] File #6 Downloaded!
+
+
+ 93%|[32m███████████████████████████████████████████████▌   [0m 14/15 imgs | Speed:  3.19img/s | ETA: 00:00[0m[A 93%|[32m███████████████████████████████████████████████▌   [0m 14/15 imgs | Speed:  2.92img/s | ETA: 00:00[0m
 START OF PROMPT  --------------------------------------------
  
-あなたはAIアシスタントで、動画内の引用文やセクションに最適な画像を選択する役割を持っています。
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
 
-与えられる情報：
+Image path: media/refImgs/img0_2.jpg
+END OF PROMPT  --------------------------------------------
 
-- 表現したい引用文：「天才プログラマーって謎すぎるよな？麻原彰晃ってあの事件の犯人だけど、自称『超能力者』とか言いふらしてて…ちょっと待て！'
-- 自動生成された画像の説明リスト（不明瞭または抽象的な場合があります）。各フレーズは改行で区切られています：
-a cartoon of a man with long hair and a beard
-a woman in pink shirt pointing at something
-a japanese school teacher is giving a student to take her
-a man with long hair and beards is shown in this image
-a man with long hair and beards standing in front of a green wall
-- すでに動画で使用された画像（再利用禁止）： 
+LLM output: Here's a description of the image:
 
+The image is a composite of four black and white photographs taken from different angles. All four men are wearing dark overcoats and dark glasses, and are wearing black masks. They appear to be in a formal setting, likely indoors due to the lighting. The men are positioned in a slightly awkward, tense manner, with some exhibiting expressions of concern or seriousness. The style is stark and documentary-like, emphasizing the individuals' faces and expressions.
+END OF LLM OUTPUT --------------------------------------------
 
-指示：
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
 
-1. 引用文に最も合致し、かつエンタメ価値を高める単一の画像説明を選択してください。
-2. 選択理由は **JSON内の "reason" フィールド** に必ず記入してください。
-3. JSONオブジェクト以外には何も出力しないでください。コメント、余計な改行、マークダウン、確認文は出さないでください。
-4. JSONオブジェクトは必ず以下の3つのフィールドを含めてください：
-   - "phrase": 元の引用文
-   - "image_description": 選択した画像説明。詳細を維持しつつ、簡潔にまとめ、**おおよそ20文字前後** にしてください。
-   - "reason": その画像が引用文に合う理由を簡潔に説明し、**おおよそ20文字前後** にしてください。
+Image path: media/refImgs/img0_11.jpg
+END OF PROMPT  --------------------------------------------
 
-出力形式（JSONのみ、他のテキストなし）：
+LLM output: Here's a description of the image:
 
+The image shows three men seated around a circular table in a formal, well-lit room. The walls are a warm, muted brown color. A white, textured tablecloth covers the table, and there are several small, dark objects – likely tea cups or small dishes – placed on it. The men are all dressed in dark suits and tie, projecting a professional and serious atmosphere. Behind the men is a framed, somewhat abstract painting depicting a waterfall scene. The lighting is bright and even, and the overall style suggests a formal meeting or official gathering.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_15.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here's a description of the image:
+
+The image appears to be a photograph taken in a somewhat formal setting. A man in a dark suit, white shirt, and black tie is the central figure, positioned slightly to the left of the frame. He wears dark glasses and is looking down with a serious expression. Two other men, also wearing suits, stand on either side of him, partially obscured by the man in the foreground. The background is a solid green wall with a grid-patterned window. The lighting is even, creating a somewhat somber and serious atmosphere.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_3.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here's a description of the image:
+
+The image shows a group of men, likely older men, dressed in dark blue and white striped robes. They are gathered together, appearing to be part of a procession or ceremony. Many of them are looking upwards, with some gesturing or raising their hands, suggesting a moment of reverence or perhaps a performance. The background is blurred and appears to be an outdoor setting with buildings visible, implying this is taking place in a public space. The overall style of the photograph is candid and documentary, capturing a moment in time.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_9.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here's a description of the image:
+
+The image depicts a man with dark hair pulled back into a tight ponytail, wearing a dark suit jacket and a white collared shirt. He is looking slightly to the left, with a serious and focused expression. The style of the image is a digital illustration, with a relatively detailed rendering of the man’s face and clothing. The background is a solid, dark gray, which helps to highlight the subject. The overall impression is one of a determined and perhaps slightly intense character, likely a scene from an anime or manga.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_7.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here’s a description of the image:
+
+This is a black and white photograph depicting a group of six individuals dressed in traditional Japanese garments – dark, formal attire with elaborate hats and wide sleeves. They are seated on the floor in a semi-circular arrangement, appearing to be part of a performance or ritual. The setting is a room with a somewhat cluttered feel, indicated by a small tripod and what appears to be a decorative screen or backdrop with traditional Japanese characters written on it. The lighting is somewhat flat, casting deep shadows and highlighting the textures of the clothing and the floor coverings. The overall impression is one of formality and a traditional Japanese aesthetic.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+You are an AI assistant tasked with selecting the most suitable image for a quote in a video.
+
+Input:
+Quote: ヤクザ組織って、怖いとか物騒とか、そんなイメージありますよね。
+
+AI-generated image descriptions (may be vague or abstract, newline-separated): Here's a description of the image:
+
+The image is a composite of four black and white photographs taken from different angles. All four men are wearing dark overcoats and dark glasses, and are wearing black masks. They appear to be in a formal setting, likely indoors due to the lighting. The men are positioned in a slightly awkward, tense manner, with some exhibiting expressions of concern or seriousness. The style is stark and documentary-like, emphasizing the individuals' faces and expressions.
+Here's a description of the image:
+
+The image shows three men seated around a circular table in a formal, well-lit room. The walls are a warm, muted brown color. A white, textured tablecloth covers the table, and there are several small, dark objects – likely tea cups or small dishes – placed on it. The men are all dressed in dark suits and tie, projecting a professional and serious atmosphere. Behind the men is a framed, somewhat abstract painting depicting a waterfall scene. The lighting is bright and even, and the overall style suggests a formal meeting or official gathering.
+Here's a description of the image:
+
+The image appears to be a photograph taken in a somewhat formal setting. A man in a dark suit, white shirt, and black tie is the central figure, positioned slightly to the left of the frame. He wears dark glasses and is looking down with a serious expression. Two other men, also wearing suits, stand on either side of him, partially obscured by the man in the foreground. The background is a solid green wall with a grid-patterned window. The lighting is even, creating a somewhat somber and serious atmosphere.
+Here's a description of the image:
+
+The image shows a group of men, likely older men, dressed in dark blue and white striped robes. They are gathered together, appearing to be part of a procession or ceremony. Many of them are looking upwards, with some gesturing or raising their hands, suggesting a moment of reverence or perhaps a performance. The background is blurred and appears to be an outdoor setting with buildings visible, implying this is taking place in a public space. The overall style of the photograph is candid and documentary, capturing a moment in time.
+Here's a description of the image:
+
+The image depicts a man with dark hair pulled back into a tight ponytail, wearing a dark suit jacket and a white collared shirt. He is looking slightly to the left, with a serious and focused expression. The style of the image is a digital illustration, with a relatively detailed rendering of the man’s face and clothing. The background is a solid, dark gray, which helps to highlight the subject. The overall impression is one of a determined and perhaps slightly intense character, likely a scene from an anime or manga.
+Here’s a description of the image:
+
+This is a black and white photograph depicting a group of six individuals dressed in traditional Japanese garments – dark, formal attire with elaborate hats and wide sleeves. They are seated on the floor in a semi-circular arrangement, appearing to be part of a performance or ritual. The setting is a room with a somewhat cluttered feel, indicated by a small tripod and what appears to be a decorative screen or backdrop with traditional Japanese characters written on it. The lighting is somewhat flat, casting deep shadows and highlighting the textures of the clothing and the floor coverings. The overall impression is one of formality and a traditional Japanese aesthetic.
+
+Task:
+Choose a single description that best matches the quote and enhances entertainment value.
+Provide a brief reason why it fits.
+Output only a JSON object with exactly these two fields:
+"image_description": chosen description
+"reason": why it fits, concise (~20 characters)
+If descriptions lack names, assume the subject relates to the quote. Focus on how it is portrayed and its visual appeal.
+
+Output format:
 ```json
 {
-    "phrase": "引用文をここに入れる",
-    "image_description": "選択した画像説明をここに入れる",
-    "reason": "この画像が引用文に合う理由を短く説明する"
+    "image_description": "your selected description here",
+    "reason": "your reason here"
 }
 ```
 
 END OF PROMPT  --------------------------------------------
 
-LLM output: {
-    "phrase": "天才プログラマーの謎？麻原彰晃自称超能力者で…",
-    "image_description": "カートンの長髪ひげ男、ユーモア要素あり",
-    "reason": "外見と主張の矛盾を可視化し、エンターテインメント性を高める"
+LLM output: ```json
+{
+    "image_description": "The image is a composite of four black and white photographs taken from different angles. All four men are wearing dark overcoats and dark glasses, and are wearing black masks. They appear to be in a formal setting, likely indoors due to the lighting. The men are positioned in a slightly awkward, tense manner, with some exhibiting expressions of concern or seriousness. The style is stark and documentary-like, emphasizing the individuals' faces and expressions.",
+    "reason": "Evokes fear/danger"
 }
+```
 END OF LLM OUTPUT --------------------------------------------
 
-Current phrase: 「天才プログラマーって謎すぎるよな？麻原彰晃ってあの事件の犯人だけど、自称『超能力者』とか言いふらしてて…ちょっと待て！'
+Current phrase: ヤクザ組織って、怖いとか物騒とか、そんなイメージありますよね。
 START OF PROMPT  --------------------------------------------
  
-あなたはAIアシスタントで、動画内の引用文に最適な画像を見つけるための **Google検索クエリ** を生成する役割を持っています。
+You are an AI assistant whose role is to generate Google search queries to find the most suitable images for quotes in a video.
 
-与えられる情報：
+Given information:
+Video title (context): 住吉会
+Quote to visualize: でも実は、内部には意外なルールや歴史が隠されているんです。
 
-- 動画のタイトル（コンテキスト）：麻原
-- 表現したい引用文：本名は松井聨だか？いやいや、麻原って通称でしょ。でもこの“天才”と“謎”が混ざったキャラ設定が可愛いんだよね。「エリート」という言葉にも矛盾がある。
+Instructions:
+Create a single search query that is highly relevant to the quote, the video title, and the specific subject.
+Always include some reference to the specific subject from the title.
+In some cases, if the quote adds important context about the subject, include it as well.
+Example: If the title is “Trump” and the quote is referencing “G7 summit,” it makes most sense to find an image of the G7 summit, possibly with all leaders present to clarify context.
+The search query should be specific enough to get meaningful images but not so narrow that almost no results appear.
+The search query can be in English or Japanese, whichever is likely to yield the best results.
 
-指示：
-
-1. 引用文と動画タイトルに非常に関連する **単一の検索クエリ** を作成してください。
-2. 意味のある画像が取得できる程度に **具体的** である必要がありますが、検索結果がほとんど出ないほど狭くしないでください。
-3. 引用文が一般的または曖昧な場合は、検索クエリに動画タイトルを優先的に反映してください。
-4. 検索クエリは **英語または日本語** のいずれでも構いません。LLMが最も適切な結果を得られると判断した言語で作成してください。
-5. 出力は **厳密にJSON形式** のみとし、以下のフォーマットに従ってください：
+Output must be in strict JSON format only, using the following template:
 
 ```json
 {
-  "query": "ここに生成された検索クエリを入力"
+  "query": "Enter the generated search query here"
 }
 ```
 
 END OF PROMPT  --------------------------------------------
 
-LLM output: {
-  "query": "麻原彰晃 本名 松井聼 通称 天才 謎 キャラクター設定 画像"
+LLM output: ```json
+{
+  "query": "住吉会 内部 ルール 歴史"
 }
+```
 END OF LLM OUTPUT --------------------------------------------
 
 
-  0%|[32m                                                             [0m 0/5 imgs | Speed: ?img/s | ETA: ?[0m[A[%] Downloading Image #1 from https://embed.pixiv.net/decorate.php?illust_id=69576978
-[%] Downloading Image #2 from https://image.iaproject.app/168157551567953145.jpg
-[%] Downloading Image #3 from https://i.ytimg.com/vi/exEzDaUK0xI/maxresdefault.jpg
-[%] Downloading Image #4 from https://i.ytimg.com/vi/MFU4c3J6bmM/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4Ac4FgAKACooCDAgAEAEYciBSKEQwDw==&amp;rs=AOn4CLDyQfKvtDfM_7AuDGAz96u83XKeFg
-[%] Downloading Image #5 from https://i.ytimg.com/vi/iWZ1Ir1lQhE/hqdefault.jpg
-[%] File #5 Downloaded!
+  0%|[32m                                                            [0m 0/15 imgs | Speed: ?img/s | ETA: ?[0m[A[%] Downloading Image #1 from https://i.ytimg.com/vi/nE88Z_STPXI/maxresdefault.jpg
+[%] Downloading Image #2 from https://i.ytimg.com/vi/9_OqJnZ9GiM/maxresdefault.jpg
+[%] Downloading Image #3 from https://i.ytimg.com/vi/_ivifdIhBx8/maxresdefault.jpg
+[%] Downloading Image #4 from https://i.ytimg.com/vi/OnnhXrs4xLw/maxresdefault.jpg
+[%] Downloading Image #5 from https://i.ytimg.com/vi/CsYSm003d6Y/maxresdefault.jpg
+[%] Downloading Image #6 from https://i.ytimg.com/vi/Yl5KrwlK1yU/maxresdefault.jpg
+[%] Downloading Image #7 from https://i.ytimg.com/vi/yK_NrXVrpCA/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYZSBcKEowDw==&amp;rs=AOn4CLC9SRqIbLxqm64iGMsiuxbsQvpyTg
+[%] Downloading Image #8 from https://i.ytimg.com/vi/H6EEhjZhUEg/maxresdefault.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYWCBcKGUwDw==&amp;rs=AOn4CLD0hIRkLBJFTag3xaTOKtjZ1JZZXQ
+[%] File #2 Downloaded!
+
+[%] Downloading Image #9 from https://i.ytimg.com/vi/lAdBZee_ZKE/maxresdefault.jpg
+
+  7%|[32m███▍                                                [0m 1/15 imgs | Speed:  1.03img/s | ETA: 00:13[0m[A[%] File #7 Downloaded!
+
+[%] Downloading Image #10 from https://i.ytimg.com/vi/yZg00AbKw_Q/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4Ac4FgAKACooCDAgAEAEYZSBWKFQwDw==&amp;rs=AOn4CLD17L5e7Ek7IX928IDGrKIJ9NCeHA
+
+ 13%|[32m██████▉                                             [0m 2/15 imgs | Speed:  2.03img/s | ETA: 00:06[0m[A[%] File #1 Downloaded!
+
+[%] Downloading Image #11 from https://i.ytimg.com/vi/NI4Kex278ZE/maxresdefault.jpg
+
+ 20%|[32m██████████▍                                         [0m 3/15 imgs | Speed:  3.03img/s | ETA: 00:03[0m[A[%] File #8 Downloaded!
+
+[%] Downloading Image #12 from https://i.pinimg.com/originals/49/25/1e/49251e0ecd1100f44ea2d3062274efff.jpg
+
+ 27%|[32m█████████████▊                                      [0m 4/15 imgs | Speed:  3.95img/s | ETA: 00:02[0m[A[%] File #5 Downloaded!
+
+[%] Downloading Image #13 from https://i.pinimg.com/originals/48/a4/df/48a4df22f9e720cde4263def12894421.jpg
+
+ 33%|[32m█████████████████▎                                  [0m 5/15 imgs | Speed:  4.70img/s | ETA: 00:02[0m[A[%] File #3 Downloaded!
+
+[%] Downloading Image #14 from https://i.imgur.com/rt0TaAR.jpg
+
+ 40%|[32m████████████████████▊                               [0m 6/15 imgs | Speed:  5.60img/s | ETA: 00:01[0m[A[%] File #6 Downloaded!
+
+[%] Downloading Image #15 from https://www.wacoca.com/media/wp-content/uploads/2024/02/1708484169_maxresdefault.jpg
+
+ 47%|[32m████████████████████████▎                           [0m 7/15 imgs | Speed:  6.45img/s | ETA: 00:01[0m[A[%] File #4 Downloaded!
 
 
- 20%|[32m██████████▌                                          [0m 1/5 imgs | Speed:  1.26img/s | ETA: 00:03[0m[A[%] File #2 Downloaded!
+ 53%|[32m███████████████████████████▋                        [0m 8/15 imgs | Speed:  6.98img/s | ETA: 00:01[0m[AERROR:root:Network error while saving image https://i.ytimg.com/vi/yZg00AbKw_Q/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4Ac4FgAKACooCDAgAEAEYZSBWKFQwDw==&amp;rs=AOn4CLD17L5e7Ek7IX928IDGrKIJ9NCeHA: HTTP Error 404: Not Found
+[%] File #11 Downloaded!
 
 
- 40%|[32m█████████████████████▏                               [0m 2/5 imgs | Speed:  2.51img/s | ETA: 00:01[0m[A[%] File #4 Downloaded!
+ 60%|[32m███████████████████████████████▏                    [0m 9/15 imgs | Speed:  6.56img/s | ETA: 00:00[0m[A[%] File #9 Downloaded!
 
 
- 60%|[32m███████████████████████████████▊                     [0m 3/5 imgs | Speed:  3.64img/s | ETA: 00:00[0m[A[%] File #3 Downloaded!
+ 67%|[32m██████████████████████████████████                 [0m 10/15 imgs | Speed:  7.24img/s | ETA: 00:00[0m[A[%] File #12 Downloaded!
 
 
- 80%|[32m██████████████████████████████████████████▍          [0m 4/5 imgs | Speed:  4.48img/s | ETA: 00:00[0m[A[%] File #1 Downloaded!
+ 73%|[32m█████████████████████████████████████▍             [0m 11/15 imgs | Speed:  7.72img/s | ETA: 00:00[0m[A[%] File #13 Downloaded!
 
 
-100%|[32m█████████████████████████████████████████████████████[0m 5/5 imgs | Speed:  2.12img/s | ETA: 00:00[0m[A100%|[32m█████████████████████████████████████████████████████[0m 5/5 imgs | Speed:  2.12img/s | ETA: 00:00[0m
+ 80%|[32m████████████████████████████████████████▊          [0m 12/15 imgs | Speed:  8.30img/s | ETA: 00:00[0m[AERROR:root:Invalid image, not saving https://i.imgur.com/rt0TaAR.jpg
+[%] File #15 Downloaded!
+
+
+ 87%|[32m████████████████████████████████████████████▏      [0m 13/15 imgs | Speed:  4.55img/s | ETA: 00:00[0m[A[%] Downloading Image #14 from https://auctions.c.yimg.jp/images.auctions.yahoo.co.jp/image/dr000/auc0507/users/3ab1f982f2689e323208e21cc2f7c42e55e48a49/i-img900x1200-1720053450dfbl1i179678.jpg
+[%] Downloading Image #15 from https://auctions.c.yimg.jp/images.auctions.yahoo.co.jp/image/dr000/auc0408/users/fdeda28e811dcf8eaa6b87cac0f144f69209e94c/i-img900x1200-1692826947y6ioex24176.jpg
+[%] File #14 Downloaded!
+
+
+ 93%|[32m███████████████████████████████████████████████▌   [0m 14/15 imgs | Speed:  3.28img/s | ETA: 00:00[0m[A[%] File #15 Downloaded!
+
+
+100%|[32m███████████████████████████████████████████████████[0m 15/15 imgs | Speed:  3.38img/s | ETA: 00:00[0m[A100%|[32m███████████████████████████████████████████████████[0m 15/15 imgs | Speed:  3.38img/s | ETA: 00:00[0m
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_2.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here's a description of the image:
+
+The image appears to be a digitally painted cityscape, rendered in a detailed, realistic style reminiscent of Japanese animation or manga. It depicts a bustling urban street scene with a tall, imposing building dominating the background. The building features large, dark windows and a substantial overhang, giving it a strong presence. In the foreground, a dark, rectangular sign with Japanese text is prominently displayed, adding to the sense of a modern urban setting. The image has a slightly muted color palette, with shades of gray and black dominating, suggesting a nighttime or overcast day. The overall impression is one of a busy, slightly mysterious city street.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_11.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here's a description of the image:
+
+The image appears to be a panel from a manga or comic book, characterized by a stark black and white style with heavy black outlines. It depicts a street scene during what seems to be a rainstorm or aftermath of one, with a wet, dark road and a reflective sheen on the pavement. A white vehicle is partially submerged in a large puddle, with the front bumper and part of the hood visible. A man with short, dark hair and a serious expression is looking directly at the viewer. He is positioned to the right of the scene, adding a sense of direct engagement with the viewer. The overall impression is one of a dramatic, potentially tense moment, possibly a crime scene or a pivotal moment in a narrative.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_15.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here's a description of the image's content:
+
+The image is a printed document, likely a catalog or brochure, featuring a dark gray background with light gray text. The layout is divided into several sections, each with a distinct header. The primary sections are titled "会社概要," "会社相貌," and "会社特点" (Company Overview, Company Appearance, and Company Characteristics). The text is arranged in columns and rows, with a clear heading and some of the text is in bullet points. There are various numerical entries and numbers, appearing to represent information about the businesses. The overall style is formal and professional, typical of business-related documentation.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_3.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here's a description of the image:
+
+The image is a street-level shot in an urban environment, likely a city street. Several individuals are standing around a dark-colored vehicle, possibly a Lexus, which has its door open. The vehicle is prominently displayed with the "ALPHARD" branding on the side. A traffic sign is visible in the background, and there are other cars parked nearby. The overall style is a candid, somewhat documentary-like capture of a moment.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_9.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here's a description of the image:
+
+The image depicts a street scene in what appears to be a densely populated urban area, likely in East Asia. A dark-colored sedan is parked along the curb, with a reflective surface suggesting wet conditions. The street itself is lined with buildings of a light grey, textured concrete, and many have large windows. A person stands near the entrance of a building, partially obscured by the shadows. The style of the image appears to be a photograph with a slightly desaturated color palette, capturing a sense of urban atmosphere and possibly a rainy day. The overall feel is one of a typical city street.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_7.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here's a description of the image:
+
+The image shows a section of a tall, modern apartment building. The building has a repetitive, block-like design with large, rectangular windows running across multiple floors. The windows are evenly spaced and framed by white concrete ledges. The building appears to be constructed with a pale, off-white exterior. The photograph has a slightly blurred, slightly grainy quality, suggesting it might have been taken with a camera lens with a shorter focal length, or with some motion blur. The light is diffuse, illuminating the building evenly.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_4.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here’s a description of the image:
+
+The image appears to be a digitally created artwork, likely fan-made, depicting a large group of figures in a stark, dramatic style. The dominant element is a massive, blood-red character name written in a bold, stylized font, suggesting a manga or anime style. The figures surrounding the text are dark, silhouetted individuals, dressed in formal attire – suits and hats – giving the impression of a formal gathering or event. The lighting is dramatic, with strong highlights and shadows, creating a sense of tension and intensity. The overall effect is reminiscent of a scene from a dark or action-oriented manga.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+You are an AI assistant tasked with selecting the most suitable image for a quote in a video.
+
+Input:
+Quote: でも実は、内部には意外なルールや歴史が隠されているんです。
+
+AI-generated image descriptions (may be vague or abstract, newline-separated): Here's a description of the image:
+
+The image appears to be a digitally painted cityscape, rendered in a detailed, realistic style reminiscent of Japanese animation or manga. It depicts a bustling urban street scene with a tall, imposing building dominating the background. The building features large, dark windows and a substantial overhang, giving it a strong presence. In the foreground, a dark, rectangular sign with Japanese text is prominently displayed, adding to the sense of a modern urban setting. The image has a slightly muted color palette, with shades of gray and black dominating, suggesting a nighttime or overcast day. The overall impression is one of a busy, slightly mysterious city street.
+Here's a description of the image:
+
+The image appears to be a panel from a manga or comic book, characterized by a stark black and white style with heavy black outlines. It depicts a street scene during what seems to be a rainstorm or aftermath of one, with a wet, dark road and a reflective sheen on the pavement. A white vehicle is partially submerged in a large puddle, with the front bumper and part of the hood visible. A man with short, dark hair and a serious expression is looking directly at the viewer. He is positioned to the right of the scene, adding a sense of direct engagement with the viewer. The overall impression is one of a dramatic, potentially tense moment, possibly a crime scene or a pivotal moment in a narrative.
+Here's a description of the image's content:
+
+The image is a printed document, likely a catalog or brochure, featuring a dark gray background with light gray text. The layout is divided into several sections, each with a distinct header. The primary sections are titled "会社概要," "会社相貌," and "会社特点" (Company Overview, Company Appearance, and Company Characteristics). The text is arranged in columns and rows, with a clear heading and some of the text is in bullet points. There are various numerical entries and numbers, appearing to represent information about the businesses. The overall style is formal and professional, typical of business-related documentation.
+Here's a description of the image:
+
+The image is a street-level shot in an urban environment, likely a city street. Several individuals are standing around a dark-colored vehicle, possibly a Lexus, which has its door open. The vehicle is prominently displayed with the "ALPHARD" branding on the side. A traffic sign is visible in the background, and there are other cars parked nearby. The overall style is a candid, somewhat documentary-like capture of a moment.
+Here's a description of the image:
+
+The image depicts a street scene in what appears to be a densely populated urban area, likely in East Asia. A dark-colored sedan is parked along the curb, with a reflective surface suggesting wet conditions. The street itself is lined with buildings of a light grey, textured concrete, and many have large windows. A person stands near the entrance of a building, partially obscured by the shadows. The style of the image appears to be a photograph with a slightly desaturated color palette, capturing a sense of urban atmosphere and possibly a rainy day. The overall feel is one of a typical city street.
+Here's a description of the image:
+
+The image shows a section of a tall, modern apartment building. The building has a repetitive, block-like design with large, rectangular windows running across multiple floors. The windows are evenly spaced and framed by white concrete ledges. The building appears to be constructed with a pale, off-white exterior. The photograph has a slightly blurred, slightly grainy quality, suggesting it might have been taken with a camera lens with a shorter focal length, or with some motion blur. The light is diffuse, illuminating the building evenly.
+Here’s a description of the image:
+
+The image appears to be a digitally created artwork, likely fan-made, depicting a large group of figures in a stark, dramatic style. The dominant element is a massive, blood-red character name written in a bold, stylized font, suggesting a manga or anime style. The figures surrounding the text are dark, silhouetted individuals, dressed in formal attire – suits and hats – giving the impression of a formal gathering or event. The lighting is dramatic, with strong highlights and shadows, creating a sense of tension and intensity. The overall effect is reminiscent of a scene from a dark or action-oriented manga.
+
+Task:
+Choose a single description that best matches the quote and enhances entertainment value.
+Provide a brief reason why it fits.
+Output only a JSON object with exactly these two fields:
+"image_description": chosen description
+"reason": why it fits, concise (~20 characters)
+If descriptions lack names, assume the subject relates to the quote. Focus on how it is portrayed and its visual appeal.
+
+Output format:
+```json
+{
+    "image_description": "your selected description here",
+    "reason": "your reason here"
+}
+```
+
+END OF PROMPT  --------------------------------------------
+
+LLM output: ```json
+{
+    "image_description": "Here’s a description of the image:\n\nThe image appears to be a digitally created artwork, likely fan-made, depicting a large group of figures in a stark, dramatic style. The dominant element is a massive, blood-red character name written in a bold, stylized font, suggesting a manga or anime style. The figures surrounding the text are dark, silhouetted individuals, dressed in formal attire – suits and hats – giving the impression of a formal gathering or event. The lighting is dramatic, with strong highlights and shadows, creating a sense of tension and intensity. The overall effect is reminiscent of a scene from a dark or action-oriented manga.",
+    "reason": "Suggests hidden depths"
+}
+```
+END OF LLM OUTPUT --------------------------------------------
+
+Current phrase: でも実は、内部には意外なルールや歴史が隠されているんです。
+START OF PROMPT  --------------------------------------------
+ 
+You are an AI assistant whose role is to generate Google search queries to find the most suitable images for quotes in a video.
+
+Given information:
+Video title (context): 住吉会
+Quote to visualize: 今日掘り下げるのは、日本を代表する指定暴力団、住吉会。
+
+Instructions:
+Create a single search query that is highly relevant to the quote, the video title, and the specific subject.
+Always include some reference to the specific subject from the title.
+In some cases, if the quote adds important context about the subject, include it as well.
+Example: If the title is “Trump” and the quote is referencing “G7 summit,” it makes most sense to find an image of the G7 summit, possibly with all leaders present to clarify context.
+The search query should be specific enough to get meaningful images but not so narrow that almost no results appear.
+The search query can be in English or Japanese, whichever is likely to yield the best results.
+
+Output must be in strict JSON format only, using the following template:
+
+```json
+{
+  "query": "Enter the generated search query here"
+}
+```
+
+END OF PROMPT  --------------------------------------------
+
+LLM output: ```json
+{
+  "query": "住吉会 暴力団"
+}
+```
+END OF LLM OUTPUT --------------------------------------------
+
+
+  0%|[32m                                                            [0m 0/15 imgs | Speed: ?img/s | ETA: ?[0m[A[%] Downloading Image #1 from https://www.magmoe.com/wp-content/uploads/2022/11/1667687647_maxresdefault.jpg
+[%] Downloading Image #2 from https://i.ytimg.com/vi/_ivifdIhBx8/maxresdefault.jpg
+[%] Downloading Image #3 from https://i.ytimg.com/vi/41M1EBtMvZY/maxresdefault.jpg
+[%] Downloading Image #4 from https://i.ytimg.com/vi/0qcwupduRY4/maxresdefault.jpg
+[%] Downloading Image #5 from https://i.ytimg.com/vi/FUNycLeoTrg/maxresdefault.jpg
+[%] Downloading Image #6 from https://i.ytimg.com/vi/tV15hyNExdQ/maxresdefault.jpg
+[%] Downloading Image #7 from https://i.ytimg.com/vi/w_umCWzG85c/maxresdefault.jpg
+[%] Downloading Image #8 from https://i.ytimg.com/vi/BsIj4AYciio/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYRyBZKGUwDw==&amp;amp;rs=AOn4CLAXiYhOyUnuL5rVr8y5-_auZs1Jxw
+[%] File #2 Downloaded!
+
+[%] Downloading Image #9 from https://i.ytimg.com/vi/yZg00AbKw_Q/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4Ac4FgAKACooCDAgAEAEYZSBWKFQwDw==&amp;rs=AOn4CLD17L5e7Ek7IX928IDGrKIJ9NCeHA
+
+  7%|[32m███▍                                                [0m 1/15 imgs | Speed:  1.20img/s | ETA: 00:11[0m[A[%] File #5 Downloaded!
+
+[%] Downloading Image #10 from https://i.ytimg.com/vi/4IhVZ4UJuFk/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYRSBVKGUwDw==&amp;rs=AOn4CLDO8Jq_rF-mFvevC6X9p9aYOO1Eug
+
+ 13%|[32m██████▉                                             [0m 2/15 imgs | Speed:  2.36img/s | ETA: 00:05[0m[A[%] File #8 Downloaded!
+
+[%] Downloading Image #11 from https://i.ytimg.com/vi/b8Db0_DkUEU/maxresdefault.jpg
+
+ 20%|[32m██████████▍                                         [0m 3/15 imgs | Speed:  3.38img/s | ETA: 00:03[0m[A[%] File #7 Downloaded!
+
+[%] Downloading Image #12 from https://i0.wp.com/i.imgur.com/sC3ockB.jpg?w=680&amp;ssl=1
+
+ 27%|[32m█████████████▊                                      [0m 4/15 imgs | Speed:  4.28img/s | ETA: 00:02[0m[A[%] File #3 Downloaded!
+
+[%] Downloading Image #13 from https://xn--pcko0l.net/wp-content/uploads/2018/12/333914A4-E62A-4672-A5DA-6EE65969A4D9-710x533.jpeg
+
+ 33%|[32m█████████████████▎                                  [0m 5/15 imgs | Speed:  5.25img/s | ETA: 00:01[0m[A[%] File #4 Downloaded!
+
+[%] Downloading Image #14 from https://xn--pcko0l.net/wp-content/uploads/2018/12/8E7DFE90-CBEF-4D17-8FEB-E23DBACD87A1-565x424.jpeg
+
+ 40%|[32m████████████████████▊                               [0m 6/15 imgs | Speed:  5.99img/s | ETA: 00:01[0m[A[%] File #6 Downloaded!
+
+[%] Downloading Image #15 from https://xn--pcko0l.net/wp-content/uploads/2512.jpg
+
+ 47%|[32m████████████████████████▎                           [0m 7/15 imgs | Speed:  6.93img/s | ETA: 00:01[0m[AERROR:root:Network error while saving image https://i0.wp.com/i.imgur.com/sC3ockB.jpg?w=680&amp;ssl=1: HTTP Error 404: Not Found
+ERROR:root:Network error while saving image https://i.ytimg.com/vi/yZg00AbKw_Q/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4Ac4FgAKACooCDAgAEAEYZSBWKFQwDw==&amp;rs=AOn4CLD17L5e7Ek7IX928IDGrKIJ9NCeHA: HTTP Error 404: Not Found
+[%] File #11 Downloaded!
+
+
+ 53%|[32m███████████████████████████▋                        [0m 8/15 imgs | Speed:  6.55img/s | ETA: 00:01[0m[A[%] File #10 Downloaded!
+
+
+ 60%|[32m███████████████████████████████▏                    [0m 9/15 imgs | Speed:  7.21img/s | ETA: 00:00[0m[A[%] File #15 Downloaded!
+
+
+ 67%|[32m██████████████████████████████████                 [0m 10/15 imgs | Speed:  4.89img/s | ETA: 00:01[0m[A[%] File #1 Downloaded!
+
+
+ 73%|[32m█████████████████████████████████████▍             [0m 11/15 imgs | Speed:  5.15img/s | ETA: 00:00[0m[A[%] File #14 Downloaded!
+
+
+ 80%|[32m████████████████████████████████████████▊          [0m 12/15 imgs | Speed:  5.49img/s | ETA: 00:00[0m[A[%] File #13 Downloaded!
+
+
+ 87%|[32m████████████████████████████████████████████▏      [0m 13/15 imgs | Speed:  5.83img/s | ETA: 00:00[0m[A[%] Downloading Image #14 from https://xn--pcko0l.net/wp-content/uploads/2016/02/capture-2016-02-28-7.19.12.jpg
+[%] Downloading Image #15 from https://res.cloudinary.com/fridaydigital/image/private/t_og_image_faces/wpmedia/2021/11/SH239243.jpg
+[%] File #15 Downloaded!
+
+
+ 93%|[32m███████████████████████████████████████████████▌   [0m 14/15 imgs | Speed:  4.95img/s | ETA: 00:00[0m[A[%] File #14 Downloaded!
+
+
+100%|[32m███████████████████████████████████████████████████[0m 15/15 imgs | Speed:  4.36img/s | ETA: 00:00[0m[A100%|[32m███████████████████████████████████████████████████[0m 15/15 imgs | Speed:  4.36img/s | ETA: 00:00[0m
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_2.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here's a description of the image:
+
+The image appears to be a street scene captured in a somewhat stylized, artistic manner, possibly a photograph with a specific editing style. Several figures, likely security personnel or assistants, are standing around a dark-colored Toyota Alphard minivan. The vehicle is positioned close to the curb. There is a red traffic sign visible in the background, and other cars are parked in the distance. The overall composition suggests a scene where assistance or service is being provided to the vehicle.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_11.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here’s a description of the image:
+
+The image depicts a bustling, narrow street scene in what appears to be Japan. Several men, dressed in casual clothing – including jackets and jeans – are walking along the sidewalk, many holding drinks. Some are standing and chatting, while others are walking alongside each other. The street is lined with storefronts, some of which have signs in Japanese characters. The scene has a slightly gritty, urban feel with a lot of people and a strong sense of activity. The lighting suggests it’s either dusk or a cloudy day, contributing to the somewhat subdued atmosphere. There is a zebra crossing visible in the street.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_15.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here's a description of the image:
+
+The photograph captures a group of formally dressed men, predominantly in dark suits, appearing to be walking together outdoors. One man is notably distinguished by wearing a traditional Japanese kimono over a dark suit, complete with a patterned under-skirt. Most of the other men wear white face masks, and several hold cameras or phones, suggesting they are documenting the scene. They are walking along what appears to be a concrete walkway, with a brick wall visible in the background. The overall impression is of a formal event or procession.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_10.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here’s a description of the image:
+
+The image shows a tall, multi-story apartment building constructed of reddish-brown brick. The building has numerous windows arranged in a regular pattern across its facade. Cables and wires run along the exterior of the building, indicating utility connections. A white car with a roof rack is parked in the foreground, partially obscuring the lower levels of the building. The lighting suggests an overcast day, casting a cool tone across the scene. The image has a somewhat gritty, urban feel, typical of a densely populated area.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_6.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here’s a description of the image:
+
+The image appears to be a photograph taken inside a Japanese restaurant. The scene is brightly lit and shows a tiled floor with a dark, grey band running across it.  A dark, tiled counter stretches into the distance, with a dark counter area and a small, dark-colored counter extending outward. A dark, rectangular sign is mounted on the wall behind the counter.  The overall impression is of a simple, modern restaurant interior.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+Image path: media/refImgs/img0_1.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: Here's a description of the image:
+
+The image depicts a man wearing a white face mask and a grey t-shirt, seated indoors. The background is a blurred expanse of vertical bars, likely a security gate or a similar structure. The man is looking directly at the camera with a neutral expression. The lighting is somewhat subdued, creating a slightly gloomy atmosphere, and the image has a documentary or observational style, as if captured during a candid moment.
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+You are an AI assistant tasked with selecting the most suitable image for a quote in a video.
+
+Input:
+Quote: 今日掘り下げるのは、日本を代表する指定暴力団、住吉会。
+
+AI-generated image descriptions (may be vague or abstract, newline-separated): Here's a description of the image:
+
+The image appears to be a street scene captured in a somewhat stylized, artistic manner, possibly a photograph with a specific editing style. Several figures, likely security personnel or assistants, are standing around a dark-colored Toyota Alphard minivan. The vehicle is positioned close to the curb. There is a red traffic sign visible in the background, and other cars are parked in the distance. The overall composition suggests a scene where assistance or service is being provided to the vehicle.
+Here’s a description of the image:
+
+The image depicts a bustling, narrow street scene in what appears to be Japan. Several men, dressed in casual clothing – including jackets and jeans – are walking along the sidewalk, many holding drinks. Some are standing and chatting, while others are walking alongside each other. The street is lined with storefronts, some of which have signs in Japanese characters. The scene has a slightly gritty, urban feel with a lot of people and a strong sense of activity. The lighting suggests it’s either dusk or a cloudy day, contributing to the somewhat subdued atmosphere. There is a zebra crossing visible in the street.
+Here's a description of the image:
+
+The photograph captures a group of formally dressed men, predominantly in dark suits, appearing to be walking together outdoors. One man is notably distinguished by wearing a traditional Japanese kimono over a dark suit, complete with a patterned under-skirt. Most of the other men wear white face masks, and several hold cameras or phones, suggesting they are documenting the scene. They are walking along what appears to be a concrete walkway, with a brick wall visible in the background. The overall impression is of a formal event or procession.
+Here’s a description of the image:
+
+The image shows a tall, multi-story apartment building constructed of reddish-brown brick. The building has numerous windows arranged in a regular pattern across its facade. Cables and wires run along the exterior of the building, indicating utility connections. A white car with a roof rack is parked in the foreground, partially obscuring the lower levels of the building. The lighting suggests an overcast day, casting a cool tone across the scene. The image has a somewhat gritty, urban feel, typical of a densely populated area.
+Here’s a description of the image:
+
+The image appears to be a photograph taken inside a Japanese restaurant. The scene is brightly lit and shows a tiled floor with a dark, grey band running across it.  A dark, tiled counter stretches into the distance, with a dark counter area and a small, dark-colored counter extending outward. A dark, rectangular sign is mounted on the wall behind the counter.  The overall impression is of a simple, modern restaurant interior.
+Here's a description of the image:
+
+The image depicts a man wearing a white face mask and a grey t-shirt, seated indoors. The background is a blurred expanse of vertical bars, likely a security gate or a similar structure. The man is looking directly at the camera with a neutral expression. The lighting is somewhat subdued, creating a slightly gloomy atmosphere, and the image has a documentary or observational style, as if captured during a candid moment.
+
+Task:
+Choose a single description that best matches the quote and enhances entertainment value.
+Provide a brief reason why it fits.
+Output only a JSON object with exactly these two fields:
+"image_description": chosen description
+"reason": why it fits, concise (~20 characters)
+If descriptions lack names, assume the subject relates to the quote. Focus on how it is portrayed and its visual appeal.
+
+Output format:
+```json
+{
+    "image_description": "your selected description here",
+    "reason": "your reason here"
+}
+```

@@ -205,3 +205,6 @@ client_secrets.json
 
 discordBot.py
 token.pickle
+test/
+runNoSleep.py
+topics.txt

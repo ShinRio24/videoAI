@@ -1,4 +1,4 @@
-#this one doesnt really work well because stable diffusion is ass LMAO
+#this one doesnt really work well because stable diffusion is not good locally with my GPU;
 
 
 
@@ -73,7 +73,7 @@ def genChar():
         image = pipe(prompts).images[0]
 
         # Save the result
-        image.save("media/diffusion/"+"output"+str(i)+".png")
+        image.save("src/media/diffusion/"+"output"+str(i)+".png")
 
 
 if __name__ == '__main__':

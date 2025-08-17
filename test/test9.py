@@ -1,30 +1,21 @@
-import sys
-import os
-
-# Use the WSL-resolved Linux path
-videoAI_path = "/home/riosshin/code/videoAI"
-sys.path.append(videoAI_path)
+from skimage.metrics import structural_similarity as ssim
+import cv2
+import time
 
 
 
-output = """ ```json
-{
-  "Script": [
-    "World Cup is back everyone gather round",
-    "The drama starts now let's dive into some highlights from this tournament",
-    "Argentina taking on Croatia in a blockbuster semi final game right Messi could be playing his last one",
-    "France they always deliver but Brazil fans are devastated seeing them knocked out early",
-    "England beating Germany that was huge talk about an upset the Three Lions deserved it though",
-    "Remember the scenes from group stage matches like Morocco's giant killing of Spain or Croatia stunning Serbia",
-    "Every game has a story today someone's dream is ending tomorrow another team stepping up",
-    "Who will you be cheering for tonight let me know below"
-  ]
-}
-```"""
+st= time.time()
 
-from llmPrompt import extract_json_between_markers
-import os
-import glob 
+for x in range(15*15):
+  # Load images in grayscale
+  img1 = cv2.imread('media/refImgs/img0_7.jpg', cv2.IMREAD_GRAYSCALE)
+  img2 = cv2.imread('media/refImgs/img0_7.jpg', cv2.IMREAD_GRAYSCALE)
 
+  # Resize to the same size if needed
+  img2 = cv2.resize(img2, (img1.shape[1], img1.shape[0]))
 
-print(extract_json_between_markers(output))
+  # Compute SSIM
+  score, diff = ssim(img1, img2, full=True)
+ # print(f"SSIM: {score}")  # 1.0 = identical, closer to 0 = less similar
+
+print("Time taken:", time.time() - st)

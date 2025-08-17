@@ -794,3 +794,114 @@ Output format:
     "reason": "your reason here"
 }
 ```
+
+END OF PROMPT  --------------------------------------------
+
+LLM output: ```json
+{
+    "image_description": "The photograph captures a group of formally dressed men, predominantly in dark suits, appearing to be walking together outdoors. One man is notably distinguished by wearing a traditional Japanese kimono over a dark suit, complete with a patterned under-skirt. Most of the other men wear white face masks, and several hold cameras or phones, suggesting they are documenting the scene. They are walking along what appears to be a concrete walkway, with a brick wall visible in the background. The overall impression is of a formal event or procession.",
+    "reason": "Directly depicts yakuza imagery"
+}
+```
+END OF LLM OUTPUT --------------------------------------------
+
+Current phrase: 今日掘り下げるのは、日本を代表する指定暴力団、住吉会。
+START OF PROMPT  --------------------------------------------
+ 
+You are an AI assistant whose role is to generate Google search queries to find the most suitable images for quotes in a video.
+
+Given information:
+Video title (context): 住吉会
+Quote to visualize: 彼らが他の組織と一線を画す、驚きの特徴があるんですよ。
+
+Instructions:
+Create a single search query that is highly relevant to the quote, the video title, and the specific subject.
+Always include some reference to the specific subject from the title.
+In some cases, if the quote adds important context about the subject, include it as well.
+Example: If the title is “Trump” and the quote is referencing “G7 summit,” it makes most sense to find an image of the G7 summit, possibly with all leaders present to clarify context.
+The search query should be specific enough to get meaningful images but not so narrow that almost no results appear.
+The search query can be in English or Japanese, whichever is likely to yield the best results.
+
+Output must be in strict JSON format only, using the following template:
+
+```json
+{
+  "query": "Enter the generated search query here"
+}
+```
+
+END OF PROMPT  --------------------------------------------
+
+LLM output: ```json
+{
+  "query": "住吉会 代紋"
+}
+```
+END OF LLM OUTPUT --------------------------------------------
+
+
+  0%|[32m                                                            [0m 0/15 imgs | Speed: ?img/s | ETA: ?[0m[A[%] Downloading Image #1 from https://i.ytimg.com/vi/p6cIZSJAPN0/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4Ac4FgAK0CYoCDAgAEAEYVSBYKGUwDw==&amp;rs=AOn4CLA74y9Mt-eX9BXYV38RejFAHWaljg
+[%] Downloading Image #2 from https://i.ytimg.com/vi/qhMwkh7JGj4/maxresdefault.jpg
+[%] Downloading Image #3 from https://i.ytimg.com/vi/-X0x5PX9d_8/maxresdefault.jpg
+[%] Downloading Image #4 from https://i.ytimg.com/vi/n65qipDjknU/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYZSBWKEwwDw==&amp;rs=AOn4CLByZkU8U4pKv7UpfsKJI1iVjlH7kQ
+[%] Downloading Image #5 from https://i.ytimg.com/vi/5ABio05ov8A/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4Ac4FgAKACooCDAgAEAEYSCBYKGUwDw==&amp;rs=AOn4CLA1pcSFfc1GWWXH15UmAm5RpyLLnw
+[%] Downloading Image #6 from https://i.ytimg.com/vi/n65qipDjknU/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs=AOn4CLAHStC89pEJpSeh5XHTmT9VwUFcnQ
+[%] Downloading Image #7 from https://i.ytimg.com/vi/GJAkB5Yz2pI/hq2.jpg?sqp=-oaymwEoCOADEOgC8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYViBXKGUwDw==&amp;rs=AOn4CLDoPJWuT2oxMT3wDQQVV_A9YhN18Q
+[%] Downloading Image #8 from https://i.ytimg.com/vi/vy49P_7fUSw/hq2.jpg?sqp=-oaymwEoCOADEOgC8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYZSBRKEswDw==&amp;rs=AOn4CLDK86a90qmD62PyytKm32uds6zrTA
+[%] File #7 Downloaded!
+
+[%] Downloading Image #9 from https://i.ytimg.com/vi/_Be7L4yn-Jk/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs=AOn4CLAanC2pe_w-4vgp8gW32dloSVjUKQ
+
+  7%|[32m███▍                                                [0m 1/15 imgs | Speed:  1.32img/s | ETA: 00:10[0m[AERROR:root:Network error while saving image https://i.ytimg.com/vi/5ABio05ov8A/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4Ac4FgAKACooCDAgAEAEYSCBYKGUwDw==&amp;rs=AOn4CLA1pcSFfc1GWWXH15UmAm5RpyLLnw: HTTP Error 404: Not Found
+[%] Downloading Image #10 from http://gseiryu.web.fc2.com/yahoo-oku/yakuza/7.gif
+ERROR:root:Network error while saving image https://i.ytimg.com/vi/n65qipDjknU/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs=AOn4CLAHStC89pEJpSeh5XHTmT9VwUFcnQ: HTTP Error 404: Not Found
+[%] Downloading Image #11 from https://img.aucfree.com/m221646635.2.jpg
+ERROR:root:Network error while saving image https://i.ytimg.com/vi/n65qipDjknU/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYZSBWKEwwDw==&amp;rs=AOn4CLByZkU8U4pKv7UpfsKJI1iVjlH7kQ: HTTP Error 404: Not Found
+[%] Downloading Image #12 from http://blog-imgs-43.fc2.com/n/i/n/ninkyo5910/IMAG7494.jpg
+[%] File #8 Downloaded!
+
+[%] Downloading Image #13 from https://i.pinimg.com/originals/48/a4/df/48a4df22f9e720cde4263def12894421.jpg
+
+ 13%|[32m██████▉                                             [0m 2/15 imgs | Speed:  2.51img/s | ETA: 00:05[0m[A[%] File #2 Downloaded!
+
+[%] Downloading Image #14 from http://blog-imgs-43.fc2.com/n/i/n/ninkyo5910/IMAG7544.jpg
+
+ 20%|[32m██████████▍                                         [0m 3/15 imgs | Speed:  3.54img/s | ETA: 00:03[0m[A[%] File #1 Downloaded!
+
+[%] Downloading Image #15 from http://blog-imgs-43.fc2.com/g/o/k/gokudoshop9/IMAG6198.jpg
+
+ 27%|[32m█████████████▊                                      [0m 4/15 imgs | Speed:  4.62img/s | ETA: 00:02[0m[A[%] File #3 Downloaded!
+
+
+ 33%|[32m█████████████████▎                                  [0m 5/15 imgs | Speed:  5.75img/s | ETA: 00:01[0m[A[%] File #9 Downloaded!
+
+
+ 40%|[32m████████████████████▊                               [0m 6/15 imgs | Speed:  5.16img/s | ETA: 00:01[0m[A[%] File #10 Downloaded!
+
+
+ 47%|[32m████████████████████████▎                           [0m 7/15 imgs | Speed:  6.01img/s | ETA: 00:01[0m[A[%] File #13 Downloaded!
+
+
+ 53%|[32m███████████████████████████▋                        [0m 8/15 imgs | Speed:  6.08img/s | ETA: 00:01[0m[A[%] File #14 Downloaded!
+
+
+ 60%|[32m███████████████████████████████▏                    [0m 9/15 imgs | Speed:  5.69img/s | ETA: 00:01[0m[A[%] File #12 Downloaded!
+
+
+ 67%|[32m██████████████████████████████████                 [0m 10/15 imgs | Speed:  5.96img/s | ETA: 00:00[0m[A[%] File #11 Downloaded!
+
+
+ 73%|[32m█████████████████████████████████████▍             [0m 11/15 imgs | Speed:  6.50img/s | ETA: 00:00[0m[A[%] File #15 Downloaded!
+
+
+ 80%|[32m████████████████████████████████████████▊          [0m 12/15 imgs | Speed:  5.22img/s | ETA: 00:00[0m[A[%] Downloading Image #13 from https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-GPbrttORDuXKhmcy_gfb5J8ZZPQ7drOYu-0-MAv44SB3k1idFOLgEi7NCUfWBhnONRBNm6tgEloSDVGaJvXPgSszylLye_v1nPM_Qt0YWxbfmY0Y31skAcMFBNLhOk2rBLq2CQ0TBo31mfa4GwMymtxALn97VWB8HvYwmYlF7hRoBRKsIXMJHs6bQyM/s320/2006 (2).jpg
+[%] Downloading Image #14 from https://1.bp.blogspot.com/-q4q8z1JE_b0/YV1BTlH-AbI/AAAAAAAAAuw/VtfXBBTjnY8SQIOycXe9hNkLDZ6yrvIGQCLcBGAsYHQ/w1200-h630-p-k-no-nu/0224%2B%25E4%25BD%258F%25E5%2590%2589%25E4%25BC%259A.jpg
+[%] Downloading Image #15 from https://res.cloudinary.com/fridaydigital/image/private/c_scale,dpr_2,f_auto,t_article_image,w_664/wpmedia/2024/01/a26770cbac3fb05fd6ef8aecdea320ca.jpg
+ERROR:root:Unexpected error while saving image https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-GPbrttORDuXKhmcy_gfb5J8ZZPQ7drOYu-0-MAv44SB3k1idFOLgEi7NCUfWBhnONRBNm6tgEloSDVGaJvXPgSszylLye_v1nPM_Qt0YWxbfmY0Y31skAcMFBNLhOk2rBLq2CQ0TBo31mfa4GwMymtxALn97VWB8HvYwmYlF7hRoBRKsIXMJHs6bQyM/s320/2006 (2).jpg: URL can't contain control characters. '/img/b/R29vZ2xl/AVvXsEg-GPbrttORDuXKhmcy_gfb5J8ZZPQ7drOYu-0-MAv44SB3k1idFOLgEi7NCUfWBhnONRBNm6tgEloSDVGaJvXPgSszylLye_v1nPM_Qt0YWxbfmY0Y31skAcMFBNLhOk2rBLq2CQ0TBo31mfa4GwMymtxALn97VWB8HvYwmYlF7hRoBRKsIXMJHs6bQyM/s320/2006 (2).jpg' (found at least ' ')
+[%] File #15 Downloaded!
+
+
+ 87%|[32m████████████████████████████████████████████▏      [0m 13/15 imgs | Speed:  4.17img/s | ETA: 00:00[0m[A[%] File #14 Downloaded!
+
+
+ 93%|[32m███████████████████████████████████████████████▌   [0m 14/15 imgs | Speed:  4.42img/s | ETA: 00:00[0m[A 93%|[32m███████████████████████████████████████████████▌   [0m 14/15 imgs | Speed:  4.08img/s | ETA: 00:00[0m

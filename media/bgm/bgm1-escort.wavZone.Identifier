@@ -1,4 +1,0 @@
-[ZoneTransfer]
-ZoneId=3
-ReferrerUrl=https://cloudconvert.com/
-HostUrl=https://us-east.storage.cloudconvert.com/tasks/a3102bf6-fb5a-4ee9-ad86-2ea7f06b1f9f/bgm1-escort.wav?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cloudconvert-production%2F20250814%2Fva%2Fs3%2Faws4_request&X-Amz-Date=20250814T222147Z&X-Amz-Expires=86400&X-Amz-Signature=1fa85f7069224e0d8074642b794e371b82b61119555a4fb8ae1c66c976f93d60&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22bgm1-escort.wav%22&response-content-type=audio%2Fwav&x-id=GetObject

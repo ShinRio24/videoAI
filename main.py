@@ -1,3 +1,6 @@
+#main file
+
+
 import os
 import json
 from dotenv import load_dotenv
@@ -8,21 +11,23 @@ from contextlib import redirect_stdout
 
 import time
 import json
-from llmPrompt import prompt
-from genAudio import genAUDIO
-from combineMedia import combineMedia
-from contextImgSearcher import imgSearch
-from combineMedia import combineMedia
+from src.llmPrompt import prompt
+from src.genAudio import genAUDIO
+from src.combineMedia import combineMedia
+from src.contextImgSearcher import imgSearch
+from src.combineMedia import combineMedia
 load_dotenv()
 GEMENIKEY = os.getenv("gemeniKey", "")
-from uploadVideo import uploadYoutube
+from src.uploadVideo import uploadVideo
 import sys
 import sys
 from contextlib import redirect_stdout, redirect_stderr
 from tqdm import tqdm
-from prompts import *
+from src.prompts import *
 import json
 from PIL import Image
+import shutil
+
 
 
 
@@ -42,11 +47,11 @@ def resizeImage(path, target_size):
     return path
 
 def generate_youtube_short_video(title,stdOut):
-    folder = "media/refImgs"
-
-    files = glob.glob(os.path.join(folder, "*"))
+    #remove old image and audio files
+    files = glob.glob(os.path.join("media/refImgs", "*")) + glob.glob(os.path.join("media/audio", "*")) + glob.glob(os.path.join("media/usedImgs", "*"))
     for f in files:
         os.remove(f)
+
     print("Generating script", file=stdOut)
 
     jsonOutput = prompt(genScript_template.format(theme=title))
@@ -56,17 +61,21 @@ def generate_youtube_short_video(title,stdOut):
     #combined = AudioSegment.empty()
     print("Generating audio and images", file=stdOut)
     imgAudioData=[]
-    usedImages=[]
 
 
     for i, x in enumerate(tqdm(data, desc="Processing phrases", unit="phrase", file=stdOut)):
         temp ={}
         temp['audio'] ="media/audio/au"+str(i)+".mp3"
-
         genAUDIO(x,"media/audio/au"+str(i))
-        temp['path'], usedImageDescription= imgSearch(title,x, usedImages)
-        usedImages.append(usedImageDescription)
+
+        src_path = imgSearch(title, x)
+        ext = os.path.splitext(src_path)[1]
+        nPath = "media/usedImgs/img"+str(i)+ext
+        shutil.copy2(src_path, nPath)
+
+        temp['path'] = nPath
         temp['phrase']=x
+        
         imgAudioData.append(temp)
 
         tqdm.write(f"Current phrase: {x}")
@@ -79,11 +88,9 @@ def generate_youtube_short_video(title,stdOut):
     #imgFile = imgMatch(x['image_description'], description,files)
 
     print("Uploading", file=stdOut)
-    video_id = uploadYoutube(
+    video_id = uploadVideo(
         video_file= file,
-        title= title,
-        tags=["動画", "#shorts"],
-        privacy_status="public",
+        title= title
     )
     print('complete, video has been uploaded to YouTube with ID:', video_id, file=stdOut)
     print('title:', title, file=stdOut)
@@ -92,7 +99,7 @@ def generate_youtube_short_video(title,stdOut):
 
 def main():
     try:
-        title = sys.argv[1]
+        title = " ".join(sys.argv[1:])
     except IndexError:
         print("No title provided")
         exit()
@@ -116,8 +123,6 @@ def main():
 if __name__ =='__main__':
     # The user's original line is commented out to avoid immediate image generation on load,
     # as the new method will handle the full workflow.
-    # tt = genIMG("generate an image of YouTubeショート動画の台本を作成してください。テーマは「college」です。")
-    #combineMedia(5)
 
     # Call the main video generation method. You can change the theme.
     main()

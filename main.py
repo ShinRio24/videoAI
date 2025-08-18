@@ -27,7 +27,7 @@ from src.prompts import *
 import json
 from PIL import Image
 import shutil
-
+import communicator
 
 
 
@@ -126,3 +126,6 @@ if __name__ =='__main__':
 
     # Call the main video generation method. You can change the theme.
     main()
+    print("test")
+    # Optionally, you can send a message to the Telegram channel
+    communicator.sendUpdate("Video generation completed successfully!")

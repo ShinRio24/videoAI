@@ -15,13 +15,18 @@ from PIL import Image
 from tqdm import tqdm
 import sys
 
-#build image enhancing pipeline
-device = "cuda" if torch.cuda.is_available() else "cpu"
-pipe = StableDiffusionUpscalePipeline.from_pretrained(
-    "/mnt/f/wsl-data/stable-diffusion-x4-upscaler"
-)
-pipe = pipe.to(device)
+pipe = None
 
+
+def setup_pipe():
+    global pipe
+    pipe = StableDiffusionUpscalePipeline.from_pretrained(
+        "/mnt/f/wsl-data/stable-diffusion-x4-upscaler"
+    )
+    pipe.enable_xformers_memory_efficient_attention()
+
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    pipe = pipe.to(device)
 
 def ensure_wav(audio_path):
     """
@@ -40,6 +45,8 @@ def ensure_wav(audio_path):
 
 
 def enhanceImage(path):
+
+
     img = Image.open(path).convert("RGB")
     with torch.inference_mode():
         upscaled = pipe(prompt="", image=img).images[0]
@@ -134,7 +141,7 @@ def addTextBlock(
     img = Image.fromarray(frame)  
     img.save(videoPath)    
 
-    enhanceImage(videoPath)
+    #enhanceImage(videoPath)
 
     #reload the enhanced image
     addedImage = ImageClip(videoPath).with_duration(audio.duration).with_position('center')
@@ -152,8 +159,17 @@ def combineMedia(title, imgMatches, background_music="media/bgm/bgm1-escort.wav"
     allClips = []
 
     print(f"Combining {len(imgMatches)} images and audio clips, if this process takes a while you may want to consider disabling the image enhancer", file=sys.__stdout__)
+
+
+    
+    
+    setup_pipe()
+
+
     for i, x in enumerate(tqdm(imgMatches, desc="Combining and enhancing images", unit="phrase", file=sys.__stdout__)):
         #print(x)
+
+        torch.cuda.empty_cache()
         input_video = x['path']
         input_audio = ensure_wav(x['audio'])
         text_to_add = x['phrase']
@@ -198,7 +214,11 @@ def combineMedia(title, imgMatches, background_music="media/bgm/bgm1-escort.wav"
 
 
 if __name__ == '__main__':
-    import os
-    if os.path.exists('output_shorts.mp4'):
-        os.remove('output_shorts.mp4')
-    combineMedia("世界を動かす巨大企業、知ってる？",[{'phrase':'その影響力、私たちの想像を超えるかも！','audio':'media/audio/au0.mp3','path':'media/refImgs/img0_1.jpg'}])
+    #import os
+    #if os.path.exists('output_shorts.mp4'):
+    #    os.remove('output_shorts.mp4')
+    #combineMedia("世界を動かす巨大企業、知ってる？",[{'phrase':'その影響力、私たちの想像を超えるかも！','audio':'media/audio/au0.mp3','path':'media/refImgs/img0_1.jpg'}])
+    import torch
+    torch.cuda.empty_cache()
+    setup_pipe()
+    enhanceImage("media/usedImgs/img0.jpg")

@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from google import genai
+import google.generativeai as genai
 import re
 import json
 import requests
@@ -20,7 +20,11 @@ LAST_FAILURE_FILE = "tools/last_failure.json"
 
 load_dotenv()
 GEMENIKEY = os.getenv("GEMENIKEY", "")
-gemini_client = genai.Client(api_key=GEMENIKEY)
+genai.configure(api_key=GEMENIKEY)
+
+# Create a model object
+gemini_client = genai.GenerativeModel("gemini-1.5-flash")  # or "gemini-1.5-pro"
+
 
 
 

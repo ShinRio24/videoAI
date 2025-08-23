@@ -74,7 +74,7 @@ def addTextBlock(
     audioPath,
     title,
     caption,
-    titleColor ='white',
+    titleColor ='red',
     titleSize = 100,
     #titleMargin = (0,40),
     titleFont = "fonts/NotoSansJP-SemiBold.ttf",

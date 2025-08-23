@@ -1,9 +1,8 @@
 import sys
 sys.path.append("/home/riosshin/code/videoAI")
 
-from pydub import AudioSegment
+from src.prompts import genScript_template
+from src.llmPrompt import prompt
 
-combined = AudioSegment.empty()
-for i in range(9):
-    combined += AudioSegment.from_mp3("media/"+str(i)+'.mp3')
-combined.export('media/final.mp3', format="mp3")
+
+print(prompt(genScript_template.format(theme = "住吉会")))

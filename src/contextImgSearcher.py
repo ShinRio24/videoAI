@@ -16,7 +16,12 @@ def imgMatch(input_str,options,files):
 
 def removeUsedImgs(files):
     image_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.gif', '.tiff', '.webp')
-    usedFiles = [f for f in files if f.lower().endswith(image_extensions)]
+    used_folder = "/home/riosshin/code/videoAI/media/usedImgs"
+
+    usedFiles = []
+    for ext in image_extensions:
+        usedFiles.extend(glob.glob(os.path.join(used_folder, f"*{ext}")))
+
     for img1Path in files:
 
         for img2Path in usedFiles:
@@ -26,6 +31,7 @@ def removeUsedImgs(files):
             score, diff = ssim(img1, img2, full=True)
             if score > 0.9:
                 files.remove(img1Path)
+                print('image was used', img1Path)
                 break
     return files
 
@@ -49,18 +55,26 @@ def descriptions(files):
         description.append(desc)
     return description, files
 
-def imgSearch(title, quote):
+def imgSearch(title, quote, data):
 
-    queryPrompt = queryPrompt_template.format(title=title, quote=quote)
+    queryPrompt = queryPrompt_template.format(title=title, quote=quote, data = '\n'.join(data))
 
     response = prompt(queryPrompt)
     outputQuery = response['query']
     
-    files = download([outputQuery])
+    files = download([outputQuery], 5)
 
     #incase all the outputted images have been used
     bUpFiles = files
     files = removeUsedImgs(files)
+
+    if len(files)==0:
+        files = download([outputQuery], 20)
+
+        bUpFiles = files
+        files = removeUsedImgs(files)
+
+    print(files)
     autoCropImages(files)
 
     if not files:

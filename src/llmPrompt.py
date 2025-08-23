@@ -23,7 +23,7 @@ GEMENIKEY = os.getenv("GEMENIKEY", "")
 genai.configure(api_key=GEMENIKEY)
 
 # Create a model object
-gemini_client = genai.GenerativeModel("gemini-1.5-flash")  # or "gemini-1.5-pro"
+#   gemini_client = genai.GenerativeModel("gemini-1.5-flash")  # or "gemini-1.5-pro"
 
 
 
@@ -94,6 +94,33 @@ def prompt(prompt):
 
     return extracted
 
+def prompt_single(prompt):
+
+    print(f"START OF PROMPT  --------------------------------------------\n {prompt}")
+
+    today = date.today()
+    last_failure = get_last_failure_date()
+
+    if last_failure == today:
+        # Already failed today, skip function_a
+        output = ollama_prompt(prompt)
+    else:
+        try:
+            output = promptGemeni(prompt)
+        except Exception as e:
+            print(f"function_a failed: {e}", file=sys.__stderr__)
+            set_last_failure_date(today)
+            output = ollama_prompt(prompt)
+        
+    #output = promptGemeni(prompt)
+    print(f"END OF PROMPT  --------------------------------------------\n")
+    print(f"LLM output: {output}")
+    print(f"END OF LLM OUTPUT --------------------------------------------\n")
+
+    extracted = (output)
+
+    return extracted
+
 def ollama_prompt(prompt, model="gemma3:latest"):
 
     #chat will give the thinking process, generate will give the final answer
@@ -108,6 +135,7 @@ def ollama_prompt(prompt, model="gemma3:latest"):
     r = requests.post(url, json=payload)
     r.raise_for_status()
     output = r.json()["response"]
+    #print(r.json())
 
     # Remove <think>...</think> block if present
     #output = re.sub(r"<think>.*?</think>", "", output, flags=re.DOTALL).strip()
@@ -133,6 +161,8 @@ def ollama_prompt_img(prompt,image_path, model="gemma3:latest"):
     r.raise_for_status()
     output = r.json()["response"]
 
+    
+
     print(f"END OF PROMPT  --------------------------------------------\n")
     print(f"LLM output: {output}")
     print(f"END OF LLM OUTPUT --------------------------------------------\n")
@@ -156,5 +186,51 @@ if __name__ == '__main__':
     #print(ollama_prompt_img(text, "media/refImgs/img0_1.jpg"))
 
 
-    text = genScript_template.format(theme="宮田 典子")
-    print(ollama_prompt(text))
+    #text = genScript_template.format(theme="宮田 典子")
+    #print(ollama_prompt(text))
+
+    text = """
+### Instruction:
+あなたはプロの日本語YouTubeスクリプトライターです。
+
+タスク：
+テーマ「パブロ・エスコバル」について短編YouTubeスクリプトを日本語で作成してください。  
+カリスマ的なYouTuberが話すような自然な口語で、面白く楽しく語ってください。  
+
+- その人物の生い立ちや歩み、どのようにして現在の地位に至ったのか、そして今どんな影響を与えているのかを中心に語ること。  
+- 必要に応じて背景・原因・エピソード・意外な一面も加えること。  
+
+要件：  
+- スクリプト全体は必ず約600文字（±5%以内）  
+- 各フレーズは平均30文字前後。ただし20〜40文字の揺らぎをつけること  
+- 各フレーズをJSONリストに分割してください（画像表示用のブレイクポイント）  
+- 同じ画像が9秒以上表示されないように調整してください  
+- 各フレーズは文として完結していなくても良いが、全体の流れで意味が通ること  
+- スクリプトの冒頭は必ずキャッチーな質問形式で始めること  
+  （例：知っていますか、実はこんな事実があるんです、など）  
+- 箇条書きのように事実を並べず、会話の流れで自然につなげること  
+- 前後のフレーズをつなぐ「でも」「だから」「実は」「一方で」などを適度に入れること  
+- です・ます調は基本だが、すべての文を終わらせない  
+- 語尾に「なんです」「だったんですね」など変化をつける  
+- 驚きや感情を少し混ぜて自然に話す  
+- トーンはドキュメンタリー風だが楽しく魅力的に  
+- 禁止事項：  
+  - 「」や""などの引用符を一切使わないこと  
+  - 「笑」や特殊記号を使わないこと  
+- 句読点は「、」と「。」のみ使用可  
+
+
+出力形式：
+必ず次のフォーマットに従ってください。他のテキストは絶対に出力しないでください。
+
+正しい形式の例：
+json```
+{
+  "Script": [
+    "文1",
+    "文2",
+    "文3"
+  ]
+}```
+"""
+    print(prompt(text))

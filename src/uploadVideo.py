@@ -24,7 +24,7 @@ def uploadYoutube(
     description="""ご視聴ありがとうございます！✨
 ご意見や感想がありましたら、ぜひコメントで教えてください。いつもとても嬉しく、参考にさせていただいています😊""",
     tags = ["#ショートストーリー", "#shorts", "#物語", "#感動", "#面白い", "#日常", "#ストーリーテリング", "#感情", "#ショート動画", "#心に響く"],
-    privacy_status="public",
+    privacy_status="private",
     client_secrets_file="tools/client_secrets.json"
 ):
     
@@ -40,8 +40,13 @@ def uploadYoutube(
             try:
                 creds.refresh(google.auth.transport.requests.Request())
             except:
-                print("Your token has expired, please delete token.pickle and re-authenticate")
-                return None
+                if os.path.exists(TOKEN_PATH):
+                    os.remove(TOKEN_PATH)
+                # Restart the flow to generate new token
+                flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
+                    client_secrets_file, SCOPES
+                )
+                creds = flow.run_local_server(port=0)
         else:
             flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
                 client_secrets_file, SCOPES
@@ -90,45 +95,6 @@ def uploadYoutube(
     raise RuntimeError("An unexpected error occurred during the upload process.")
 
 
-def generateCookies():
-    # Load your JSON cookies
-    with open("tools/exported-cookies.json", "r") as f:
-        cookies = json.load(f)
-
-    with open("cookies.txt", "w") as f:
-        for c in cookies:
-            domain = c.get("domain", "")
-            flag = "TRUE" if not c.get("hostOnly", False) else "FALSE"
-            path = c.get("path", "/")
-            secure = "TRUE" if c.get("secure", False) else "FALSE"
-            expiration = str(int(c.get("expirationDate", 0))) if not c.get("session", True) else "0"
-            name = c.get("name", "")
-            value = c.get("value", "")
-            
-            # Format: domain \t flag \t path \t secure \t expiration \t name \t value
-            line = f"{domain}\t{flag}\t{path}\t{secure}\t{expiration}\t{name}\t{value}\n"
-            f.write(line)
-
-
-import sys
-sys.path.append("/home/riosshin/code/videoAI/tiktok-uploader/src")
-from tiktok_uploader.upload import upload_video
-
-def uploadTikTok(video_path,title, description, tags, cookie = "/mnt/c/Users/Rioss/Downloads/www.tiktok.com_cookies.txt"):
-
-    description = title + "\n" + description + "\n" + " ".join(tags)
-
-    video_path = "/home/riosshin/code/videoAI/media/finalUploads/野村秋介.mp4"
-    try:
-        upload_video(
-            video_path,
-            description=description,
-            cookies=cookie
-        )
-
-    except(Exception) as e:
-        print(f"Error uploading to TikTok: {e}")
-        print('remeber that even if error, usually it works')
 
 def uploadVideo(video_path, title, description="""ご視聴ありがとうございます！✨
 ご意見や感想がありましたら、ぜひコメントで教えてください。いつもとても嬉しく、参考にさせていただいています😊""", tags= ["#ショートストーリー", "#物語", "#感動", "#日常", "#心に響く", "#面白い", "#ストーリーテリング", "#短編動画", "#共感", "#泣ける", "#笑える", "#感情", "#話題", "#TikTokJapan", "#tiktok短編"]
@@ -136,18 +102,18 @@ def uploadVideo(video_path, title, description="""ご視聴ありがとうござ
 
 
 
-    uploadTikTok(video_path, title, description=description, cookie = "/mnt/c/Users/Rioss/Downloads/www.tiktok.com_cookies.txt")
+    #uploadTikTok(video_path, title, description=description, cookie = "/mnt/c/Users/Rioss/Downloads/www.tiktok.com_cookies.txt")
 
-    uploadYoutube(
+    link  = uploadYoutube(
     video_path,
     title,
     description, 
     tags)
     
     print("Video uploaded to TikTok and YouTube successfully.")
-
+    return link
 
 if __name__ == "__main__":
-    upload_video(
-        video_path="/home/riosshin/code/videoAI/media/finalUploads/野村秋介.mp4",
+    uploadVideo(
+        "media/finalUploads/アル・カポネ.mp4", "アル・カポネ"
     )

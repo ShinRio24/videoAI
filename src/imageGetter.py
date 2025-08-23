@@ -6,16 +6,26 @@ from PIL import Image
 import os
 
 # Append the inner folder to sys.path
-sys.path.append(os.path.join(os.path.dirname(__file__), "better_bing_image_downloader", "better_bing_image_downloader"))
+#sys.path.append(os.path.join(os.path.dirname(__file__), "better_bing_image_downloader", "better_bing_image_downloader"))
+
+import sys
+import os
+
+# Add Google-Image-Scraper folder to sys.path
+sys.path.append(os.path.normpath(os.path.join(os.path.dirname(__file__), "../Google-Image-Scraper")))
+
+from customScrape import customScrape
 
 
-from download import downloader
+folder= "media/refImgs"
+#from download import downloader
 
-def normalize_images(folder, target_ext=".jpg"):
-    folder = Path(folder)
-    for img_path in folder.glob("*"):
-        if not img_path.is_file():
-            continue
+def normalize_images(paths, target_ext=".jpg"):
+
+    normalized_paths = []
+
+    for img_path in paths:
+        img_path = Path(img_path) 
 
         try:
             with Image.open(img_path) as im:
@@ -27,14 +37,15 @@ def normalize_images(folder, target_ext=".jpg"):
 
                 if new_path != img_path:
                     os.remove(img_path)
+                
+                normalized_paths.append(str(new_path)) 
 
         except Exception as e:
-            print(f"⚠️ Skipping {img_path.name}: {e}")
+            print(f"⚠️ Skipping {img_path}: {e}")
 
-def download(query):
-    folder= "media/refImgs"
-    for f in os.listdir(folder):
-        os.remove(os.path.join(folder, f))
+    return normalized_paths
+
+def downloadBing(query):
         
     for i,x in enumerate(query):
         downloader(
@@ -56,5 +67,19 @@ def download(query):
 
     return glob.glob(os.path.join(folder, "*"))
 
+def downloadGoogle(query, imgCount):
+    response = customScrape(query, imgCount)
+
+    return response
+
+
+def download(query, imgCount):
+    for f in os.listdir(folder):
+        os.remove(os.path.join(folder, f))
+
+    paths = downloadGoogle(query, imgCount)
+    paths = normalize_images(paths)
+    return paths
+
 if __name__=='__main__':
-    print(download(['dog']))
+    print(download('dog'))

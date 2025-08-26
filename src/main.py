@@ -21,7 +21,7 @@ from .combineMedia import combineMedia
 from .contextImgSearcher import imgSearch
 from .uploadVideo import uploadVideo
 from .prompts import *
-from .communicator import sendUpdate
+from .communicator import sendUpdate, update_progress
 
 
 import signal
@@ -29,7 +29,17 @@ import sys
 import traceback
 from contextlib import redirect_stdout, redirect_stderr
 
-log_file = open("tools/output_log.txt", "w")
+class FlushFile:
+    def __init__(self, file):
+        self.file = file
+    def write(self, msg):
+        self.file.write(msg)
+        self.file.flush()
+    def flush(self):
+        self.file.flush()
+
+log_file_path = "tools/output_log.txt"
+log_file = open(log_file_path, "a",buffering=1)
 
 def flush_and_close(signal_num=None, frame=None):
     print(f"[SYSTEM] Caught termination signal {signal_num}, flushing logs...", file=sys.__stdout__)
@@ -51,9 +61,14 @@ def run(func, params, max_retries=2):
         try:
             return func(*params)
         except Exception as e:
-            print(f"Ecode000 Attempt {attempt} failed: {e}")
+            print(f"[ERROR] Attempt {attempt} failed!")
+            print(f"Exception type: {type(e).__name__}")
+            print(f"Exception message: {str(e)}")
+            print("Stack trace:")
+            traceback.print_exc()
+            sendUpdate(str(e))
             if attempt == max_retries:
-                return e
+                exit()
 
 
 
@@ -64,11 +79,15 @@ def resetSystem():
         os.remove(f)
 
 #gen audio and images
-def genAudioImages(title,data):
+async def genAudioImages(title,data):
     
     imgAudioData=[]
 
-    for i, x in enumerate(tqdm(data, desc="Processing phrases", unit="phrase", file=sys.__stdout__ )):
+    msg = sendUpdate(f"Processing '{title}':\n[{' ' * 20}] 0% (0/{len(data)})", main=True)
+    message_id = msg['result']['message_id']
+
+    usedQuerys={}
+    for i, x in enumerate(data, start=1):
         temp ={}
         temp['audio'] ="media/audio/au"+str(i)+".mp3"
 
@@ -76,7 +95,7 @@ def genAudioImages(title,data):
         run(genAUDIO,[x,"media/audio/au"+str(i)])
 
         
-        src_path = run(imgSearch,[title, x, data])
+        src_path, usedQuerys = run(imgSearch,[title, x, data,usedQuerys])
 
         ext = os.path.splitext(src_path)[1]
         nPath = "media/usedImgs/img"+str(i)+ext
@@ -87,33 +106,39 @@ def genAudioImages(title,data):
         
         imgAudioData.append(temp)
 
-        tqdm.write(f"Current phrase: {x}")
+        await update_progress(message_id, title, i, len(data))
+
     return imgAudioData
 
-def generate_youtube_short_video(topic,stdOut):         
+import asyncio
+
+def generate_youtube_short_video(topic):         
     resetSystem()
 
-    print("Generating script",topic, file=stdOut)
+    print("Generating script",topic)
 
     script = prompt(gScriptCharacter_template.format(theme=topic))
+    print(script)
     data = script["Script"]
 
     title = prompt_single(genTitle.format(theme = topic))
     sendUpdate("Generated Title: "+title+" for topic: "+topic)
+    sendUpdate('\n'.join(data))
 
-    print("Generating audio and images", file=stdOut)
-    imgAudioData = genAudioImages(title,data)
+    print("Generating audio and images")
+    imgAudioData = asyncio.run(genAudioImages(title,data))
 
-    print("Combining Media", file=stdOut)
+    print("Combining Media")
 
     file = combineMedia(title, imgAudioData)
 
-    print("Uploading", file=stdOut)
-    video_id = uploadVideo(video_path= file, title= title)
+    print("Uploading")
 
-    print('complete, video has been uploaded to YouTube with ID:', video_id, file=stdOut)
-    print('topic:', topic, file=stdOut)
-    return f"https://www.youtube.com/watch?v={video_id}"
+    video_id = uploadVideo(video_path= file, title= title, videoData=imgAudioData)
+
+    print('complete, video has been uploaded to YouTube with ID:', video_id)
+    print('topic:', topic)
+    return video_id
 
 
 def main():
@@ -125,17 +150,23 @@ def main():
     
     tt = time.time()
     
-    original_stdout = sys.stdout
-    with redirect_stdout(log_file), redirect_stderr(log_file):
+    with log_file:
         try:
-            url = generate_youtube_short_video(topic, original_stdout)
+            with redirect_stdout(log_file), redirect_stderr(log_file):
+                url = generate_youtube_short_video(topic)
+                if url:
+                    print(f"✅ Success! Video URL: {url}")
+        except KeyboardInterrupt:
+            print("\n⚠️ Process interrupted by user (Ctrl+C). Flushing logs and exiting...", file=sys.__stdout__)
+            log_file.flush()
+            raise
         except Exception as e:
-            print("An error occurred:", e)
-            traceback.print_exc()
-            sendUpdate("Video generation failed for title!\nError: " + str(e), main=True)
-            print('An error occurred, check log', file=sys.__stdout__)
+            print(f"❌ An error occurred: {e}")
+            traceback.print_exc(file=log_file)
+            sendUpdate(f"Video generation failed for title!\nError: {e}", main=True)
         finally:
             log_file.flush()
+
 
     print("Total time taken:", (time.time() - tt)/ 60, "minutes")
 

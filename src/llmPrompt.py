@@ -91,7 +91,7 @@ def prompt(prompt):
     print(f"END OF LLM OUTPUT --------------------------------------------\n")
 
     extracted = extract_json_between_markers(output)
-
+    print(extracted, "this is the extracted output")
     return extracted
 
 def prompt_single(prompt):

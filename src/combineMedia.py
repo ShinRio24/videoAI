@@ -14,6 +14,7 @@ from diffusers import StableDiffusionUpscalePipeline
 from PIL import Image
 from tqdm import tqdm
 import sys
+from .contextImgSearcher import autoCropImages
 
 pipe = None
 
@@ -171,8 +172,10 @@ def combineMedia(title, imgMatches, background_music="media/bgm/bgm1-escort.wav"
 
         torch.cuda.empty_cache()
         input_video = x['path']
+        
+        autoCropImages([input_video])
         input_audio = ensure_wav(x['audio'])
-        text_to_add = x['phrase']
+        text_to_add = x['phrase'].replace(" ", "")
 
 
         allClips.append(addTextBlock(
@@ -208,6 +211,7 @@ def combineMedia(title, imgMatches, background_music="media/bgm/bgm1-escort.wav"
     final_video.write_videofile(output_filename, codec="libx264", fps=30, audio_codec="aac")
 
     #print(f"\nSuccessfully created '{output_filename}'")
+
     return output_filename
 
 

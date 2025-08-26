@@ -7,14 +7,46 @@ import google.auth.transport.requests
 import google.oauth2.credentials
 import os
 import pickle
-
+from .communicator import sendUpdate
 
 # Scope for uploading videos to YouTube
 SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
 TOKEN_PATH = "tools/token.pickle"  # Path to store/load tokens
 
 import json
+import os
+from datetime import datetime, timedelta
 
+
+uploadTimesPST = [19,20,21,22,23,0,1]
+uploadTimesJST = [3,4,5,6,7,8,9]
+STATE_FILE = "tools/time.json"
+def get_next_item():
+    with open(STATE_FILE, "r") as f:
+        state = json.load(f)
+        index = state.get("index", -1)
+
+    # Move to next index
+    index = (index + 1) % len(uploadTimesJST)
+    item = uploadTimesJST[index]
+
+    # Save updated index
+    with open(STATE_FILE, "w") as f:
+        json.dump({"index": index}, f)
+
+    return item
+
+def nextTime():
+    hour = get_next_item()
+
+    now = datetime.now()
+
+    today = now.replace(hour=hour, minute=0, second=0, microsecond=0)
+
+    if now >= today:
+        return (today + timedelta(days=1)).isoformat()
+    else:
+        return today.isoformat()
 
 
 
@@ -58,7 +90,7 @@ def uploadYoutube(
             pickle.dump(creds, token)
 
     youtube = googleapiclient.discovery.build("youtube", "v3", credentials=creds)
-
+    uploadTime = nextTime()
     request_body = {
         "snippet": {
             "title": title,
@@ -67,7 +99,8 @@ def uploadYoutube(
             "categoryId": "1",
         },
         "status": {
-            "privacyStatus": privacy_status
+            "privacyStatus": privacy_status,
+            "publishAt": uploadTime
         }
     }
 
@@ -86,6 +119,7 @@ def uploadYoutube(
             if response and "id" in response:
                 video_id = response["id"]
                 video_url = f"https://www.youtube.com/watch?v={video_id}"
+                sendUpdate("video scheduled to upload at: "+str(uploadTime))
                 return video_url
         except googleapiclient.errors.HttpError as e:
             print(f"An error occurred: {e}")
@@ -94,6 +128,24 @@ def uploadYoutube(
 
     raise RuntimeError("An unexpected error occurred during the upload process.")
 
+
+
+def uploadVideoToSocial(video_path, title, description="""ご視聴ありがとうございます！✨
+ご意見や感想がありましたら、ぜひコメントで教えてください。いつもとても嬉しく、参考にさせていただいています😊""", tags= ["#ショートストーリー", "#物語", "#感動", "#日常", "#心に響く", "#面白い", "#ストーリーテリング", "#短編動画", "#共感", "#泣ける", "#笑える", "#感情", "#話題", "#TikTokJapan", "#tiktok短編"]
+):
+
+
+
+    #uploadTikTok(video_path, title, description=description, cookie = "/mnt/c/Users/Rioss/Downloads/www.tiktok.com_cookies.txt")
+
+    link  = uploadYoutube(
+    video_path,
+    title,
+    description, 
+    tags)
+    
+    print("Video uploaded to TikTok and YouTube successfully.")
+    return link
 
 
 def uploadVideo(video_path, title, description="""ご視聴ありがとうございます！✨
@@ -117,3 +169,6 @@ if __name__ == "__main__":
     uploadVideo(
         "media/finalUploads/アル・カポネ.mp4", "アル・カポネ"
     )
+
+
+    #print(get_next_item())

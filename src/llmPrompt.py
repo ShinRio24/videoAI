@@ -32,6 +32,8 @@ genai.configure(api_key=GEMENIKEY)
 #https://github.com/SakanaAI/AI-Scientist
 def extract_json_between_markers(llm_output):
     # Regular expression pattern to find JSON content between ```json and ```
+
+
     json_pattern = r"```json(.*?)```"
     matches = re.findall(json_pattern, llm_output, re.DOTALL)
 
@@ -48,9 +50,11 @@ def extract_json_between_markers(llm_output):
         except json.JSONDecodeError:
             # Attempt to fix common JSON issues
             try:
-                # Remove invalid control characters
-                json_string_clean = re.sub(r"[\x00-\x1F\x7F]", "", json_string)
-                parsed_json = json.loads(json_string_clean)
+                json_string = json_string.replace("“", '"').replace("”", '"')
+                json_string = json_string.replace("‘", "'").replace("’", "'")
+                json_string = json_string.replace('\u00a0', ' ')
+                json_string = re.sub(r'[\x00-\x1F\x7F]', '', json_string)
+                parsed_json = json.loads(json_string)
                 return parsed_json
             except json.JSONDecodeError:
                 continue  # Try next match
@@ -190,47 +194,11 @@ if __name__ == '__main__':
     #print(ollama_prompt(text))
 
     text = """
-### Instruction:
-あなたはプロの日本語YouTubeスクリプトライターです。
-
-タスク：
-テーマ「パブロ・エスコバル」について短編YouTubeスクリプトを日本語で作成してください。  
-カリスマ的なYouTuberが話すような自然な口語で、面白く楽しく語ってください。  
-
-- その人物の生い立ちや歩み、どのようにして現在の地位に至ったのか、そして今どんな影響を与えているのかを中心に語ること。  
-- 必要に応じて背景・原因・エピソード・意外な一面も加えること。  
-
-要件：  
-- スクリプト全体は必ず約600文字（±5%以内）  
-- 各フレーズは平均30文字前後。ただし20〜40文字の揺らぎをつけること  
-- 各フレーズをJSONリストに分割してください（画像表示用のブレイクポイント）  
-- 同じ画像が9秒以上表示されないように調整してください  
-- 各フレーズは文として完結していなくても良いが、全体の流れで意味が通ること  
-- スクリプトの冒頭は必ずキャッチーな質問形式で始めること  
-  （例：知っていますか、実はこんな事実があるんです、など）  
-- 箇条書きのように事実を並べず、会話の流れで自然につなげること  
-- 前後のフレーズをつなぐ「でも」「だから」「実は」「一方で」などを適度に入れること  
-- です・ます調は基本だが、すべての文を終わらせない  
-- 語尾に「なんです」「だったんですね」など変化をつける  
-- 驚きや感情を少し混ぜて自然に話す  
-- トーンはドキュメンタリー風だが楽しく魅力的に  
-- 禁止事項：  
-  - 「」や""などの引用符を一切使わないこと  
-  - 「笑」や特殊記号を使わないこと  
-- 句読点は「、」と「。」のみ使用可  
-
-
-出力形式：
-必ず次のフォーマットに従ってください。他のテキストは絶対に出力しないでください。
-
-正しい形式の例：
-json```
+LLM output: ```json
 {
-  "Script": [
-    "文1",
-    "文2",
-    "文3"
-  ]
-}```
+    "image_description": "The image shows a dark navy blue, sporty-looking jacket. It has a hooded design with a bright yellow inner lining visible through the hood. There are two horizontal, white stripes running down the sleeves, and the brand logo “HH” is prominently displayed on the chest in white.",
+    "reason": "Matches the organizational theme"
+}
+```
 """
-    print(prompt(text))
+    print(extract_json_between_markers(text))

@@ -7,6 +7,7 @@ from telegram import Update, ForceReply
 from telegram.ext import Application, CommandHandler, MessageHandler, ContextTypes, filters
 import os
 from dotenv import load_dotenv
+from .videoEdit import *
 
 # ==============================
 # Setup
@@ -88,15 +89,6 @@ async def load_queue_from_file(app: Application):
 # Queue Worker
 # ------------------------------
 
-async def skip_current_task(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    global skip_flag
-    if current_task:
-        skip_flag = True
-        await update.message.reply_text(f"Skipping current task: {current_task}")
-    else:
-        await update.message.reply_text("No task is currently running.")
-
-
 async def run_main(title: str):
     global current_proc
     print(f"[QUEUE] Starting: {title}", flush=True)
@@ -155,10 +147,151 @@ async def queue_worker():
     print("[QUEUE] Worker stopped.")
 
 
+# ------------------------------
+# Edit Env management
+# ------------------------------
+
+
+async def edit_env(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args:
+        await update.message.reply_text("Please provide a env to edit")
+        return
+    raw_input = " ".join(context.args)
+
+    await update.message.reply_text(editEnv(raw_input))
+
+async def list_env(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("\n".join(listEnvs()))
+
+
+from telegram import Update
+from telegram.ext import ContextTypes
+import os
+
+# Temporary buffer folder
+BUFFER_FOLDER = "media/tempFiles/telegramImages/"
+os.makedirs(BUFFER_FOLDER, exist_ok=True)
+
+# Step 1: /frame command — bot asks user to reply with image
+async def frame(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    # Check for frame index argument
+    if not context.args:
+        await update.message.reply_text(
+            "❌ Please provide the frame index: /frame <index>\n\n"
+            "Then reply to this message with the image you want to use."
+        )
+        return
+
+    raw_input = context.args[0]
+    if not raw_input.isdigit():
+        await update.message.reply_text(
+            "❌ Frame index must be a number: /frame <index>\n\n"
+            "Then reply to this message with the image you want to use."
+        )
+        return
+
+    frame_index = int(raw_input)
+
+    # Send a prompt message for the user to reply to
+    prompt_msg = await update.message.reply_text(
+        f"📌 Reply to this message with the image to use for frame {frame_index}."
+    )
+
+    # Store frame_index in the message metadata for later retrieval
+    # We can track using context.chat_data
+    context.chat_data["frame_index"] = frame_index
+    context.chat_data["prompt_message_id"] = prompt_msg.message_id
+
+
+# Step 2: Handle reply with image
+async def handle_frame_image(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    # Make sure this is a reply
+    if not update.message.reply_to_message:
+        return  # ignore messages that are not replies
+
+    # Check if reply is to the bot's prompt message
+    prompt_id = context.chat_data.get("prompt_message_id")
+    if update.message.reply_to_message.message_id != prompt_id:
+        return  # ignore unrelated replies
+
+    frame_index = context.chat_data.get("frame_index")
+    if frame_index is None:
+        return  # safety check
+
+    # Extract image
+    file_id = None
+    if update.message.photo:
+        file_id = update.message.photo[-1].file_id
+    elif update.message.document and update.message.document.mime_type.startswith("image/"):
+        file_id = update.message.document.file_id
+
+    if not file_id:
+        await update.message.reply_text(
+            "❌ No image found. Attach a photo or PNG/JPG document in reply to the prompt."
+        )
+        return
+
+    # Download the image
+    file = await context.bot.get_file(file_id)
+
+    # Clear buffer before saving
+    for f in os.listdir(BUFFER_FOLDER):
+        f_path = os.path.join(BUFFER_FOLDER, f)
+        if os.path.isfile(f_path):
+            os.remove(f_path)
+
+    file_ext = os.path.splitext(file.file_path)[1] if hasattr(file, 'file_path') else '.jpg'
+    saved_path = os.path.join(BUFFER_FOLDER, f"{file_id}{file_ext}")
+    await file.download_to_drive(saved_path)
+    await update.message.reply_text(f"✅ Saved image at {saved_path}")
+
+    # Call your existing editFrame function
+    result = editFrame(frame_index, saved_path)
+    await update.message.reply_text(f"🎬 {result}")
+
+    # Clear stored prompt data
+    context.chat_data.pop("frame_index", None)
+    context.chat_data.pop("prompt_message_id", None)
+
+
+async def edit_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args:
+        await update.message.reply_text("make sure to use format /eFrame (index) (text)")
+        return "error"
+    if not context.args[0].isdigit():
+        await update.message.reply_text("make sure to use format /eFrame (index) (text)")
+        return "error"
+    
+    index = int(context.args[0])
+    new_text = " ".join(context.args[1:])
+
+
+    await update.message.reply_text(editText(int(index), new_text))
+
+async def preview_current(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    path = await previewCurrent()
+    await postToTelegram(path)
+
+    await update.message.reply_text("video uplaoded")
+
+async def push_video(update: Update, context: ContextTypes.DEFAULT_TYPE): 
+    await update.message.reply_text(pushVideo())
+    
 
 # ------------------------------
 # Queue Management
 # ------------------------------
+
+async def skip_current_task(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    global skip_flag
+    if current_task:
+        skip_flag = True
+        await update.message.reply_text(f"Skipping current task: {current_task}")
+    else:
+        await update.message.reply_text("No task is currently running.")
+
+
+
 async def add_to_queue(title: str, app: Application):
     await task_queue.put(title.strip())
     save_queue_to_file()
@@ -213,11 +346,6 @@ async def update_progress(message_id: int, title: str, current: int, total: int)
     }
     requests.post(url, json=payload)
 
-
-# ==============================
-# Telegram Bot Handlers
-# ==============================
-
 async def postToTelegram(video_path: str, caption: str = ""):
     if not os.path.exists(video_path):
         sendUpdate(f"❌ Video file not found: {video_path}", main=True)
@@ -250,6 +378,12 @@ def sendUpdate(message: str, main = False):
         payload = {"chat_id": CHANNEL_ID, "text": message, "message_thread_id":SUBTHREAD_ID}
     response = requests.post(url, json=payload)
     return response.json()
+
+# ==============================
+# Telegram Bot Handlers
+# ==============================
+
+
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -345,7 +479,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 def cleanLogFile():
     import os
     log_file_path = "tools/output_log.txt"
-    MAX_SIZE = 100 * 1024 * 1024  
+    MAX_SIZE = 10 * 1024 * 1024  
     if os.path.exists(log_file_path) and os.path.getsize(log_file_path) > MAX_SIZE:
         os.remove(log_file_path)
         print(f"{log_file_path} exceeded 100MB and was deleted.")
@@ -357,6 +491,14 @@ async def on_startup(app: Application):
     cleanLogFile()
     global stop_flag
     stop_flag = False
+    print("[QUEUE] Starting worker...")
+    await load_queue_from_file(app)
+    await ensure_worker_running(app)
+
+async def on_startupNoStart(app: Application):
+    cleanLogFile()
+    global stop_flag
+    stop_flag = True
     print("[QUEUE] Starting worker...")
     await load_queue_from_file(app)
     await ensure_worker_running(app)

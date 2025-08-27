@@ -11,7 +11,6 @@ import cv2
 import subprocess
 from pathlib import Path
 
-from .communicator import sendUpdate
 
 
 import signal
@@ -27,7 +26,6 @@ def run(func, params, max_retries=2):
             print(f"Exception message: {str(e)}")
             print("Stack trace:")
             traceback.print_exc()
-            sendUpdate(str(e))
             if attempt == max_retries:
                 return e
 
@@ -46,7 +44,7 @@ def removeUsedImgs(files):
     for img1Path in files:
         img1 = cv2.imread(img1Path, cv2.IMREAD_GRAYSCALE)
         if img1 is None:
-            sendUpdate(f"image not readable: {img1Path}")
+            print(f"image not readable: {img1Path}")
             continue  # skip this image
 
         is_used = False

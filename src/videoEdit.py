@@ -1,92 +1,191 @@
-from .communicator import postToTelegram
-from .genAudio import genAUDIO
-import pickle
 import os
+import pickle
 import shutil
+import unicodedata
+from .genAudio import genAUDIO
+from .combineMedia import combineMedia
+from .uploadVideo import uploadVideo
 
-envFolder ="media/editEnvs/"
+envFolder = "media/editEnvs/"
+MASTER_FILE = os.path.join(envFolder, "master.pkl")
 editingEnv = None
 
+
+# ------------------ Master Helpers ------------------
+def loadMaster():
+    if not os.path.exists(MASTER_FILE):
+        return {}
+    with open(MASTER_FILE, "rb") as f:
+        return pickle.load(f)
+
+def saveMaster(master):
+    with open(MASTER_FILE, "wb") as f:
+        pickle.dump(master, f)
+
+
+# ------------------ Videos Class ------------------
 class Videos:
-
-    def __init__(self, 
-                 path, 
-                 title, 
-                 videoData,
-                 caption="""ご視聴ありがとうございます！✨
-ご意見や感想がありましたら、ぜひコメントで教えてください。いつもとても嬉しく、参考にさせていただいています😊""", 
-                 tags= ["#ショートストーリー", "#物語", "#感動", "#日常", "#心に響く", "#面白い", "#ストーリーテリング", "#短編動画", "#共感", "#泣ける", "#笑える", "#感情", "#話題", "#TikTokJapan", "#tiktok短編"]):
-        postToTelegram(path)
-        self.path = path
-        self.title = title
-        self.caption = caption
-        self.tags = tags
+    def __init__(self, path, title, videoData, caption="", tags=None):
+        self.title = unicodedata.normalize("NFC", title)
         self.videoData = videoData
+        self.path = path
+        self.caption = caption or "ご視聴ありがとうございます！✨..."
+        self.tags = tags or ["#ショートストーリー", "#物語", "#感動"]
 
-        self.migrateToCustomFile()
-        self.saveVideo()
+        master = loadMaster()
+        self.code = max(master.keys(), default=0) + 1
 
-    def migrateToCustomFile(self):
-        baseDir = envFolder+self.title
+        # Create environment folder and move media
+        self.migrateToFolder()
+
+        # Save metadata to master
+        master[self.code] = self.getAttributes()
+        saveMaster(master)
+
+    def migrateToFolder(self):
+        baseDir = os.path.join(envFolder, str(self.code))
         if os.path.exists(baseDir):
             shutil.rmtree(baseDir)
         os.makedirs(baseDir)
 
-        for f in self.videoData:
-            audio = f['audio']
-            path = f['path']
+        for i, item in enumerate(self.videoData):
+            audio = item['audio']
+            video = item['path']
             shutil.move(audio, os.path.join(baseDir, os.path.basename(audio)))
-            shutil.move(path, os.path.join(baseDir, os.path.basename(path)))
-            self.videoData['audio']=os.path.join(baseDir, os.path.basename(audio))
-            self.videoData['path']=os.path.join(baseDir, os.path.basename(path))
+            shutil.move(video, os.path.join(baseDir, os.path.basename(video)))
+            self.videoData[i]['audio'] = os.path.join(baseDir, os.path.basename(audio))
+            self.videoData[i]['path'] = os.path.join(baseDir, os.path.basename(video))
 
-def saveVideo(title):
-    with open(envFolder+title+".pkl", "wb") as f:
-        pickle.dump(self, f)
+    def getAttributes(self):
+        return {
+            "title": self.title,
+            "caption": self.caption,
+            "tags": self.tags,
+            "videoData": self.videoData,
+            "path": self.path,
+            "code": self.code
+        }
 
+
+# ------------------ Environment Functions ------------------
 def listEnvs():
-    dirs = [d for d in os.listdir(envFolder) if os.path.isdir(os.path.join(envFolder, d))]
+    master = loadMaster()
+    return [f"{code}: {video.title}" for code, video in master.items()]
+
+def openEnv(code):
+    master = loadMaster()
+    code = int(code)
+    if code not in master:
+        raise ValueError(f"Environment {code} does not exist")
+    return master[code]   # now returns Videos instance
+
+def editEnv(code):
     global editingEnv
-    editingEnv = None
-    return dirs
+    master = loadMaster()
+    code = int(code)
+    if code not in master:
+        return "Env does not exist.\nValid envs:\n" + "\n".join(listEnvs())
 
-def editEnv(title):
-    if title in listEnvs():
-        global editingEnv
-        editingEnv = title
-    else:
-        return "env does not exist"
-    data = openEnv(title)
-    allText = []
-    for i,x in enumerate(data):
-        allText.append(str(i)+": "+x['phrase'])
-    
-    return '\n'.join(allText)+"\n env set to "+title
+    editingEnv = code
+    data = openEnv(code).videoData
+    allText = [f"{i}: {x['phrase']}" for i, x in enumerate(data)]
+    return "\n".join(allText) + f"\nEnv set to {code}"
 
-def openEnv(title):
-    with open(envFolder+title+".pkl", "rb") as f:
-        return pickle.load(f)
+def editText(index, newText):
+    if editingEnv is None:
+        return "No environment selected"
+    master = loadMaster()
+    env = master[editingEnv]
+    data = env.videoData
+
+    if index >= len(data):
+        return "Error, index too large"
+
+    data[index]['phrase'] = newText
+    genAUDIO(newText, data[index]['audio'])
+
+    # Save back metadata
+    master[editingEnv] = env
+    saveMaster(master)
+    return "Adjusted audio and text"
 
 def editFrame(index, newFrame):
-    data = openEnv(editingEnv)
-    if index+1>len(data):
-        return "error, index too large"    
+    if editingEnv is None:
+        return "No environment selected"
+    env = openEnv(editingEnv)
+    data = env.videoData
+
+    if index >= len(data):
+        return "Error, index too large"
     if os.path.exists(data[index]['path']):
         os.remove(data[index]['path'])
 
     shutil.move(newFrame, data[index]['path'])
-    return 'file adjusted'
+    return "File adjusted"
 
-def editText(index, newText):
-    data = openEnv(editingEnv)
-    if index+1>len(data):
-        return "error, index too large"    
-    data[index]['phrase']= newText
-    genAUDIO(newText,data[index]['audio'])
-    self.saveVideo()
+def cleanEnv():
+    global editingEnv
+    if editingEnv is None:
+        return "No environment selected"
+    
+    shutil.rmtree(os.path.join(envFolder, str(editingEnv)))
+    master = loadMaster()
+    master.pop(editingEnv, None)
+    saveMaster(master)
+    editingEnv = None
+    return "Cleaned current environment"
 
-    return "Adjusted audio and text"
+# ------------------ Async Video Functions ------------------
+async def previewCurrent():
+    if editingEnv is None:
+        return "Not in an environment"
+
+    env = openEnv(editingEnv)  # env is a Videos instance
+    finalVideoPath = combineMedia(
+        editingEnv, env.videoData, output_filename=os.path.join(envFolder, f"{editingEnv}.mp4")
+    )
+    video_id = uploadVideo(
+        video_path=finalVideoPath,
+        title=env.title,
+        videoData=env
+    )
+    return finalVideoPath
 
 
-#might have to make this async cus it takes a while
-def pushVideo()
+async def pushVideo():
+    if editingEnv is None:
+        return "Not in an environment"
+
+    videoPath = os.path.join(envFolder, f"{editingEnv}.mp4")
+    if not os.path.exists(videoPath):
+        return "Make sure to preview file, video does not exist"
+
+    env = openEnv(editingEnv)
+    video_id = uploadVideo(
+        video_path=videoPath,
+        title=env['title'],
+        videoData=env
+    )
+    cleanEnv()
+    return f"Video uploaded at: {video_id}"
+
+
+if __name__ =='__main__':
+    import pickle
+    import os
+
+    # Load the master file
+    with open("media/editEnvs/master.pkl", 'rb') as f:
+        loaded_data = pickle.load(f)
+
+    # Fix paths for all environments
+    for code, env in loaded_data.items():
+        for x in range(len(env.videoData)):
+            env.videoData[x]['path'] = os.path.basename(env.videoData[x]['path'])
+            env.videoData[x]['audio'] = os.path.basename(env.videoData[x]['audio'])  # optional: also fix audio
+
+    # Save back to master.pkl
+    with open("media/editEnvs/master.pkl", "wb") as f:
+        pickle.dump(loaded_data, f)
+
+    print("Fixed paths in master.pkl")

@@ -184,6 +184,8 @@ AI-generated image descriptions (may be vague or abstract, newline-separated): {
 Task:
 Choose a single description that best matches the quote and enhances entertainment value.
 Provide a brief reason why it fits.
+DO NOT add any special characters such as backslashes (\\) or other escape sequences.
+
 Output only a JSON object with exactly these two fields:
 "image_description": chosen description
 "reason": why it fits, concise (~20 characters)
@@ -202,4 +204,5 @@ imageDescription_template = """
 Describe the content of this image in plain text, in a single paragraph.
 Be descriptive about what is happening, the style of the image, and any noticeable details.
 Do not mention names unless you are completely certain.
+
 """

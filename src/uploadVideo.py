@@ -7,7 +7,6 @@ import google.auth.transport.requests
 import google.oauth2.credentials
 import os
 import pickle
-from .communicator import sendUpdate
 
 # Scope for uploading videos to YouTube
 SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
@@ -119,7 +118,7 @@ def uploadYoutube(
             if response and "id" in response:
                 video_id = response["id"]
                 video_url = f"https://www.youtube.com/watch?v={video_id}"
-                sendUpdate("video scheduled to upload at: "+str(uploadTime))
+                print("video scheduled to upload at: "+str(uploadTime))
                 return video_url
         except googleapiclient.errors.HttpError as e:
             print(f"An error occurred: {e}")

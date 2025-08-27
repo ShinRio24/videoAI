@@ -161,8 +161,6 @@ def combineMedia(title, imgMatches, background_music="media/bgm/bgm1-escort.wav"
 
     print(f"Combining {len(imgMatches)} images and audio clips, if this process takes a while you may want to consider disabling the image enhancer", file=sys.__stdout__)
 
-
-    
     
     setup_pipe()
 

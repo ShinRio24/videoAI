@@ -8,7 +8,6 @@ from threading import Thread
 from typing import Dict, List, Optional
 
 # Downloaded modules
-from playsound import playsound
 
 # Local files
 from .voice import Voice

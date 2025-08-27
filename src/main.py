@@ -21,8 +21,8 @@ from .combineMedia import combineMedia
 from .contextImgSearcher import imgSearch
 from .uploadVideo import uploadVideo
 from .prompts import *
-from .communicator import sendUpdate, update_progress
-
+from .communicator import sendUpdate, update_progress, postToTelegram
+import asyncio
 
 import signal
 import sys
@@ -111,6 +111,7 @@ async def genAudioImages(title,data):
     return imgAudioData
 
 import asyncio
+import re
 
 def generate_youtube_short_video(topic):         
     resetSystem()
@@ -120,8 +121,10 @@ def generate_youtube_short_video(topic):
     script = prompt(gScriptCharacter_template.format(theme=topic))
     print(script)
     data = script["Script"]
+    allowed_pattern = re.compile(r'[^A-Za-z0-9\u3040-\u309F\u30A0-\u30FF\uFF65-\uFF9F\u4E00-\u9FFF]')
 
     title = prompt_single(genTitle.format(theme = topic))
+    title = allowed_pattern.sub('',title)
     sendUpdate("Generated Title: "+title+" for topic: "+topic)
     sendUpdate('\n'.join(data))
 
@@ -129,16 +132,23 @@ def generate_youtube_short_video(topic):
     imgAudioData = asyncio.run(genAudioImages(title,data))
 
     print("Combining Media")
+    
+    file = combineMedia(title, imgAudioData, output_filename="media/tempFiles/{}.mp4")
+    \
+    from .videoEdit import Videos
+    Videos(file, title, imgAudioData)
+    asyncio.run(postToTelegram(file))
+    sendUpdate("video posted to telegram")
+    # file = combineMedia(title, imgAudioData)
 
-    file = combineMedia(title, imgAudioData)
+    # print("Uploading")
 
-    print("Uploading")
+    # video_id = uploadVideo(video_path= file, title= title, videoData=imgAudioData)
 
-    video_id = uploadVideo(video_path= file, title= title, videoData=imgAudioData)
-
-    print('complete, video has been uploaded to YouTube with ID:', video_id)
-    print('topic:', topic)
-    return video_id
+    # print('complete, video has been uploaded to YouTube with ID:', video_id)
+    # print('topic:', topic)
+    # return video_id
+    return "video ID"
 
 
 def main():

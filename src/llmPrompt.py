@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 import google.generativeai as genai
+from google.api_core.exceptions import ResourceExhausted
 import re
 import json
 import requests
@@ -22,9 +23,9 @@ load_dotenv()
 GEMENIKEY = os.getenv("GEMENIKEY", "")
 genai.configure(api_key=GEMENIKEY)
 
-# Create a model object
-#   gemini_client = genai.GenerativeModel("gemini-1.5-flash")  # or "gemini-1.5-pro"
 
+modelGemeni = genai.GenerativeModel('gemini-2.5-flash')
+ollamaModel = "gemma2-9b-long:latest"
 
 
 
@@ -71,25 +72,31 @@ def set_last_failure_date(failure_date):
         json.dump({"last_failure": failure_date.isoformat()}, f)
 
 
-def prompt(prompt):
+def prompt(prompt, model = "ollama"):
 
     print(f"START OF PROMPT  --------------------------------------------\n {prompt}")
-
-    today = date.today()
-    last_failure = get_last_failure_date()
-
-    if last_failure == today:
-        # Already failed today, skip function_a
+    if model == "gemeni-cli":
+        output = gemeniCli(prompt)
+    elif model =="ollama":
         output = ollama_prompt(prompt)
-    else:
-        try:
-            output = promptGemeni(prompt)
-        except Exception as e:
-            print(f"function_a failed: {e}", file=sys.__stderr__)
-            set_last_failure_date(today)
+    elif model =='gemeni':
+        today = date.today()
+        last_failure = get_last_failure_date()
+
+        if last_failure == today:
+            # Already failed today, skip function_a
             output = ollama_prompt(prompt)
-        
-    #output = promptGemeni(prompt)
+        else:
+            try:
+                output = promptGemeni(prompt)
+                print('used gemeni')
+            except Exception as e:
+                print(f"gemeni failed: {e}", file=sys.__stderr__)
+                set_last_failure_date(today)
+                output = ollama_prompt(prompt)
+    else:
+        raise ValueError("Model does not exist")
+    
     print(f"END OF PROMPT  --------------------------------------------\n")
     print(f"LLM output: {output}")
     print(f"END OF LLM OUTPUT --------------------------------------------\n")
@@ -125,27 +132,48 @@ def prompt_single(prompt):
 
     return extracted
 
-def ollama_prompt(prompt, model="gemma3:latest"):
+
+
+def ollama_prompt(prompt, model=ollamaModel):
 
     #chat will give the thinking process, generate will give the final answer
     #url = "http://localhost:11434/api/chat"
     #Sure! In Ollama’s /chat API, each message has a role that tells the model how to interpret the text. In your example:
+
+    print('prompting local')
     url = "http://localhost:11434/api/generate"
     payload = {
         "model": model,
         "prompt": prompt,
-        "stream": False
+        "stream": False,
+        "format": "json"
     }
     r = requests.post(url, json=payload)
     r.raise_for_status()
     output = r.json()["response"]
+
+    print(output)
     #print(r.json())
 
     # Remove <think>...</think> block if present
     #output = re.sub(r"<think>.*?</think>", "", output, flags=re.DOTALL).strip()
     return output
 
-def ollama_prompt_img(prompt,image_path, model="gemma3:latest"):
+import subprocess
+def gemeniCli(prompt):
+    try:
+        gemini_executable_path = "/home/linuxbrew/.linuxbrew/bin/gemini"
+        result = subprocess.run(
+            [gemini_executable_path, "-p", prompt],
+            capture_output=True, text=True,
+            check=True  # raises exception if exit code != 0
+        )
+        return (result.stdout)
+    except subprocess.CalledProcessError as e:
+        print("Command failed!")
+        raise (e.stderr)  # error output
+
+def ollama_prompt_img(prompt,image_path, model=ollamaModel):
 
     #chat will give the thinking process, generate will give the final answer
     #url = "http://localhost:11434/api/chat"
@@ -178,27 +206,35 @@ def ollama_prompt_img(prompt,image_path, model="gemma3:latest"):
 
 
 def promptGemeni(prompt):
-    response = gemini_client.models.generate_content(
-    model="gemini-2.5-flash",
-    contents=prompt
-    )
-    return response.text
+    try:
+        global modelGemeni
+        response = modelGemeni.generate_content(
+        prompt
+        )
+        return response.text
+    except ResourceExhausted as e:
+            # This block runs ONLY if a 429 error occurs
+            print(f"⚠️ Warning: Rate limit exceeded.")
+            
+            modelGemeni = genai.GenerativeModel('gemini-2.5-flash')
+            return promptGemeni(prompt)
+
+    except Exception as e:
+        print(f"An unexpected error occurred with with api generation")
+        return f"Error: An unexpected error occurred. Details: {e}"
 
 
 if __name__ == '__main__':
     #text  = imageDescription_template
     #print(ollama_prompt_img(text, "media/refImgs/img0_1.jpg"))
+    from .prompts import gScriptCharacter_template
 
+    #text = gScriptCharacter_template.format(theme="加藤智大 - 秋葉原通り魔事件を引き起こした")
+    text = queryPrompt_template.format(title="加藤智大 - 秋葉原通り魔事件を引き起こした", quote=" 秋葉原通り魔事件を引き起こした")
+    print(prompt(text,model = 'gemeni'))
 
-    #text = genScript_template.format(theme="宮田 典子")
-    #print(ollama_prompt(text))
-
-    text = """
-LLM output: ```json
-{
-    "image_description": "The image shows a dark navy blue, sporty-looking jacket. It has a hooded design with a bright yellow inner lining visible through the hood. There are two horizontal, white stripes running down the sleeves, and the brand logo “HH” is prominently displayed on the chest in white.",
-    "reason": "Matches the organizational theme"
-}
-```
-"""
-    print(extract_json_between_markers(text))
+#     text = """
+# this is a test, how are you doing
+# ```
+# """
+#     print(prompt(text))

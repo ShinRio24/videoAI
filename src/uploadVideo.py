@@ -119,7 +119,7 @@ def uploadYoutube(
                 video_id = response["id"]
                 video_url = f"https://www.youtube.com/watch?v={video_id}"
                 print("video scheduled to upload at: "+str(uploadTime))
-                return video_url
+                return video_url, uploadTime
         except googleapiclient.errors.HttpError as e:
             print(f"An error occurred: {e}")
             print("Retrying in 5 seconds...")
@@ -137,7 +137,7 @@ def uploadVideoToSocial(video_path, title, description="""ご視聴ありがと�
 
     #uploadTikTok(video_path, title, description=description, cookie = "/mnt/c/Users/Rioss/Downloads/www.tiktok.com_cookies.txt")
 
-    link  = uploadYoutube(
+    link, uploadTime  = uploadYoutube(
     video_path,
     title,
     description, 
@@ -155,14 +155,14 @@ def uploadVideo(video_path, title, description="""ご視聴ありがとうござ
 
     #uploadTikTok(video_path, title, description=description, cookie = "/mnt/c/Users/Rioss/Downloads/www.tiktok.com_cookies.txt")
 
-    link  = uploadYoutube(
+    link , uploadTime = uploadYoutube(
     video_path,
     title,
     description, 
     tags)
     
     print("Video uploaded to TikTok and YouTube successfully.")
-    return link
+    return link, uploadTime
 
 if __name__ == "__main__":
     uploadVideo(

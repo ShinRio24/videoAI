@@ -13,60 +13,46 @@ from pathlib import Path
 
 
 
-import signal
-import sys
-import traceback
-def run(func, params, max_retries=2):
-    for attempt in range(1, max_retries + 1):
-        try:
-            return func(*params)
-        except Exception as e:
-            print(f"[ERROR] Attempt {attempt} failed!")
-            print(f"Exception type: {type(e).__name__}")
-            print(f"Exception message: {str(e)}")
-            print("Stack trace:")
-            traceback.print_exc()
-            if attempt == max_retries:
-                return e
-
 def imgMatch(input_str,options,files):
+    print(input_str,options, files)
     return files[options.index(difflib.get_close_matches(input_str, options, n=1, cutoff=0.0)[0])]    
 
-def removeUsedImgs(files):
+def removeUsedImgs(described_files: list[dict]) -> list[dict]:
     image_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.gif', '.tiff', '.webp')
     used_folder = "/home/riosshin/code/videoAI/media/usedImgs"
 
+    # Get a list of already used image paths
     usedFiles = []
     for ext in image_extensions:
         usedFiles.extend(glob.glob(os.path.join(used_folder, f"*{ext}")))
 
-    nonSimilarImgs = []
-    for img1Path in files:
+    available_items = []
+    for item in described_files:
+        img1Path = item['path'] # Get path from the dictionary
         img1 = cv2.imread(img1Path, cv2.IMREAD_GRAYSCALE)
         if img1 is None:
-            print(f"image not readable: {img1Path}")
-            continue  # skip this image
+            print(f"Image not readable: {img1Path}")
+            continue
 
         is_used = False
         for img2Path in usedFiles:
             img2 = cv2.imread(img2Path, cv2.IMREAD_GRAYSCALE)
             if img2 is None:
-                print(f"[WARNING] Skipping unreadable used image: {img2Path}")
                 continue
 
             img2 = cv2.resize(img2, (img1.shape[1], img1.shape[0]))
             score, _ = ssim(img1, img2, full=True)
 
             if score >= 0.9:
-                print('image was used', img1Path)
+                print('Image was used', img1Path)
                 is_used = True
                 break
 
         if not is_used:
-            nonSimilarImgs.append(img1Path)
+            # If the image is not a duplicate, add the whole dictionary item
+            available_items.append(item)
 
-    return nonSimilarImgs
-
+    return available_items
 
 def autoCropImages(files):
     fuzz = "10%"
@@ -81,39 +67,64 @@ def autoCropImages(files):
         ]
         subprocess.run(cmd, check=True)
 
-def descriptions(files):
-    description = []
-    for file in files:
-        desc = ollama_prompt_img(imageDescription_template, file)
-        description.append(desc)
-    return description, files
+def descriptions(file_paths: list[str]) -> list[dict]:
+    described_files = []
+    for path in file_paths:
+        # Your existing logic to generate a description for a single path
+        desc_text = ollama_prompt_img(imageDescription_template, path)
+        
+        # Append the structured dictionary to the list
+        described_files.append({
+            "path": path,
+            "description": desc_text
+        })
+        
+    return described_files
 
 def imgSearch(title, quote, data, usedQuerys):
-
-    queryPrompt = queryPrompt_template.format(title=title, quote=quote, data = '\n'.join(data))
-
-    response = run(prompt,[queryPrompt])
+    queryPrompt = queryPrompt_template.format(title=title, quote=quote, data='\n'.join(data))
+    response = prompt(queryPrompt, model='gemeni-cli')
     outputQuery = response['query']
-    
+
     if outputQuery in usedQuerys:
-        files = usedQuerys[outputQuery].copy()
-        print('code1: same image used')
+        # 1. HIT: Get the FULL list of described files from the cache.
+        # The cache now contains: [{'path': '...', 'description': '...'}, ...]
+        described_files = usedQuerys[outputQuery].copy()
+        print(f"'{outputQuery}' found in cache, using stored descriptions.")
     else:
-        files = download([outputQuery], 30)
+        # 2. MISS: Download files, generate descriptions ONCE, and cache them.
+        print(f"'{outputQuery}' not in cache. Downloading and generating descriptions.")
+        
+        # a. Download a fresh list of file paths.
+        fresh_files = download([outputQuery], 15)
+        
+        # b. Generate descriptions and create the structured data.
+        #    This now happens only when a query is new.
+        described_files = descriptions(fresh_files) # NOTE: descriptions() must be updated.
+        
+        # c. Save the FULL, original list of described files to the cache.
+        usedQuerys[outputQuery] = described_files.copy()
 
-    files = removeUsedImgs(files)
-    print(files)
+    # 3. Filter the list of described files against the master "used" folder.
+    #    NOTE: removeUsedImgs() must be updated to handle this new data structure.
+    available_files = removeUsedImgs(described_files)
+    print(f"{len(available_files)} usable images remain after filtering.")
 
-    description, files = descriptions(files)
+    if not available_files:
+        print("[ERROR] No usable images found after filtering. Cannot proceed.")
+        return None, usedQuerys
+
+
+    description_list = [item['description'] for item in available_files]
     
-    correctIMG = correctIMG_template.format(quote=quote, description=chr(10).join(description))
-    matchedImage = prompt(correctIMG)
-    matchedImage = matchedImage['image_description']
-    matchedImage = imgMatch(matchedImage, description,files)
+    correctIMG_prompt = correctIMG_template.format(quote=quote, description='\n'.join(description_list))
+    matchedImage_desc = prompt(correctIMG_prompt)['image_description']
+    
+    # 5. Find the final matching image.
+    #    NOTE: imgMatch() must be updated.
+    matchedImage = imgMatch(matchedImage_desc, available_files)
 
-    files.remove(matchedImage)
-    usedQuerys[outputQuery]=files
-    return matchedImage,usedQuerys
+    return matchedImage, usedQuerys
 
 
 

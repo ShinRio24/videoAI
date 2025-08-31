@@ -15,7 +15,7 @@ from PIL import Image
 from tqdm import tqdm
 import sys
 from .contextImgSearcher import autoCropImages
-
+import math
 pipe = None
 
 
@@ -75,6 +75,8 @@ def addTextBlock(
     audioPath,
     title,
     caption,
+    preview,
+    index,
     titleColor ='red',
     titleSize = 100,
     #titleMargin = (0,40),
@@ -148,67 +150,97 @@ def addTextBlock(
     addedImage = ImageClip(videoPath).with_duration(audio.duration).with_position('center')
 
 
+
     #compose final video
-    final_clip = CompositeVideoClip([background, addedImage, titleClip]+captions)
+    final_clip= [background, addedImage, titleClip]+captions
+
+    if preview:
+        previewText = TextClip(
+            text = str(index),
+            color= 'white',
+            size=(target_text_width, video_height // 3), 
+            method='caption',
+            text_align='center',
+            font_size = titleSize,
+            font = titleFont,
+            duration = audio.duration
+        ).with_position((100,100)).with_start(0)
+        final_clip.append(previewText)
+
+    final_clip = CompositeVideoClip(final_clip)
     final_clip = final_clip.with_audio(audio)
     return final_clip
 
 
-def combineMedia(title, imgMatches, background_music="media/bgm/bgm1-escort.wav", output_filename="media/finalUploads/{}.mp4"):
+def combineMedia(title, imgMatches, background_music="media/bgm/bgm1-escort.wav", output_filename="media/finalUploads/{}.mp4", preview=False):
+    """
+    Combines images and audio into a single video file with an optional preview mode.
 
+    In preview mode, an overlay is added to the top of each clip showing its
+    index and the associated text phrase for easy review.
+    """
     output_filename = output_filename.format(title)
     allClips = []
 
-    print(f"Combining {len(imgMatches)} images and audio clips, if this process takes a while you may want to consider disabling the image enhancer", file=sys.__stdout__)
+    print(f"Combining {len(imgMatches)} images and audio clips. This may take a while...", file=sys.__stdout__)
 
-    
-    setup_pipe()
+    # Assuming setup_pipe() initializes necessary components
+    #setup_pipe()
 
-
-    for i, x in enumerate(tqdm(imgMatches, desc="Combining and enhancing images", unit="phrase", file=sys.__stdout__)):
-        #print(x)
-
-        torch.cuda.empty_cache()
+    # Process each image and audio pair
+    for i, x in enumerate(tqdm(imgMatches, desc="Combining and enhancing images", unit="clip", file=sys.__stdout__)):
+        #torch.cuda.empty_cache()
         input_video = x['path']
         
+        # Prepare assets for the current clip
         autoCropImages([input_video])
         input_audio = ensure_wav(x['audio'])
         text_to_add = x['phrase'].replace(" ", "")
 
-
-        allClips.append(addTextBlock(
-            title = title,
-            caption =text_to_add,
+        # --- FIX ---
+        # Step 1: Create the base video clip FIRST and assign it to a variable.
+        video_clip = addTextBlock(
+            title=title,
+            caption=text_to_add,
             videoPath=input_video,
             audioPath=input_audio,
+            preview = preview,
+            index = i
+        )
 
-        ))
 
-    final_video=concatenate_videoclips(allClips)
+        # Step 3: Append the final clip (either original or with overlay) to the list.
+        allClips.append(video_clip)
 
-    import math
-     # If background music is provided
-     #https://dova-s.jp/bgm/play568.html
-     #https://www.youtube.com/watch?v=p1O7tSN5_Co
-     #https://audiotrimmer.com/
-     #https://cloudconvert.com/mp3-to-wav
+    # Concatenate all the processed clips into a single video
+    if not allClips:
+        print("No clips were generated. Aborting video creation.", file=sys.__stdout__)
+        return None
+        
+    final_video = concatenate_videoclips(allClips)
+
+    # If background music is provided, add it to the final video
     if background_music:
-        #30% volume loudness
+        # Set background music volume (e.g., 15% of original)
         bgm_clip =AudioFileClip(background_music).with_effects([afx.MultiplyVolume(0.15)])
 
+        # Calculate how many times the BGM needs to loop to cover the video's duration
         num_loops = math.ceil(final_video.duration / bgm_clip.duration)
 
-        # Manually create a new, looped audio clip
+        # Create a single, looped audio clip from the BGM
         looped_bgm = concatenate_audioclips([bgm_clip] * num_loops)
 
-        # Trim the looped clip to the exact duration of the video
-        bgm_clip = looped_bgm.subclipped(0, final_video.duration)
-        final_audio = CompositeAudioClip([final_video.audio, bgm_clip])
+        # Trim the looped BGM to the exact duration of the video
+        bgm_clip_final = looped_bgm.subclipped(0, final_video.duration)
+        
+        # Combine the video's original audio with the background music
+        final_audio = CompositeAudioClip([final_video.audio, bgm_clip_final])
         final_video = final_video.with_audio(final_audio)
 
+    # Write the final composed video to a file
     final_video.write_videofile(output_filename, codec="libx264", fps=30, audio_codec="aac")
 
-    #print(f"\nSuccessfully created '{output_filename}'")
+    print(f"\nSuccessfully created '{output_filename}'")
 
     return output_filename
 

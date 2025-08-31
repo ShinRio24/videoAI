@@ -66,8 +66,9 @@ def run(func, params, max_retries=2):
             print(f"Exception message: {str(e)}")
             print("Stack trace:")
             traceback.print_exc()
-            sendUpdate(str(e))
+            sendUpdate(str(e)+" attempting another run")
             if attempt == max_retries:
+                sendUpdate("code is broken after run #2, check logs for more detail")
                 exit()
 
 
@@ -118,7 +119,7 @@ def generate_youtube_short_video(topic):
 
     print("Generating script",topic)
 
-    script = prompt(gScriptCharacter_template.format(theme=topic))
+    script = prompt(gScriptCharacter_template.format(theme=topic), model = 'gemeni')
     print(script)
     data = script["Script"]
     allowed_pattern = re.compile(r'[^A-Za-z0-9\u3040-\u309F\u30A0-\u30FF\uFF65-\uFF9F\u4E00-\u9FFF]')
@@ -133,12 +134,13 @@ def generate_youtube_short_video(topic):
 
     print("Combining Media")
     
-    file = combineMedia(title, imgAudioData, output_filename="media/tempFiles/{}.mp4")
-    \
+    file = combineMedia(title, imgAudioData, output_filename="media/tempFiles/{}.mp4", preview = True)
+
     from .videoEdit import Videos
-    Videos(file, title, imgAudioData)
-    asyncio.run(postToTelegram(file))
-    sendUpdate("video posted to telegram")
+    videoObj = Videos(title, imgAudioData)
+    #asyncio.run(postToTelegram(file))
+
+    #sendUpdate("video posted to telegram")
     # file = combineMedia(title, imgAudioData)
 
     # print("Uploading")
@@ -148,7 +150,7 @@ def generate_youtube_short_video(topic):
     # print('complete, video has been uploaded to YouTube with ID:', video_id)
     # print('topic:', topic)
     # return video_id
-    return "video ID"
+    return "video ID no longer supported"
 
 
 def main():
@@ -185,8 +187,8 @@ def main():
         json.dump(result, f)
 
 
-    sendUpdate("Video generation completed successfully!\nTopic: " + topic + "\nWatch it here: " + url)
-    sendUpdate("generation time: " + str((time.time() - tt)/ 60) + " minutes")
+    #sendUpdate("Video generation completed successfully!\nTopic: " + topic + "\nWatch it here: " + url)
+    sendUpdate("Topic: " + topic +"\nGeneration time: " + str(round((time.time() - tt)/ 60)) + " minutes")
 
 
     return url

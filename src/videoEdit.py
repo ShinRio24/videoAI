@@ -172,7 +172,7 @@ async def previewCurrent(editingEnv):
     return finalVideoPath
 
 
-async def pushVideo(editingEnv):
+def pushVideo(editingEnv):
     env = openEnv(editingEnv)
     videoPath = "media/finalUploads/{}.mp4".format(env.title)
     videoPath = combineMedia(env.title, env.videoData, output_filename=videoPath, preview = False)
@@ -182,6 +182,8 @@ async def pushVideo(editingEnv):
         title=env.title
     )
     cleanEnv(editingEnv)
+
+
     return f"Video uploaded at: {video_id}\n Scheduled upload at"+str(uploadTime)
 
 

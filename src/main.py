@@ -15,7 +15,7 @@ from tqdm import tqdm
 from PIL import Image
 
 # Local application imports
-from .llmPrompt import prompt, prompt_single
+from .llmPrompt import prompt
 from .genAudio import genAUDIO
 from .combineMedia import combineMedia
 from .contextImgSearcher import imgSearch
@@ -75,9 +75,25 @@ def run(func, params, max_retries=2):
 
 #removes old files
 def resetSystem():
-    files = glob.glob(os.path.join("media/refImgs", "*")) + glob.glob(os.path.join("media/audio", "*")) + glob.glob(os.path.join("media/usedImgs", "*"))
-    for f in files:
-        os.remove(f)
+    import glob
+    import shutil
+
+    # Get a list of all files and directories in the target folders
+    paths_to_delete = glob.glob(os.path.join("media/refImgs", "*")) \
+                    + glob.glob(os.path.join("media/audio", "*")) \
+                    + glob.glob(os.path.join("media/usedImgs", "*"))
+
+    # Loop through the list
+    for path in paths_to_delete:
+        try:
+            # Check if it's a file or a symbolic link
+            if os.path.isfile(path) or os.path.islink(path):
+                os.remove(path)
+            # Check if it's a directory
+            elif os.path.isdir(path):
+                shutil.rmtree(path) # This removes the directory and all its contents
+        except Exception as e:
+            print(f'Failed to delete {path}. Reason: {e}')
 
 #gen audio and images
 async def genAudioImages(title,data):
@@ -87,16 +103,16 @@ async def genAudioImages(title,data):
     msg = sendUpdate(f"Processing '{title}':\n[{' ' * 20}] 0% (0/{len(data)})", main=True)
     message_id = msg['result']['message_id']
 
-    usedQuerys={}
     for i, x in enumerate(data, start=1):
-        temp ={}
-        temp['audio'] ="media/audio/au"+str(i)+".mp3"
+        temp ={
+}
+        temp['audio'] ='media/audio/au'+str(i)+'.mp3'
 
         #gen audios, run proof
         run(genAUDIO,[x,"media/audio/au"+str(i)])
 
         
-        src_path, usedQuerys = run(imgSearch,[title, x, data,usedQuerys])
+        src_path = run(imgSearch,[title, x, data])
 
         ext = os.path.splitext(src_path)[1]
         nPath = "media/usedImgs/img"+str(i)+ext
@@ -119,12 +135,12 @@ def generate_youtube_short_video(topic):
 
     print("Generating script",topic)
 
-    script = prompt(gScriptCharacter_template.format(theme=topic), model = 'gemeni')
+    script = prompt(gScriptGeneral_template.format(theme=topic), model = 'gemeni')
     print(script)
     data = script["Script"]
     allowed_pattern = re.compile(r'[^A-Za-z0-9\u3040-\u309F\u30A0-\u30FF\uFF65-\uFF9F\u4E00-\u9FFF]')
 
-    title = prompt_single(genTitle.format(theme = topic))
+    title = prompt(genTitle.format(theme = topic))['title']
     title = allowed_pattern.sub('',title)
     sendUpdate("Generated Title: "+title+" for topic: "+topic)
     sendUpdate('\n'.join(data))
@@ -133,31 +149,19 @@ def generate_youtube_short_video(topic):
     imgAudioData = asyncio.run(genAudioImages(title,data))
 
     print("Combining Media")
-    
-    file = combineMedia(title, imgAudioData, output_filename="media/tempFiles/{}.mp4", preview = True)
-
     from .videoEdit import Videos
     videoObj = Videos(title, imgAudioData)
-    #asyncio.run(postToTelegram(file))
 
-    #sendUpdate("video posted to telegram")
-    # file = combineMedia(title, imgAudioData)
+    file = combineMedia(title, imgAudioData, output_filename=f"media/editEnvs/{videoObj.code}/preview.mp4", preview = True)
 
-    # print("Uploading")
-
-    # video_id = uploadVideo(video_path= file, title= title, videoData=imgAudioData)
-
-    # print('complete, video has been uploaded to YouTube with ID:', video_id)
-    # print('topic:', topic)
-    # return video_id
-    return "video ID no longer supported"
+    return videoObj
 
 
 def main():
     try:
         topic = " ".join(sys.argv[1:])
     except IndexError:
-        print("No title provided")
+        print("No topic provided")
         exit()
     
     tt = time.time()
@@ -165,9 +169,10 @@ def main():
     with log_file:
         try:
             with redirect_stdout(log_file), redirect_stderr(log_file):
-                url = generate_youtube_short_video(topic)
-                if url:
-                    print(f"✅ Success! Video URL: {url}")
+                videoObj = generate_youtube_short_video(topic)
+                if videoObj:
+                    print(f"✅ Success! Video obj: {videoObj}")
+
         except KeyboardInterrupt:
             print("\n⚠️ Process interrupted by user (Ctrl+C). Flushing logs and exiting...", file=sys.__stdout__)
             log_file.flush()
@@ -176,33 +181,24 @@ def main():
             print(f"❌ An error occurred: {e}")
             traceback.print_exc(file=log_file)
             sendUpdate(f"Video generation failed for title!\nError: {e}", main=True)
+            raise
         finally:
             log_file.flush()
 
 
     print("Total time taken:", (time.time() - tt)/ 60, "minutes")
 
-    result = {"file": url}
-    with open("tools/finalURL.json", "w") as f:
-        json.dump(result, f)
-
-
     #sendUpdate("Video generation completed successfully!\nTopic: " + topic + "\nWatch it here: " + url)
-    sendUpdate("Topic: " + topic +"\nGeneration time: " + str(round((time.time() - tt)/ 60)) + " minutes")
+    sendUpdate("Topic: " + topic +"\nGeneration time: " + str(round((time.time() - tt)/ 60)) + " minutes\n"+f"Video Code: {videoObj.code}")
 
-
-    return url
+    return videoObj
 
 
 if __name__ =='__main__':
-    # The user's original line is commented out to avoid immediate image generation on load,
-    # as the new method will handle the full workflow.
 
-    # Call the main video generation method. You can change the theme.
     try:
         main()
     except Exception as e:
         print(f"An error occurred: {e}")
         sendUpdate("Video generation failed for title!\nError: " + str(e))
         exit(1)
-    # Optionally, you can send a message to the Telegram channel

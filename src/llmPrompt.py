@@ -77,6 +77,8 @@ def prompt(prompt, model = "ollama"):
     print(f"START OF PROMPT  --------------------------------------------\n {prompt}")
     if model == "gemeni-cli":
         output = gemeniCli(prompt)
+    elif model=="gemeni-cli-pro":
+        output = gemeniCli(prompt, pro=True)
     elif model =="ollama":
         output = ollama_prompt(prompt)
     elif model =='gemeni':
@@ -160,18 +162,25 @@ def ollama_prompt(prompt, model=ollamaModel):
     return output
 
 import subprocess
-def gemeniCli(prompt):
+def gemeniCli(prompt, pro = False):
+    if pro:
+        model = "gemini-2.5-pro"
+
+    else:
+        model = "gemini-2.5-flash"
+
     try:
         gemini_executable_path = "/home/linuxbrew/.linuxbrew/bin/gemini"
         result = subprocess.run(
-            [gemini_executable_path, "-p", prompt],
+            [gemini_executable_path,"-m",model, "-p",prompt],
             capture_output=True, text=True,
             check=True  # raises exception if exit code != 0
         )
         return (result.stdout)
     except subprocess.CalledProcessError as e:
         print("Command failed!")
-        raise (e.stderr)  # error output
+        raise RuntimeError(f"The gemini-cli command failed: {e.stderr}")
+
 
 def ollama_prompt_img(prompt,image_path, model=ollamaModel):
 
@@ -227,7 +236,7 @@ def promptGemeni(prompt):
 if __name__ == '__main__':
     #text  = imageDescription_template
     #print(ollama_prompt_img(text, "media/refImgs/img0_1.jpg"))
-    from .prompts import gScriptCharacter_template
+    #from .prompts import gScriptCharacter_template
 
     #text = gScriptCharacter_template.format(theme="加藤智大 - 秋葉原通り魔事件を引き起こした")
     text = queryPrompt_template.format(title="加藤智大 - 秋葉原通り魔事件を引き起こした", quote=" 秋葉原通り魔事件を引き起こした")

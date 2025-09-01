@@ -318,6 +318,21 @@ async def end_queue(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Telegram Handlers: Video Editing
 # ==============================
 
+async def _task_runner(task, params,update, editing_env):
+    result = await asyncio.to_thread(task, *params)
+
+    if task == previewCurrent:
+        with open(result, 'rb') as video_file:
+            await update.message.reply_video(video=video_file)
+            await update.message.reply_text("preview complete on env:" + str(editing_env))
+    else:
+        await update.message.reply_text(result)
+
+
+async def createTask(task, params, update, editing_env=-99999):
+    asyncio.create_task(_task_runner(task,params,update,editing_env))
+
+
 async def edit_env(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Sets the active editing environment for the user."""
     if not context.args:
@@ -436,29 +451,11 @@ async def preview_current(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("❌ No editing environment selected.")
         return
         
-    # Inform the user that the process has started
-    status_message = await update.message.reply_text("⏳ Generating preview...")
-    
-    path = await asyncio.to_thread(previewCurrent, editing_env)
-    
-    if path and os.path.exists(path):
-        try:
-            # Open the generated file and send it as a video reply
-            with open(path, 'rb') as video_file:
-                await update.message.reply_video(video=video_file)
-                await update.message.reply_video("preview complete on env:" + str(editing_env))
-            
-            # Delete the "Generating preview..." message for a cleaner chat
-            await status_message.delete()
-        except Exception as e:
-            # In case of an error during sending, update the status message
-            await status_message.edit_text(f"❌ Failed to send preview: {e}")
-        finally:
-            # Clean up the generated file from the server
-            os.remove(path)
-    else:
-        # If the file wasn't created, edit the status message to inform the user
-        await status_message.edit_text("❌ Preview generation failed or file not found.")
+    await update.message.reply_text("⏳ Generating preview...")
+    createTask(previewCurrent,[editing_env], update, editing_env=editing_env)
+
+
+
 
 async def see_preview(update: Update, context: ContextTypes.DEFAULT_TYPE):
     editing_env = context.user_data.get('editingEnv')
@@ -490,8 +487,9 @@ async def push_video(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     await update.message.reply_text("🚀 Pushing video...")
-    result = await asyncio.to_thread(editing_env)
-    await update.message.reply_text(result)
+    createTask(pushVideo, [editing_env], update)
+
+
 
 async def remove_video(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Pushes the final video from the current editing env."""

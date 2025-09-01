@@ -12,31 +12,25 @@ import subprocess
 from pathlib import Path
 
 
-
 def imgMatch(input_str,options,files):
     print(input_str,options, files)
-    return files[options.index(difflib.get_close_matches(input_str, options, n=1, cutoff=0.0)[0])]    
+    return files[options.index(difflib.get_close_matches(input_str, options, n=1, cutoff=0.0)[0])]['path']
 
 def removeUsedImgs(described_files: list[dict]) -> list[dict]:
-    image_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.gif', '.tiff', '.webp')
-    used_folder = "/home/riosshin/code/videoAI/media/usedImgs"
+    # This function will now deduplicate images within the provided list
+    unique_files = []
+    seen_images = []
 
-    # Get a list of already used image paths
-    usedFiles = []
-    for ext in image_extensions:
-        usedFiles.extend(glob.glob(os.path.join(used_folder, f"*{ext}")))
-
-    available_items = []
     for item in described_files:
-        img1Path = item['path'] # Get path from the dictionary
+        img1Path = item['path']
         img1 = cv2.imread(img1Path, cv2.IMREAD_GRAYSCALE)
         if img1 is None:
             print(f"Image not readable: {img1Path}")
             continue
 
-        is_used = False
-        for img2Path in usedFiles:
-            img2 = cv2.imread(img2Path, cv2.IMREAD_GRAYSCALE)
+        is_duplicate = False
+        for seen_img_path in seen_images:
+            img2 = cv2.imread(seen_img_path, cv2.IMREAD_GRAYSCALE)
             if img2 is None:
                 continue
 
@@ -44,15 +38,15 @@ def removeUsedImgs(described_files: list[dict]) -> list[dict]:
             score, _ = ssim(img1, img2, full=True)
 
             if score >= 0.9:
-                print('Image was used', img1Path)
-                is_used = True
+                print(f'Found duplicate image: {img1Path} is similar to {seen_img_path}')
+                is_duplicate = True
                 break
 
-        if not is_used:
-            # If the image is not a duplicate, add the whole dictionary item
-            available_items.append(item)
+        if not is_duplicate:
+            unique_files.append(item)
+            seen_images.append(img1Path)
 
-    return available_items
+    return unique_files
 
 def autoCropImages(files):
     fuzz = "10%"
@@ -81,50 +75,46 @@ def descriptions(file_paths: list[str]) -> list[dict]:
         
     return described_files
 
-def imgSearch(title, quote, data, usedQuerys):
+def imgSearch(title, quote, data):
+    # 1. Generate the search query
     queryPrompt = queryPrompt_template.format(title=title, quote=quote, data='\n'.join(data))
     response = prompt(queryPrompt, model='gemeni-cli')
     outputQuery = response['query']
 
-    if outputQuery in usedQuerys:
-        # 1. HIT: Get the FULL list of described files from the cache.
-        # The cache now contains: [{'path': '...', 'description': '...'}, ...]
-        described_files = usedQuerys[outputQuery].copy()
-        print(f"'{outputQuery}' found in cache, using stored descriptions.")
-    else:
-        # 2. MISS: Download files, generate descriptions ONCE, and cache them.
-        print(f"'{outputQuery}' not in cache. Downloading and generating descriptions.")
-        
-        # a. Download a fresh list of file paths.
-        fresh_files = download([outputQuery], 15)
-        
-        # b. Generate descriptions and create the structured data.
-        #    This now happens only when a query is new.
-        described_files = descriptions(fresh_files) # NOTE: descriptions() must be updated.
-        
-        # c. Save the FULL, original list of described files to the cache.
-        usedQuerys[outputQuery] = described_files.copy()
+    # 2. Define the cache directory for the current query
+    cache_dir = os.path.join("/home/riosshin/code/videoAI/media/refImgs", outputQuery)
 
-    # 3. Filter the list of described files against the master "used" folder.
-    #    NOTE: removeUsedImgs() must be updated to handle this new data structure.
-    available_files = removeUsedImgs(described_files)
+    # 3. Check if the cache directory exists
+    if os.path.exists(cache_dir):
+        # 4a. CACHE HIT: Use the images from the cache directory
+        print(f"'{outputQuery}' found in cache. Using images from {cache_dir}")
+        image_files = glob.glob(os.path.join(cache_dir, "*"))
+    else:
+        # 4b. CACHE MISS: Download new images and cache them
+        print(f"'{outputQuery}' not in cache. Downloading images.")
+        os.makedirs(cache_dir)
+        # The download function now needs to save to the specific directory
+        image_files = download(outputQuery, 30, cache_dir) # Pass the query and the cache_dir
+        
+
+    # 5. Describe the images
+    described_files = descriptions(image_files)
+
+    # 6. Deduplicate the images for the current query
+    
     print(f"{len(available_files)} usable images remain after filtering.")
 
     if not available_files:
         print("[ERROR] No usable images found after filtering. Cannot proceed.")
-        return None, usedQuerys
+        return None
 
-
+    # 7. Find the best image
     description_list = [item['description'] for item in available_files]
-    
     correctIMG_prompt = correctIMG_template.format(quote=quote, description='\n'.join(description_list))
     matchedImage_desc = prompt(correctIMG_prompt)['image_description']
-    
-    # 5. Find the final matching image.
-    #    NOTE: imgMatch() must be updated.
-    matchedImage = imgMatch(matchedImage_desc, available_files)
+    matchedImage = imgMatch(matchedImage_desc, description_list, available_files)
 
-    return matchedImage, usedQuerys
+    return matchedImage
 
 
 

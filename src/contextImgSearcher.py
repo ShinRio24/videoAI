@@ -22,7 +22,7 @@ def removeUsedImgs(described_files: list[dict]) -> list[dict]:
     seen_images = []
 
     for item in described_files:
-        img1Path = item['path']
+        img1Path = item
         img1 = cv2.imread(img1Path, cv2.IMREAD_GRAYSCALE)
         if img1 is None:
             print(f"Image not readable: {img1Path}")
@@ -64,15 +64,14 @@ def autoCropImages(files):
 def descriptions(file_paths: list[str]) -> list[dict]:
     described_files = []
     for path in file_paths:
-        # Your existing logic to generate a description for a single path
-        desc_text = ollama_prompt_img(imageDescription_template, path)
-        
-        # Append the structured dictionary to the list
-        described_files.append({
-            "path": path,
-            "description": desc_text
-        })
-        
+        if not os.path.exists(path):
+            print(f"Warning: Cannot describe non-existent file: {path}")
+            continue
+        try:
+            desc_text = ollama_prompt_img(imageDescription_template, path)
+            described_files.append({"path": path, "description": desc_text})
+        except Exception as e:
+            print(f"Error generating description for {path}: {e}")
     return described_files
 
 def imgSearch(title, quote, data):
@@ -83,29 +82,50 @@ def imgSearch(title, quote, data):
 
     # 2. Define the cache directory for the current query
     cache_dir = os.path.join("/home/riosshin/code/videoAI/media/refImgs", outputQuery)
+    metadata_path = os.path.join(cache_dir, "_descriptions.json") # The "card catalog"
 
+    import json
     # 3. Check if the cache directory exists
     if os.path.exists(cache_dir):
         # 4a. CACHE HIT: Use the images from the cache directory
-        print(f"'{outputQuery}' found in cache. Using images from {cache_dir}")
-        image_files = glob.glob(os.path.join(cache_dir, "*"))
+        print(f"'{outputQuery}' descriptions found in cache. Loading from {metadata_path}")
+        try:
+            with open(metadata_path, 'r', encoding='utf-8') as f:
+                available_files = json.load(f)
+        except (json.JSONDecodeError, IOError) as e:
+            print(f"Error reading cache file {metadata_path}: {e}. Regenerating.")
+            # Treat as a cache miss if file is corrupt
+            available_files = None 
     else:
-        # 4b. CACHE MISS: Download new images and cache them
-        print(f"'{outputQuery}' not in cache. Downloading images.")
-        os.makedirs(cache_dir)
-        # The download function now needs to save to the specific directory
-        image_files = download(outputQuery, 30, cache_dir) # Pass the query and the cache_dir
-        
+        # 4b. CACHE MISS: Generate descriptions and create the cache file
+        available_files = None
 
-    # 5. Describe the images
-    available_files = descriptions(image_files)
+    
+    if available_files is None:
+        print(f"'{outputQuery}' descriptions not in cache. Generating...")
+        if not os.path.exists(cache_dir):
+            print(f"Image directory not found. Downloading images for '{outputQuery}'.")
+            os.makedirs(cache_dir)
+            image_files = download(outputQuery, 30, cache_dir)
+        else:
+            print(f"Using existing images from {cache_dir}")
+            image_files = glob.glob(os.path.join(cache_dir, "*[.jpg,.jpeg,.png]"))
 
-    # 6. Deduplicate the images for the current query
-    print(f"{len(available_files)} usable images remain after filtering.")
+        if not image_files:
+            print(f"[ERROR] No images found or downloaded for query: {outputQuery}")
+            return None
+        image_files = removeUsedImgs(image_files)
 
-    if not available_files:
-        print("[ERROR] No usable images found after filtering. Cannot proceed.")
-        return None
+        # This is the slow part that now only runs on a cache miss
+        available_files = descriptions(image_files)
+
+        try:
+            with open(metadata_path, 'w', encoding='utf-8') as f:
+                json.dump(available_files, f, ensure_ascii=False, indent=4)
+            print(f"Saved descriptions to cache at {metadata_path}")
+        except IOError as e:
+            print(f"Error saving description cache file: {e}")
+
 
     # 7. Find the best image
     description_list = [item['description'] for item in available_files]

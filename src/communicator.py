@@ -201,6 +201,9 @@ async def queue_worker():
         current_task = None
         save_queue_to_file()
 
+        print("[QUEUE] Task finished, starting 10-second cooldown...")
+        await asyncio.sleep(10)
+
     print("[QUEUE] Worker stopped.")
 
 # ==============================
@@ -345,6 +348,7 @@ async def edit_env(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if "Env set to" in response_text:
             context.user_data['editingEnv'] = int(code_str)
         await update.message.reply_text(response_text)
+        await see_preview(update, context)
     except ValueError as e:
         await update.message.reply_text(f"Error: {e}")
 

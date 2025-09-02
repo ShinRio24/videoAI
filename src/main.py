@@ -19,9 +19,8 @@ from .llmPrompt import prompt
 from .genAudio import genAUDIO
 from .combineMedia import combineMedia
 from .contextImgSearcher import imgSearch
-from .uploadVideo import uploadVideo
 from .prompts import *
-from .communicator import sendUpdate, update_progress, postToTelegram
+from .communicator import sendUpdate, update_progress
 import asyncio
 
 import signal

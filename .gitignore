@@ -208,3 +208,4 @@ token.pickle
 test/
 runNoSleep.py
 topics.txtgoogle-chrome-stable_current_amd64.deb
+tools/time.json

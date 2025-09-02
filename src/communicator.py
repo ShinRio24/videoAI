@@ -489,8 +489,9 @@ async def push_video(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if editing_env is None:
         await update.message.reply_text("❌ No editing environment selected.")
         return
-
+    
     await update.message.reply_text("🚀 Pushing video...")
+    context.user_data['editingEnv'] = None
     createTask(pushVideo, [editing_env], update)
 
 

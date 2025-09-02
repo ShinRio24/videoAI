@@ -12,9 +12,7 @@ load_dotenv()
 API_KEY = os.getenv("SEARCHKEY", "")
 
 # --- Replace with your actual credentials ---
-CSE_ID = "c6fcff51d3b604e3b"                                                      
-FOLDER_PATH = '/home/riosshin/code/videoAI/media/refImgs'             
-
+CSE_ID = "c6fcff51d3b604e3b"                                              
 
 
 # Add Google-Image-Scraper folder to sys.path
@@ -89,7 +87,7 @@ def _download_image_from_url(url: str, filepath: str) -> bool:
         return False
 
 
-def imgSearch(query: str, img_count: int) -> list[str]:
+def imgSearch(query: str, img_count: int, cachePath) -> list[str]:
     """
     Performs a Google image search, downloads the results, and returns their local file paths.
     This function now replaces the functionality of `downloadGoogle`.
@@ -130,7 +128,7 @@ def imgSearch(query: str, img_count: int) -> list[str]:
                 file_ext = Path(img_url).suffix or '.jpg'
                 if len(file_ext) > 5: file_ext = '.jpg' # handle long/invalid extensions
                 
-                local_filepath = os.path.join(FOLDER_PATH, f"img_{len(downloaded_paths):03d}{file_ext}")
+                local_filepath = os.path.join(cachePath, f"img_{len(downloaded_paths):03d}{file_ext}")
                 
                 if _download_image_from_url(img_url, local_filepath):
                     downloaded_paths.append(local_filepath)
@@ -145,17 +143,14 @@ def imgSearch(query: str, img_count: int) -> list[str]:
     print(f"✅ Successfully downloaded {len(downloaded_paths)} images.")
     return downloaded_paths
 
-def download(query, imgCount):
-    imgCount = min(imgCount,10)
-    for f in os.listdir(folder):
-        os.remove(os.path.join(folder, f))
+def download(query, imgCount, cachePath):
 
     try:
-        paths = imgSearch(query, imgCount)
+        paths = imgSearch(query, imgCount, cachePath)
 
     except:
         print(paths)
-        downloadGoogle(query,imgCount)
+        downloadGoogle(query,imgCount, cachePath)
 
     paths = normalize_images(paths)
     return paths

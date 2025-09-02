@@ -58,7 +58,7 @@ def change_speedFile(input_path, speed):
 
 
 def genAUDIO(context,output):
-    genTikTokV2(context,output)
+    return genTikTokV2(context,output)
     #genSpeechify(context,output)
 
 
@@ -141,6 +141,7 @@ def genTikTokV2(context,output,speed = 1.15, max_retries=3, wait_seconds=60):
             time.sleep(wait_seconds)
 
     change_speedFile(output+'.mp3', speed)
+    return output+'.mp3'
 
 
 #version usin my own TTS code

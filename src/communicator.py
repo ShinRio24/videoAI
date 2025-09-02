@@ -329,7 +329,7 @@ async def _task_runner(task, params,update, editing_env):
         await update.message.reply_text(result)
 
 
-async def createTask(task, params, update, editing_env=-99999):
+def createTask(task, params, update, editing_env=-99999):
     asyncio.create_task(_task_runner(task,params,update,editing_env))
 
 
@@ -542,6 +542,8 @@ def get_file_id_from_message(message):
     if message.document and message.document.mime_type.startswith("image/"):
         return message.document.file_id
     return None
+
+
 from PIL import Image 
 async def download_file(context, file_id, prefix):
     """Downloads a file from Telegram and saves it to the buffer folder."""
@@ -589,14 +591,22 @@ async def process_frame_edit(update, context, prompt_data):
     
     await update.message.reply_text(f"🎬 {saved_path}")
 
+
+from datetime import datetime
 async def process_frame_add(update, context, prompt_data):
     """Helper to process the image reply for the /addframe command."""
     file_id = get_file_id_from_message(update.message)
-    if not file_id:
+    if not file_id or file_id =='':
         await update.message.reply_text("❌ No valid image found in your reply.")
         return
+    
+    editing_env = prompt_data['env']
+    env_directory = f"media/editEnvs/{editing_env}"
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S%f")
+    unique_filename_prefix = f"frame_{timestamp}"
+    full_path_prefix = os.path.join(env_directory, unique_filename_prefix)
 
-    saved_path = await download_file(context, file_id, "add")
+    saved_path = await download_file(context, file_id, full_path_prefix)
     if not saved_path:
         await update.message.reply_text("❌ Failed to download image.")
         return

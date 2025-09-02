@@ -98,10 +98,9 @@ def imgSearch(title, quote, data):
         
 
     # 5. Describe the images
-    described_files = descriptions(image_files)
+    available_files = descriptions(image_files)
 
     # 6. Deduplicate the images for the current query
-    
     print(f"{len(available_files)} usable images remain after filtering.")
 
     if not available_files:
@@ -110,6 +109,7 @@ def imgSearch(title, quote, data):
 
     # 7. Find the best image
     description_list = [item['description'] for item in available_files]
+
     correctIMG_prompt = correctIMG_template.format(quote=quote, description='\n'.join(description_list))
     matchedImage_desc = prompt(correctIMG_prompt)['image_description']
     matchedImage = imgMatch(matchedImage_desc, description_list, available_files)

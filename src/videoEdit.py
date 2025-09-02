@@ -7,7 +7,7 @@ from .combineMedia import combineMedia
 from .uploadVideo import uploadVideo
 
 envFolder = "media/editEnvs/"
-MASTER_FILE = os.path.join(envFolder, "master.pkl")
+MASTER_FILE = os.path.join("tools", "master.pkl")
 
 
 # ------------------ Master Helpers ------------------
@@ -118,7 +118,7 @@ def removeFrame(editingEnv, index: int) -> str:
     saveMaster(master)
     return f"✅ **Success!** Frame {index} has been removed."
 
-def addFrame(editingEnv,index: int, text: str, temp_image_path: str) -> str:
+def addFrame(editingEnv,index: int, text: str, permanent_image_path: str) -> str:
     if editingEnv is None: return "❌ No environment selected"
     master = loadMaster()
     video_data = master[editingEnv].videoData
@@ -126,24 +126,17 @@ def addFrame(editingEnv,index: int, text: str, temp_image_path: str) -> str:
     if not (0 <= index <= len(video_data)):
         return f"❌ **Index Error:** Frame {index} is out of bounds for insertion."
 
-    # **FIX**: Create new paths inside the correct environment folder
-    baseDir = os.path.join(envFolder, str(editingEnv))
-    file_ext = os.path.splitext(temp_image_path)[1]
-    # Create a unique name to avoid conflicts
-    new_image_name = f"frame_{index}_img_{hash(text)[:6]}{file_ext}"
-    new_audio_name = f"frame_{index}_audio_{hash(text)[:6]}.wav"
+    base_name_for_audio = os.path.splitext(permanent_image_path)[0]
     
-    permanent_image_path = os.path.join(baseDir, new_image_name)
-    permanent_audio_path = os.path.join(baseDir, new_audio_name)
+    # 2. Simply append ".wav" to create the corresponding audio path
 
-    # Move image and generate new audio
-    shutil.move(temp_image_path, permanent_image_path)
-    genAUDIO(text, permanent_audio_path)
+    path = genAUDIO(text, base_name_for_audio)
+
 
     new_frame = {
         "phrase": text,
         "path": permanent_image_path,
-        "audio": permanent_audio_path
+        "audio": path
     }
     video_data.insert(index, new_frame)
 
@@ -162,7 +155,7 @@ def cleanEnv(editingEnv):
     return "Cleaned current environment"
 
 # ------------------ Async Video Functions ------------------
-async def previewCurrent(editingEnv):
+def previewCurrent(editingEnv):
 
     env = openEnv(editingEnv) 
     finalVideoPath = combineMedia(
@@ -190,10 +183,6 @@ def pushVideo(editingEnv):
 import os
 import shutil
 import pickle
-
-# Make sure envFolder and MASTER_FILE are defined correctly at the top of your file
-envFolder = "media/editEnvs/"
-MASTER_FILE = os.path.join(envFolder, "master.pkl")
 
 # (Your other functions like loadMaster and saveMaster go here)
 # ...
@@ -235,11 +224,4 @@ def removeEnv(env_code: int) -> str:
 
 
 if __name__ == '__main__':
-    MASTER_FILE = os.path.join(envFolder, "master.pkl")
-
-    with open(MASTER_FILE, "rb") as f:
-        master =(pickle.load(f))
-    del master[1]
-
-    with open(MASTER_FILE, "wb") as f:
-        pickle.dump(master, f)
+    pass

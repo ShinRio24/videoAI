@@ -134,12 +134,11 @@ def generate_youtube_short_video(topic):
 
     print("Generating script",topic)
 
-    script = prompt(gScriptGeneral_template.format(theme=topic), model = 'gemeni')
-    print(script)
-    data = script["Script"]
+    data = prompt(gScriptGeneral_template.format(theme=topic), model = 'gemeni')
+    print(data)
     allowed_pattern = re.compile(r'[^A-Za-z0-9\u3040-\u309F\u30A0-\u30FF\uFF65-\uFF9F\u4E00-\u9FFF]')
 
-    title = prompt(genTitle.format(theme = topic))['title']
+    title = prompt(genTitle.format(theme = topic))
     title = allowed_pattern.sub('',title)
     sendUpdate("Generated Title: "+title+" for topic: "+topic)
     sendUpdate('\n'.join(data))

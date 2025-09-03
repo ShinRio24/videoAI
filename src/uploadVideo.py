@@ -16,10 +16,13 @@ import json
 import os
 from datetime import datetime, timedelta
 
+from .configFile import Config
+config = Config
+uploadTimesPST= config.uploadTimesPST
+uploadTimesJST= config.uploadTimesJST
 
-uploadTimesPST = [19,20,21,22,23,0,1]
-uploadTimesJST = [3,4,5,6,7,8,9]
 STATE_FILE = "tools/time.json"
+
 def get_next_item():
     with open(STATE_FILE, "r") as f:
         state = json.load(f)

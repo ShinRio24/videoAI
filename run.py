@@ -32,6 +32,7 @@ def main(args) -> None:
         {"func": command_q, "name": "q", "num": None},
         {"func": command_eframe, "name": "eframe", "num": None},
         {"func": command_end, "name": "end", "num": None},
+        {"func": command_topics, "name": "topics", "num": "16"},
     ]
 
     # --- Dynamically add all handlers ---

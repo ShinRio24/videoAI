@@ -1,11 +1,14 @@
 import json
 from datetime import datetime
-configDir = "config.json"
+configDir = "tools/config.json"
 class Config:
     def __init__(self, filename=configDir):
         self.filename = filename
         with open(self.filename, 'r') as f:
             self.data = json.load(f)  
+        
+        for key, value in self.data.items():
+            setattr(self, key, value)
 
     def getConfig(self):
         return self.data

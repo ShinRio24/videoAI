@@ -77,8 +77,7 @@ def descriptions(file_paths: list[str]) -> list[dict]:
 def imgSearch(title, quote, data):
     # 1. Generate the search query
     queryPrompt = queryPrompt_template.format(title=title, quote=quote, data='\n'.join(data))
-    response = prompt(queryPrompt, model='gemeni-cli')
-    outputQuery = response['query']
+    outputQuery = prompt(queryPrompt, model='gemeni-cli')
 
     # 2. Define the cache directory for the current query
     cache_dir = os.path.join("/home/riosshin/code/videoAI/media/refImgs", outputQuery)
@@ -114,7 +113,7 @@ def imgSearch(title, quote, data):
         if not image_files:
             print(f"[ERROR] No images found or downloaded for query: {outputQuery}")
             return None
-        image_files = removeUsedImgs(image_files)
+        
 
         # This is the slow part that now only runs on a cache miss
         available_files = descriptions(image_files)
@@ -126,12 +125,13 @@ def imgSearch(title, quote, data):
         except IOError as e:
             print(f"Error saving description cache file: {e}")
 
+    image_files = removeUsedImgs(available_files)
 
     # 7. Find the best image
     description_list = [item['description'] for item in available_files]
 
     correctIMG_prompt = correctIMG_template.format(quote=quote, description='\n'.join(description_list))
-    matchedImage_desc = prompt(correctIMG_prompt)['image_description']
+    matchedImage_desc = prompt(correctIMG_prompt)
     matchedImage = imgMatch(matchedImage_desc, description_list, available_files)
 
     return matchedImage

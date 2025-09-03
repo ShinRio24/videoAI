@@ -207,5 +207,11 @@ def removeEnv(env_code: int) -> str:
     return f"🗑️ Successfully removed environment {env_code} and its master record."
 
 
+from .llmPrompt import prompt
+from .prompts import genTopics_template
+def genTopics(idea):
+    response = prompt(genTopics_template.format(idea=idea),model="gemeni-cli", printOutput=False)
+    return response
+
 if __name__ == '__main__':
     pass

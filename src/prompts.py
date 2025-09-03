@@ -235,6 +235,40 @@ Do not mention names unless you are completely certain.
 
 """
 
+genTopics_template ="""You are a professional scriptwriter and researcher for a popular Japanese YouTube channel that creates educational and entertaining content.
 
+Your task is to generate a list of 10 influential figures suitable for a series of YouTube Shorts.
+The theme is: {idea}
+
+The primary audience is Japanese, so the list should include a mix of figures who are:
+a) Significant in Japanese history and culture.
+b) Globally influential figures who are also widely recognized and respected in Japan.
+
+CRITICAL GUIDELINES FOR SELECTION:
+
+Visual Availability: Prioritize figures for whom there is a rich public domain or easily accessible visual record (photographs, famous paintings, statues, etc.). This is crucial for creating visually engaging short videos.
+
+Clear Narrative: Select figures with well-documented and clear life stories. Their key achievements and impact should be easily explainable in a concise, 60-second format. Avoid figures whose histories are overly complex, obscure, or primarily based on disputed legends.
+
+Catchy Framing: The topics should be framed as catchy, short YouTube titles (ideally around 15 characters). Provide context. For example, instead of just 「織田信長」, a better topic would be 「天下統一を目指した男、織田信長」(Oda Nobunaga: The Man Who Aimed to Unify Japan).
+
+The output MUST be a raw JSON file in the following format. Do not include any text, explanations, or markdown formatting before or after the JSON block.
+
+EXAMPLE OUTPUT:
+{{
+  "Topics": [
+    "天下統一を目指した男、織田信長",
+    "幕末の風雲児、坂本龍馬",
+    "世界を変えた発明王、エジソン",
+    "非暴力で世界を導いた、ガンジー",
+    "近代看護の母、ナイチンゲール",
+    "Appleの伝説、スティーブ・ジョブズ",
+    "奇跡の作曲家、ベートーヴェン",
+    "人種の壁を壊した王、キング牧師",
+    "近代日本の父、福沢諭吉",
+    "無償の愛の聖女、マザー・テレサ"
+  ]
+}}
+    """
 
 __all__ = [k for k in globals().keys() if not k.startswith('_')]

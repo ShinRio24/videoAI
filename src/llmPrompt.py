@@ -71,42 +71,6 @@ def set_last_failure_date(failure_date):
     with open(LAST_FAILURE_FILE, "w") as f:
         json.dump({"last_failure": failure_date.isoformat()}, f)
 
-
-def prompt(prompt, model = "ollama"):
-
-    print(f"START OF PROMPT  --------------------------------------------\n {prompt}")
-    if model == "gemeni-cli":
-        output = gemeniCli(prompt)
-    elif model=="gemeni-cli-pro":
-        output = gemeniCli(prompt, pro=True)
-    elif model =="ollama":
-        output = ollama_prompt(prompt)
-    elif model =='gemeni':
-        today = date.today()
-        last_failure = get_last_failure_date()
-
-        if last_failure == today:
-            # Already failed today, skip function_a
-            output = ollama_prompt(prompt)
-        else:
-            try:
-                output = promptGemeni(prompt)
-                print('used gemeni')
-            except Exception as e:
-                print(f"gemeni failed: {e}", file=sys.__stderr__)
-                set_last_failure_date(today)
-                output = ollama_prompt(prompt)
-    else:
-        raise ValueError("Model does not exist")
-    
-    print(f"END OF PROMPT  --------------------------------------------\n")
-    print(f"LLM output: {output}")
-    print(f"END OF LLM OUTPUT --------------------------------------------\n")
-
-    extracted = extract_json_between_markers(output)
-    print(extracted, "this is the extracted output")
-    return extracted
-
 def prompt_single(prompt):
 
     print(f"START OF PROMPT  --------------------------------------------\n {prompt}")
@@ -133,6 +97,38 @@ def prompt_single(prompt):
     extracted = (output)
 
     return extracted
+
+
+def ollama_prompt_img(prompt,image_path, model=ollamaModel):
+
+    #chat will give the thinking process, generate will give the final answer
+    #url = "http://localhost:11434/api/chat"
+    #Sure! In Ollama’s /chat API, each message has a role that tells the model how to interpret the text. In your example:
+
+    print(f"START OF PROMPT  --------------------------------------------\n {prompt}")
+    print(f"Image path: {image_path}")
+
+    url = "http://localhost:11434/api/generate"
+    payload = {
+        "model": model,
+        "prompt": prompt,
+        "images": [image_to_base64(image_path)],
+        "stream": False
+    }
+    r = requests.post(url, json=payload)
+    r.raise_for_status()
+    output = r.json()["response"]
+
+    
+
+    print(f"END OF PROMPT  --------------------------------------------\n")
+    print(f"LLM output: {output}")
+    print(f"END OF LLM OUTPUT --------------------------------------------\n")
+
+    # Remove <think>...</think> block if present
+    #output = re.sub(r"<think>.*?</think>", "", output, flags=re.DOTALL).strip()
+    #output = extract_json_between_markers(output)
+    return output
 
 
 
@@ -181,39 +177,6 @@ def gemeniCli(prompt, pro = False):
         print("Command failed!")
         raise RuntimeError(f"The gemini-cli command failed: {e.stderr}")
 
-
-def ollama_prompt_img(prompt,image_path, model=ollamaModel):
-
-    #chat will give the thinking process, generate will give the final answer
-    #url = "http://localhost:11434/api/chat"
-    #Sure! In Ollama’s /chat API, each message has a role that tells the model how to interpret the text. In your example:
-
-    print(f"START OF PROMPT  --------------------------------------------\n {prompt}")
-    print(f"Image path: {image_path}")
-
-    url = "http://localhost:11434/api/generate"
-    payload = {
-        "model": model,
-        "prompt": prompt,
-        "images": [image_to_base64(image_path)],
-        "stream": False
-    }
-    r = requests.post(url, json=payload)
-    r.raise_for_status()
-    output = r.json()["response"]
-
-    
-
-    print(f"END OF PROMPT  --------------------------------------------\n")
-    print(f"LLM output: {output}")
-    print(f"END OF LLM OUTPUT --------------------------------------------\n")
-
-    # Remove <think>...</think> block if present
-    #output = re.sub(r"<think>.*?</think>", "", output, flags=re.DOTALL).strip()
-    #output = extract_json_between_markers(output)
-    return output
-
-
 def promptGemeni(prompt):
     try:
         global modelGemeni
@@ -232,6 +195,52 @@ def promptGemeni(prompt):
         print(f"An unexpected error occurred with with api generation")
         return f"Error: An unexpected error occurred. Details: {e}"
 
+
+
+
+def prompt(prompt, model = "ollama", printOutput=True, openDict=True):
+    if printOutput: print(f"START OF PROMPT  --------------------------------------------\n {prompt}")
+    if model == "gemeni-cli":
+        output = gemeniCli(prompt)
+    elif model=="gemeni-cli-pro":
+        output = gemeniCli(prompt, pro=True)
+    elif model =="ollama":
+        output = ollama_prompt(prompt)
+    elif model =='gemeni':
+        today = date.today()
+        last_failure = get_last_failure_date()
+
+        if last_failure == today:
+            # Already failed today, skip function_a
+            output = ollama_prompt(prompt)
+        else:
+            try:
+                output = promptGemeni(prompt)
+                if printOutput: print('used gemeni')
+            except Exception as e:
+                print(f"gemeni failed: {e}", file=sys.__stderr__)
+                set_last_failure_date(today)
+                output = ollama_prompt(prompt)
+    else:
+        raise ValueError("Model does not exist")
+    
+    if printOutput: print(f"END OF PROMPT  --------------------------------------------\n")
+    if printOutput: print(f"LLM output: {output}")
+    if printOutput: print(f"END OF LLM OUTPUT --------------------------------------------\n")
+
+    extracted = extract_json_between_markers(output)
+    if printOutput: print(extracted, "this is the extracted output")
+
+    if extracted==None:
+        raise Exception("extracted output is blank")
+    if openDict:
+        if len(extracted.keys())!=1:
+            raise Exception("extracted output has more than one keys")
+        else:
+            #returns only the first value
+            return next(iter(extracted.values()))
+
+    return extracted
 
 if __name__ == '__main__':
     #text  = imageDescription_template

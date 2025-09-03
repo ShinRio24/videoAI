@@ -30,7 +30,7 @@ def genChar():
         ONLY RETURN THE RAW JSON FILE, DO NOT REUTURN ANYTHING ELSE"""
 
     background = prompt(getDetails)
-    background = extract_json_between_markers(background)['background']
+
 
     print(background)
 
@@ -47,7 +47,6 @@ def genChar():
     """
 
     description = prompt(charDetail)
-    description = extract_json_between_markers(description)['description']
 
     print(description)
 
@@ -77,4 +76,6 @@ def genChar():
 
 
 if __name__ == '__main__':
+    print('most code in here does not work, especially around llm prompt and stuff')
+    exit()
     genChar()

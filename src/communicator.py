@@ -25,7 +25,7 @@ TOKEN = os.getenv("TELEGRAM")
 CHANNEL_ID = -1003034237870
 MAINTHREAD_ID = 3
 SUBTHREAD_ID = 4
-QUEUE_FILE = "topics.txt"
+QUEUE_FILE = "tools/topics.txt"
 BUFFER_FOLDER = "media/tempFiles/telegramImages/"
 os.makedirs(BUFFER_FOLDER, exist_ok=True)
 
@@ -144,6 +144,7 @@ async def load_queue_from_file(app: Application):
     print(f"[QUEUE] Loaded {len(topics)} topics from {QUEUE_FILE}")
 
 
+
 # ==============================
 # Queue Worker Logic
 # ==============================
@@ -227,7 +228,52 @@ async def queue_worker():
 # ==============================
 # Telegram Handlers: Queue Management
 # ==============================
+import traceback
+async def command_topics(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """
+    Generates a list of 10 influential people based on a user-provided idea.
+    """
+    if not context.args:
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text="⚠️ Please provide an idea for the topics. \nExample: `/gentopics 日本の歴史`",
+            message_thread_id=update.effective_message.message_thread_id,
+        )
+        return
 
+    idea = " ".join(context.args)
+
+    try:
+        topics = await asyncio.to_thread(genTopics, idea)
+
+        if not topics:
+            await context.bot.send_message(
+                chat_id=update.effective_chat.id,
+                text="❌ Sorry, I couldn't generate any topics for that idea. The response might have been empty.",
+                message_thread_id=update.effective_message.message_thread_id,
+            )
+            return
+
+        formatted_list = [f"{i+1}. {topic}" for i, topic in enumerate(topics)]
+        response_text = f"✨ *Here are 10 topic ideas for \"{idea}\":*\n\n" + "\n".join(formatted_list)
+
+        # 5. Send the final list back to the user
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text=response_text,
+            message_thread_id=update.effective_message.message_thread_id,
+        )
+
+    except Exception as e:
+        print(f"An error occurred in command_topics: {e}")
+        error_traceback = traceback.format_exc()
+        print(error_traceback)
+
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text="❌ An unexpected error occurred. Please check the logs.",
+            message_thread_id=update.effective_message.message_thread_id,
+        )
 
 async def command_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Starts the queue worker."""
@@ -752,12 +798,11 @@ async def command_see(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 message_thread_id=update.effective_message.message_thread_id,
                 disable_notification=True,
             )
-            with open(path, "rb") as video_file:
-                await context.bot.send_video(
-                    video = open(video_file, 'rb'),
-                    chat_id=update.effective_chat.id,
-                    message_thread_id=update.effective_message.message_thread_id,
-                    disable_notification=True,
+            await context.bot.send_video(
+                video = open(path, 'rb'),
+                chat_id=update.effective_chat.id,
+                message_thread_id=update.effective_message.message_thread_id,
+                disable_notification=True,
                 )
         else:
             await update.message.reply_text(

@@ -173,12 +173,8 @@ def addTextBlock(
 
 
 def combineMedia(title, imgMatches, background_music="media/bgm/bgm1-escort.wav", output_filename="media/finalUploads/{}.mp4", preview=False):
-    """
-    Combines images and audio into a single video file with an optional preview mode.
 
-    In preview mode, an overlay is added to the top of each clip showing its
-    index and the associated text phrase for easy review.
-    """
+
     output_filename = output_filename.format(title)
     allClips = []
 

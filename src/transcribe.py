@@ -112,9 +112,8 @@ def findSeg(fullTranscript,video_file):
     ...
     ]
     """
-    response = prompt(summarizeInp)
-    print(response)
-    clips = extract_json_between_markers(response)
+    clips = prompt(summarizeInp)
+    print(clips)
     clipPaths = []
     for i, clip in enumerate(clips):
         if os.path.exists(f"clips/clip_{i+1}.mp4"):

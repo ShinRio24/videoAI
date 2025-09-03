@@ -63,6 +63,10 @@ def listEnvs():
     master = loadMaster()
     return [f"{code}: {video.title}" for code, video in master.items()]
 
+def listEnvsRaw():
+    master = loadMaster()
+    return [code for code, video in master.items()]
+
 def openEnv(code):
     master = loadMaster()
     code = int(code)
@@ -142,19 +146,9 @@ def addFrame(editingEnv,index: int, text: str, permanent_image_path: str) -> str
 
     # **FIX**: Save the modified master object
     saveMaster(master)
-    return f"✅ **Success!** New frame added at index {index}."
+    return f"✅ **Success!** New frame added at index {index-1}."
 
 
-def cleanEnv(editingEnv):
-
-    shutil.rmtree(os.path.join(envFolder, str(editingEnv)))
-    master = loadMaster()
-    master.pop(editingEnv, None)
-    saveMaster(master)
-    editingEnv = None
-    return "Cleaned current environment"
-
-# ------------------ Async Video Functions ------------------
 def previewCurrent(editingEnv):
 
     env = openEnv(editingEnv) 
@@ -174,7 +168,7 @@ def pushVideo(editingEnv):
         video_path=videoPath,
         title=env.title
     )
-    cleanEnv(editingEnv)
+    removeEnv(editingEnv)
 
 
     return f"Video uploaded at: {video_id}\n Scheduled upload at"+str(uploadTime)
@@ -188,20 +182,11 @@ import pickle
 # ...
 
 def removeEnv(env_code: int) -> str:
-    """
-    Finds and deletes the environment folder and its corresponding
-    entry from the master.pkl file.
-    """
     master = loadMaster()
-    env_code = int(env_code) # Ensure the code is an integer for dictionary key lookup
-
-    # --- Step 1: Check if the entry exists in the master file ---
+    env_code = int(env_code)
     if env_code not in master:
         return f"❌ Error: Environment code '{env_code}' not found in the master record."
 
-    # --- Step 2: Remove the environment folder from the filesystem ---
-    # Note: The path in your original code was different, I've adjusted it
-    # to match the `envFolder` variable used elsewhere in the script.
     env_folder_path = os.path.join(envFolder, str(env_code))
     
     if os.path.isdir(env_folder_path):
@@ -212,12 +197,11 @@ def removeEnv(env_code: int) -> str:
             print(f"Error removing folder {env_folder_path}: {e}")
             return f"❌ Error: Failed to remove environment folder. Check logs."
     else:
-        print(f"Warning: Directory not found, but proceeding to clean master file: {env_folder_path}")
+        print(f"Warning: Directory not found, but proceeding to clean master file")
 
-    # --- Step 3: Remove the entry from the master dictionary ---
-    del master[env_code]
+    if env_code in master:
+        del master[env_code]
 
-    # --- Step 4: Save the updated master dictionary back to the file ---
     saveMaster(master)
     
     return f"🗑️ Successfully removed environment {env_code} and its master record."

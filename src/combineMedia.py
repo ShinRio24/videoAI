@@ -240,8 +240,6 @@ def combineMedia(title, imgMatches, background_music="media/bgm/bgm1-escort.wav"
     # Write the final composed video to a file
     final_video.write_videofile(output_filename, codec="libx264", fps=30, audio_codec="aac")
 
-    print(f"\nSuccessfully created '{output_filename}'")
-
     return output_filename
 
 

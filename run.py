@@ -10,28 +10,35 @@ def main(args) -> None:
     """Start the bot."""
     application = Application.builder().token(TOKEN).build()
 
-    # --- Command Handlers ---
-    application.add_handler(CommandHandler("start", start))
-    application.add_handler(CommandHandler("check", check))
-    application.add_handler(CommandHandler("q", add_queue))
-    application.add_handler(CommandHandler("skip", skip_current_task))
-    application.add_handler(CommandHandler("view", view_queue))
-    application.add_handler(CommandHandler("delete", delete_queue))
-    application.add_handler(CommandHandler("clear", clear_queue))
-    application.add_handler(CommandHandler("end", end_queue))
 
-    # --- Editing Command Handlers ---
+    command_map = [
+        {"func": command_list, "name": "list", "num": "1"},
+        {"func": command_env, "name": "env", "num": "2"},
+        {"func": command_etext, "name": "etext", "num": "3"},
+        {"func": command_aframe, "name": "aframe", "num": "4"},
+        {"func": command_rframe, "name": "rframe", "num": "5"},
+        {"func": command_preview, "name": "preview", "num": "6"},
+        {"func": command_see, "name": "see", "num": "7"},
+        {"func": command_push, "name": "push", "num": "8"},
+        {"func": command_pushAll, "name": "pushAll", "num": None},
+        {"func": command_deleteEnv, "name": "deleteEnv", "num": "9"},
+        {"func": command_view, "name": "view", "num": "10"},
+        {"func": command_delete, "name": "delete", "num": "11"},
+        {"func": command_skip, "name": "skip", "num": "12"},
+        {"func": command_clear, "name": "clear", "num": "13"},
+        {"func": command_start, "name": "start", "num": "14"},
+        {"func": command_check, "name": "check", "num": "15"},
+        {"func": command_help, "name": "help", "num": None},
+        {"func": command_q, "name": "q", "num": None},
+        {"func": command_eframe, "name": "eframe", "num": None},
+        {"func": command_end, "name": "end", "num": None},
+    ]
 
-    application.add_handler(CommandHandler("env", edit_env))
-    application.add_handler(CommandHandler("list", list_env))
-    application.add_handler(CommandHandler("etext", edit_text))
-    application.add_handler(CommandHandler("eframe", frame))
-    application.add_handler(CommandHandler("rframe", remove_frame))
-    application.add_handler(CommandHandler("aframe", add_frame))
-    application.add_handler(CommandHandler("preview", preview_current))
-    application.add_handler(CommandHandler("see", see_preview))
-    application.add_handler(CommandHandler("push", push_video))
-    application.add_handler(CommandHandler("deleteEnv", remove_video))
+    # --- Dynamically add all handlers ---
+    for cmd in command_map:
+        application.add_handler(CommandHandler(cmd["name"], cmd["func"]))
+        if cmd["num"]:
+            application.add_handler(CommandHandler(cmd["num"], cmd["func"]))
 
 
     # --- Message Handler (FIX: This handles image replies) ---
@@ -49,7 +56,7 @@ def main(args) -> None:
     application.post_shutdown = on_shutdown
 
     print("Bot started!")
-    sendUpdate("Bot started successfully", main= True)
+    sendUpdate("Bot started successfully")
     setup_signal_handlers(application)  
     application.run_polling()
 

@@ -29,8 +29,8 @@ def get_next_item():
         index = state.get("index", -1)
 
     # Move to next index
-    index = (index + 1) % len(uploadTimesJST)
-    item = uploadTimesJST[index]
+    index = (index + 1) % len(uploadTimesPST)
+    item = uploadTimesPST[index]
 
     # Save updated index
     with open(STATE_FILE, "w") as f:

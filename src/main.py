@@ -9,12 +9,6 @@ import shutil
 import traceback
 from contextlib import redirect_stdout, redirect_stderr
 
-# Third-party imports
-from dotenv import load_dotenv
-from tqdm import tqdm
-from PIL import Image
-
-# Local application imports
 from .llmPrompt import prompt
 from .genAudio import genAUDIO
 from .combineMedia import combineMedia
@@ -28,17 +22,11 @@ import sys
 import traceback
 from contextlib import redirect_stdout, redirect_stderr
 
-class FlushFile:
-    def __init__(self, file):
-        self.file = file
-    def write(self, msg):
-        self.file.write(msg)
-        self.file.flush()
-    def flush(self):
-        self.file.flush()
 
-log_file_path = "tools/output_log.txt"
-log_file = open(log_file_path, "a",buffering=1)
+from .configFile import Config
+cfg = Config()
+cfg.nOutputStream()
+log_file = open(cfg.curOutputStream, "a",buffering=1)
 
 def flush_and_close(signal_num=None, frame=None):
     print(f"[SYSTEM] Caught termination signal {signal_num}, flushing logs...", file=sys.__stdout__)
@@ -51,6 +39,7 @@ signal.signal(signal.SIGINT, flush_and_close)
 signal.signal(signal.SIGTERM, flush_and_close)
 
 # Load environment variables
+from dotenv import load_dotenv
 load_dotenv()
 GEMENIKEY = os.getenv("gemeniKey", "")
 
@@ -67,7 +56,7 @@ def run(func, params, max_retries=2):
             traceback.print_exc()
             sendUpdate(str(e)+" attempting another run")
             if attempt == max_retries:
-                sendUpdate("code is broken after run #2, check logs for more detail")
+                sendUpdate("code is broken after run #2, check logs for more detail", main=True)
                 exit()
 
 
@@ -99,7 +88,7 @@ async def genAudioImages(title,data):
     
     imgAudioData=[]
 
-    msg = sendUpdate(f"Processing '{title}':\n[{' ' * 20}] 0% (0/{len(data)})", main=True)
+    msg = sendUpdate(f"Processing '{title}':\n[{' ' * 20}] 0% (0/{len(data)})", main=False)
     message_id = msg['result']['message_id']
 
     for i, x in enumerate(data, start=1):

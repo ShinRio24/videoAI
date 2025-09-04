@@ -1,5 +1,26 @@
 {
-    "uploadTimesPST" : [19,20,21,22,23,0,1],
-    "uploadTimesJST" : [3,4,5,6,7,8,9]
-
+    "uploadTimesPST": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        0,
+        1
+    ],
+    "uploadTimesJST": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+    ],
+    "CHANNEL_ID": -1003034237870,
+    "MAINTHREAD_ID": 3,
+    "SUBTHREAD_ID": 4,
+    "ollamaModel": "gemma2-9b-long:latest",
+    "backupGemeniModel": "gemini-2.5-flash",
+    "curOutputStream": "outputLogs/2025-09-03_19-27-56.txt"
 }

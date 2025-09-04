@@ -22,9 +22,15 @@ from .videoEdit import *
 # ==============================
 load_dotenv()
 TOKEN = os.getenv("TELEGRAM")
-CHANNEL_ID = -1003034237870
-MAINTHREAD_ID = 3
-SUBTHREAD_ID = 4
+
+from .configFile import Config
+cfg = Config()
+uploadTimesPST= cfg.uploadTimesPST
+CHANNEL_ID = cfg.CHANNEL_ID
+MAINTHREAD_ID = cfg.MAINTHREAD_ID
+SUBTHREAD_ID = cfg.SUBTHREAD_ID
+
+
 QUEUE_FILE = "tools/topics.txt"
 BUFFER_FOLDER = "media/tempFiles/telegramImages/"
 os.makedirs(BUFFER_FOLDER, exist_ok=True)
@@ -38,6 +44,7 @@ current_task: str | None = None
 current_proc: asyncio.subprocess.Process | None = None
 task_queue = asyncio.Queue()
 worker_task: asyncio.Task | None = None
+editing_worker_task: asyncio.Task | None = None 
 
 # ==============================
 # Async Network Helpers
@@ -46,7 +53,7 @@ worker_task: asyncio.Task | None = None
 
 def sendUpdate(message: str, main=False):
     """Sends a text message to the Telegram channel synchronously."""
-    thread_id = MAINTHREAD_ID if main else SUBTHREAD_ID
+    thread_id = MAINTHREAD_ID if main==True else SUBTHREAD_ID
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
     payload = {"chat_id": CHANNEL_ID, "text": message, "message_thread_id": thread_id}
 
@@ -75,7 +82,7 @@ async def postToTelegram(video_path: str, caption: str = ""):
     payload = {
         "chat_id": CHANNEL_ID,
         "caption": caption,
-        "message_thread_id": MAINTHREAD_ID,
+        "message_thread_id": SUBTHREAD_ID,
     }
     try:
         with open(video_path, "rb") as video_file:
@@ -106,7 +113,7 @@ async def update_progress(message_id: int, title: str, current: int, total: int)
     )
 
     url = f"https://api.telegram.org/bot{TOKEN}/editMessageText"
-    payload = {"chat_id": CHANNEL_ID, "message_id": message_id, "text": msg_text}
+    payload = {"chat_id": CHANNEL_ID, "message_id": message_id, "text": msg_text, "message_thread_id":SUBTHREAD_ID}
     requests.post(url, json=payload)
 
 
@@ -148,81 +155,118 @@ async def load_queue_from_file(app: Application):
 # ==============================
 # Queue Worker Logic
 # ==============================
-async def run_main(title: str):
-    """Executes the main video generation script as a subprocess."""
-    global current_proc
-    print(f"[QUEUE] Starting: {title}", flush=True)
+async def run_main_subprocess(title: str) -> int:
+    """
+    Executes the main video generation script as a subprocess and streams its output.
+    Returns the final exit code of the subprocess.
+    """
+    global current_proc, skip_flag
+    command = f'python -u -m src.main "{title}"'
+    print(f"[SUBPROCESS] Executing command: {command}")
 
-    current_proc = await asyncio.create_subprocess_exec(
-        "python3",
-        "-u",
-        "-m",
-        "src.main",
-        title,
+    # Using create_subprocess_shell to properly handle commands and quoting
+    current_proc = await asyncio.create_subprocess_shell(
+        command,
         stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.STDOUT,
+        stderr=asyncio.subprocess.STDOUT,  # Redirect stderr to stdout
     )
 
     while True:
         try:
-            # Check for the skip flag before waiting for output
+            # Check for skip flag before waiting for output
             if skip_flag:
-                print(f"[QUEUE] Skipping task: {title}")
-                # FIXED: Use .terminate() for a graceful shutdown
+                print(f"[SUBPROCESS] Skip signal received for '{title}'. Terminating...")
                 current_proc.terminate()
-                # FIXED: Wait for the process to terminate gracefully
                 await current_proc.wait()
-                # FIXED: Exit the function immediately to avoid errors
-                return
+                print(f"[SUBPROCESS] Terminated '{title}'.")
+                return -1  # Return a special code for skipped tasks
 
-            line = await asyncio.wait_for(current_proc.stdout.readline(), timeout=0.5)
+            # Wait for a line of output with a timeout
+            line = await asyncio.wait_for(current_proc.stdout.readline(), timeout=1.0)
 
             if not line:
-                print("[QUEUE] Subprocess finished (EOF detected).")
+                # EOF (End of File) means the process finished
+                print("[SUBPROCESS] EOF detected. Process finished.")
                 break
 
-            print(line.decode().rstrip(), flush=True)
+            # Print the output from the subprocess in real-time
+            print(line.decode(errors='ignore').strip())
 
         except asyncio.TimeoutError:
-            # This allows the loop to check the skip_flag periodically
-            pass
+            # This is normal. It allows the loop to check the skip_flag periodically.
+            continue
+        except Exception as e:
+            print(f"[SUBPROCESS] An unexpected error occurred while reading output: {e}")
+            break
 
-    # This part is now only reached on a normal exit
+    # Wait for the process to fully exit and get its return code
     return_code = await current_proc.wait()
-    print(
-        f"[QUEUE] Subprocess for '{title}' exited with code: {return_code}", flush=True
-    )
     current_proc = None
+    return return_code
 
 
 async def queue_worker():
-    """The main worker loop that processes tasks from the queue."""
-    global current_task, skip_flag
+    """
+    The main worker loop. It gets a task, runs the subprocess,
+    and only removes the task from the queue file if it succeeds.
+    """
+    global current_task, stop_flag, skip_flag
     print("[QUEUE] Worker started.")
 
-    while True:
-        if stop_flag:
-            print("[QUEUE] Stopping worker due to stop_flag.")
-            sendUpdate("Queue processing stopped.", main=True)
-            break
-
-        current_task = await task_queue.get()
-        skip_flag = False
-        print(f"[QUEUE] Processing: {current_task}")
+    while not stop_flag:
         try:
-            await run_main(current_task)
+            # Wait for a task from the queue
+            current_task = await task_queue.get()
+            skip_flag = False  # Reset skip flag for the new task
+            print(f"[QUEUE] 🟢 Processing new task: {current_task}")
+            sendUpdate(f"▶️ Starting task: {current_task}")
+
+            # Run the subprocess and get its exit code
+            exit_code = await run_main_subprocess(current_task)
+            print(f"[QUEUE] Subprocess for '{current_task}' finished with exit code: {exit_code}")
+
+            if exit_code == 0:
+                # SUCCESS: The task completed successfully.
+                print(f"[QUEUE] ✅ Task '{current_task}' completed successfully.")
+                sendUpdate(f"✅ Task finished: {current_task}")
+                # **CRITICAL**: The queue file is only modified AFTER success.
+                # The `current_task` is already out of the in-memory queue,
+                # so we just need to save the remaining items.
+            elif exit_code == -1:
+                 # SKIPPED: The task was skipped by the user.
+                 print(f"[QUEUE] ⏭️ Task '{current_task}' was skipped.")
+                 sendUpdate(f"⏭️ Task skipped: {current_task}")
+            else:
+                # FAILURE: The task failed.
+                print(f"[QUEUE] ❌ Task '{current_task}' failed. It will remain in the queue file for the next run.")
+                sendUpdate(f"❌ Task FAILED (Code {exit_code}): {current_task}\nIt will be retried on next start.")
+                # We do not modify the in-memory queue, it will be saved on shutdown.
+                # To prevent immediate retry, you can add a sleep or move to a failed queue.
+
         except asyncio.CancelledError:
-            print(f"[QUEUE] Current task {current_task} cancelled")
-            break  # Exit immediately
+            print("[QUEUE] Worker task was cancelled.")
+            break
+        except Exception as e:
+            print(f"[QUEUE] 💥 An unexpected error occurred in the worker: {e}")
+            if current_task:
+                sendUpdate(f"💥 Worker error on task: {current_task}\nCheck logs.")
+            # Sleep to prevent rapid failure loops
+            await asyncio.sleep(30)
+        finally:
+            # Mark the in-memory queue task as done, regardless of outcome
+            if current_task:
+                task_queue.task_done()
+                # Save the state of the queue after every task completion/failure
+                # This ensures `current_task` is removed from the file on success
+                # and everything is saved as-is on failure.
+                save_queue_to_file()
+                current_task = None
+            
+            print("[QUEUE] Cooldown for 10 seconds...")
+            await asyncio.sleep(10)
 
-        task_queue.task_done()
-        current_task = None
-        save_queue_to_file()
-
-        print("[QUEUE] Task finished, starting 10-second cooldown...")
-        await asyncio.sleep(10)
-
-    print("[QUEUE] Worker stopped.")
+    print("[QUEUE] Worker has stopped.")
+    sendUpdate("🛑 Queue processing has been stopped.")
 
 
 # ==============================
@@ -586,8 +630,12 @@ async def command_env(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def command_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Lists available editing environments."""
+    reList = "\n".join(listEnvs())
+    if reList.strip()=="":
+        reList = "There are no items in the list"
+
     await context.bot.send_message(
-        text="\n".join(listEnvs()),
+        text=reList,
         chat_id=update.effective_chat.id,
         message_thread_id=update.effective_message.message_thread_id,
         disable_notification=True,
@@ -933,12 +981,18 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def ensure_worker_running(app: Application):
-    """Starts the queue worker if it's not already running."""
-    global worker_task
+    """Starts the queue and editing workers if they are not already running."""
+    global worker_task, editing_worker_task # MODIFIED: Add editing_worker_task
+
+    # Check and start the main video generation worker
     if worker_task is None or worker_task.done():
-        print("[QUEUE] Worker not running, starting new one...")
+        print("[QUEUE] Main worker not running, starting new one...")
         worker_task = app.create_task(queue_worker())
-    worker = asyncio.create_task(queue_worker_editing())
+
+    # NEW: Check and start the editing worker only if it's not running
+    if editing_worker_task is None or editing_worker_task.done():
+        print("[QUEUE] Editing worker not running, starting new one...")
+        editing_worker_task = app.create_task(queue_worker_editing())
 
 
 def get_file_id_from_message(message):
@@ -1014,7 +1068,7 @@ async def process_frame_edit(update, context, prompt_data):
         return
 
     await context.bot.send_message(
-        text=f"🎬 {saved_path}",
+        text=f"🎬 image edited",
         chat_id=update.effective_chat.id,
         message_thread_id=update.effective_message.message_thread_id,
         disable_notification=True,
@@ -1145,8 +1199,8 @@ async def command_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 4. `/aframe <index> <text>` (or `/4 <index> <text>`)
    ► Adds a new frame. (Remember to attach an image).
 
-5. `/rframe <index>` (or `/5 <index>`)
-   ► Removes a specific frame from the project.
+5. `/eframe <index>` (or `/5 <index>`)
+   ► Edit a specific frame from the project.
 
 6. `/preview` (or `/6`)
    ► Creates a preview video of the selected project.

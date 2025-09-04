@@ -16,7 +16,7 @@ def main(args) -> None:
         {"func": command_env, "name": "env", "num": "2"},
         {"func": command_etext, "name": "etext", "num": "3"},
         {"func": command_aframe, "name": "aframe", "num": "4"},
-        {"func": command_rframe, "name": "rframe", "num": "5"},
+        {"func": command_eframe, "name": "eframe", "num": "5"},
         {"func": command_preview, "name": "preview", "num": "6"},
         {"func": command_see, "name": "see", "num": "7"},
         {"func": command_push, "name": "push", "num": "8"},
@@ -30,7 +30,7 @@ def main(args) -> None:
         {"func": command_check, "name": "check", "num": "15"},
         {"func": command_help, "name": "help", "num": None},
         {"func": command_q, "name": "q", "num": None},
-        {"func": command_eframe, "name": "eframe", "num": None},
+        {"func": command_rframe, "name": "rframe", "num": None},
         {"func": command_end, "name": "end", "num": None},
         {"func": command_topics, "name": "topics", "num": "16"},
     ]
@@ -57,7 +57,7 @@ def main(args) -> None:
     application.post_shutdown = on_shutdown
 
     print("Bot started!")
-    sendUpdate("Bot started successfully")
+    sendUpdate("Bot started successfully", main=False)
     setup_signal_handlers(application)  
     application.run_polling()
 

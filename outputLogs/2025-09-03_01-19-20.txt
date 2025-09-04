@@ -1,0 +1,705 @@
+
+Generating script ニコラ・テスラ エジソンに消された悲劇の天才
+START OF PROMPT  --------------------------------------------
+ 
+あなたはプロの日本語YouTubeスクリプトライターです。複雑なテーマを、まるで一つの映画のように語るストーリーテリングの達人であり、視聴者を惹きつける具体的な事実や裏話を見つけ出すリサーチの専門家でもあります。
+
+### ⚠️ Core Principles ⚠️
+1.  **The Story Comes First:** あなたの最優先事項は、与えられたテーマを**起承転結**の構成に沿った、引き込まれる物語に変換することです。
+2.  **Ground the Story in Concrete Details (最重要):** 物語は必ず、**具体的で検証可能な事実**(名前、日付、数値、場所、出来事など)に基づいている必要があります。「すごい成功」のような抽象的な表現ではなく、「たった1ドルでCEOに復帰した」のような具体的な事実を語ってください。
+
+### Task Breakdown:
+**1. Classify the Theme:**
+まず、テーマ「ニコラ・テスラ エジソンに消された悲劇の天才」が「人物」「組織」「事件・出来事」のどれに該当するかを判断してください。
+
+**2. Build the Narrative using 起承転結 (with Specifics):**
+
+---
+#### **If the theme is a "Person" or "Organization":**
+-   **起 (Introduction):** 物語の冒頭で、視聴者の心を一瞬で掴む「最強のフック」を作ります。必ず主役のフルネームと、その人物を象徴する**具体的で強烈な事実**（数字、逸話、実績など）を組み合わせ、以下のいずれかの形式で提示してください。
+    -   **問いかけ型 (The Question):** 視聴者の好奇心を刺激し、答えが知りたくなるような問いを投げかける。「なぜ、資産100兆円の男、スティーブ・ジョブズは、毎日同じ服を着るのか?」
+    -   **衝撃の事実型 (The Shocking Fact):** 常識を覆すような、意外な事実を提示する。「実は彼、たった1ドルの年俸でCEOに復帰したんです。」
+    -   **断言型 (The Bold Declaration):** 人物の本質を大胆な言葉で断言し、強烈な印象を与える。「歴史上、世界を最も騙した天才、それがバーナード・マドフです。」
+-  **承 (Development):** 物語を遡り、**特定の日付や場所**を挙げて起源を描きます。「〇〇年、ガレージから始まった」のように、現在の姿からは想像もつかない、しかし事実に基づいた過去を語ります。
+-  **転 (Twist/Turning Point):** 物語の核心です。成功を決定づけた**「ある一つの製品」**や、その裏に隠された**「特定の人物との逸話」**など、衝撃的で具体的な転機を明かします。
+-  **結 (Conclusion):** そして現在。その成功や失敗が、**具体的な製品やサービス**を通して、今の私たちにどのような「影響」を与え続けているのかを語り、物語を締めくくります。
+
+#### **If the theme is an "Event" or "Incident":**
+-  **起 (Introduction):** 事件発生の**具体的な日時**を示し、その瞬間の衝撃的な光景や**統計データ**を提示します。「〇〇年〇月〇日、わずか数分で〇〇人が影響を受けた」のように、事実で視聴者の興味を引きます。
+-  **承 (Development):** 時間を巻き戻し、事件の背景にある**具体的な原因や社会情勢**を掘り下げます。事件の数年前から起きていた「ある社会問題」や、水面下で進んでいた計画など、具体的な火種を描写します。
+-  **転 (Twist/Trigger):** 物語が動く瞬間です。事件発生の直接的な引き金となった**「たった一つの出来事」**や、関わった**「キーパーソンの意外な行動」**を語り、緊張感を高めます。
+-  **結 (Conclusion):** 事件のその後。社会に与えた**法改正や新しいルール**といった具体的な「影響」や、そこから私たちが学ぶべき教訓を語り、深い余韻を残します。
+---
+
+### Bad vs. Good Example (How to use details)
+-   **Theme:** Steve Jobs
+-   **Bad (Vague):** 「彼は、世界を変える大きな決断をしました。」 (He made a big decision that would change the world.)
+-   **Good (Specific):** 「実は彼、たった1ドルの年俸でCEOに復帰したんです。」 (Actually, he returned as CEO for an annual salary of just $1.)
+
+### Technical & Style Requirements:
+-  **Length & Structure:** スクリプト全体おおよそ9〜13個のフレーズに分割してください。
+-  **JSON Output:** 各フレーズ(30〜45文字)をJSONリストの要素として出力してください。
+-  **Conversational Tone:** です・ます調を基本とし、「なんです」「だったんですね」といった多様な語尾で会話のリズムを作る。読点（、）を効果的に多めに使い、テンポの良い語り口を演出する。「実は」「そして」といった接続詞で、フレーズ間を滑らかにつなぐ。
+-  **Prohibitions:** 引用符（「」『』""）、（笑）や特殊記号は一切使用しないこと。
+
+### Output Format:
+必ず次のフォーマットに従ってください。他のテキストは絶対に出力しないでください。
+
+```json
+{
+ "Script": [
+  "ここに「起」のパートが入ります。",
+  "次に「承」のパートが続きます。",
+  "そして物語の転換点である「転」。",
+  "最後に「結」で締めくくります。"
+ ]
+}```
+
+used gemeni
+END OF PROMPT  --------------------------------------------
+
+LLM output: ```json
+{
+ "Script": [
+  "もし、現代社会の電気のほとんどが、一人の天才のアイデアから生まれたとしたら、信じられますか？",
+  "彼は、エジソンによって歴史から抹殺されかけた悲劇の天才、ニコラ・テスラなんです。",
+  "1856年、オーストリア帝国で生まれたテスラは、幼い頃から電気の未来に魅せられた天才でした。",
+  "そして1884年、わずか4セントを握りしめアメリカへ渡り、トーマス・エジソンの元で働き始めたんです。",
+  "しかし、テスラの交流電力システムは、エジソンの直流電力網と激しく衝突し、電流戦争が勃発します。",
+  "エジソンは交流を危険だと喧伝し、あの悪名高い電気椅子に交流を使わせました。",
+  "ですが、テスラはウェスティングハウスの支援を得て、ナイアガラの滝での交流発電を成功させました。",
+  "しかし、その代償はあまりに大きく、テスラは特許収入を放棄させられます。",
+  "これにより彼の経済的基盤は崩壊し、晩年はニューヨークのホテルで孤独に亡くなったんです。",
+  "彼の死後、多くの特許が他者に奪われ、その功績は長く忘れ去られたんです。",
+  "しかし、彼の夢見た無線送電や再生可能エネルギーは、現代になって再評価されます。",
+  "イーロン・マスク氏のテスラ社をはじめ、今や彼の名は多くの人に知られているんです。",
+  "もしテスラの才能が正しく評価されていたら、私たちの世界は別の未来を迎えていたでしょう。"
+ ]
+}
+```
+END OF LLM OUTPUT --------------------------------------------
+
+{'Script': ['もし、現代社会の電気のほとんどが、一人の天才のアイデアから生まれたとしたら、信じられますか？', '彼は、エジソンによって歴史から抹殺されかけた悲劇の天才、ニコラ・テスラなんです。', '1856年、オーストリア帝国で生まれたテスラは、幼い頃から電気の未来に魅せられた天才でした。', 'そして1884年、わずか4セントを握りしめアメリカへ渡り、トーマス・エジソンの元で働き始めたんです。', 'しかし、テスラの交流電力システムは、エジソンの直流電力網と激しく衝突し、電流戦争が勃発します。', 'エジソンは交流を危険だと喧伝し、あの悪名高い電気椅子に交流を使わせました。', 'ですが、テスラはウェスティングハウスの支援を得て、ナイアガラの滝での交流発電を成功させました。', 'しかし、その代償はあまりに大きく、テスラは特許収入を放棄させられます。', 'これにより彼の経済的基盤は崩壊し、晩年はニューヨークのホテルで孤独に亡くなったんです。', '彼の死後、多くの特許が他者に奪われ、その功績は長く忘れ去られたんです。', 'しかし、彼の夢見た無線送電や再生可能エネルギーは、現代になって再評価されます。', 'イーロン・マスク氏のテスラ社をはじめ、今や彼の名は多くの人に知られているんです。', 'もしテスラの才能が正しく評価されていたら、私たちの世界は別の未来を迎えていたでしょう。']} this is the extracted output
+['もし、現代社会の電気のほとんどが、一人の天才のアイデアから生まれたとしたら、信じられますか？', '彼は、エジソンによって歴史から抹殺されかけた悲劇の天才、ニコラ・テスラなんです。', '1856年、オーストリア帝国で生まれたテスラは、幼い頃から電気の未来に魅せられた天才でした。', 'そして1884年、わずか4セントを握りしめアメリカへ渡り、トーマス・エジソンの元で働き始めたんです。', 'しかし、テスラの交流電力システムは、エジソンの直流電力網と激しく衝突し、電流戦争が勃発します。', 'エジソンは交流を危険だと喧伝し、あの悪名高い電気椅子に交流を使わせました。', 'ですが、テスラはウェスティングハウスの支援を得て、ナイアガラの滝での交流発電を成功させました。', 'しかし、その代償はあまりに大きく、テスラは特許収入を放棄させられます。', 'これにより彼の経済的基盤は崩壊し、晩年はニューヨークのホテルで孤独に亡くなったんです。', '彼の死後、多くの特許が他者に奪われ、その功績は長く忘れ去られたんです。', 'しかし、彼の夢見た無線送電や再生可能エネルギーは、現代になって再評価されます。', 'イーロン・マスク氏のテスラ社をはじめ、今や彼の名は多くの人に知られているんです。', 'もしテスラの才能が正しく評価されていたら、私たちの世界は別の未来を迎えていたでしょう。']
+START OF PROMPT  --------------------------------------------
+ 
+あなたは、数々のショート動画を100万回再生させてきた、プロの日本語YouTubeプロデューサーです。
+
+### タスク
+以下のトピックを基に、視聴者の知的好奇心を強烈に刺激し、思わずクリックしてしまうような**日本語タイトルを1つだけ**考案してください。
+
+### 最高のタイトルを作るための原則
+
+1.  **好奇心を最大化せよ:** 「〇〇の真実」「〇〇に隠された秘密」のように、視聴者が「答えを知りたい！」と思うような、謎や秘密をほのめかすこと。事実を説明するのではなく、好奇心を煽ること。
+2. 物語のトーンに合う「パワーワード」を選ぶ (Choose a "Power Word" that Fits the Story's Tone)
+
+タイトルに読者の感情を揺さぶるような強力な単語（パワーワード）を使い、一瞬で興味を引くことが重要です。物語が持つ雰囲気（ポジティブ、ネガティブ、ミステリアスなど）に合わせて、最適な言葉を選びましょう。
+
+* **感動・希望を与える物語 (For inspiring or hopeful stories):**
+    * **例:** `伝説 (Legend), 奇跡 (Miracle), 天才 (Genius), 覚醒 (Awakening), 栄光 (Glory), 希望 (Hope), 革命 (Revolution)`
+
+* **衝撃・悲劇性を強調する物語 (For shocking or tragic stories):**
+    * **例:** `悲劇 (Tragedy), 衝撃 (Shock), 禁断 (Forbidden), 闇 (Darkness), 崩壊 (Collapse), 絶望 (Despair), 孤独 (Loneliness)`
+
+* **謎・真実を追求する物語 (For mysterious or truth-seeking stories):**
+    * **例:** `真実 (Truth), 謎 (Mystery), 秘密 (Secret), 裏側 (The Other Side), 運命 (Destiny), 正体 (True Identity)`
+3.  **簡潔に、しかし強力に:** タイトルは**20文字以内**を目安に、不要な言葉を削ぎ落とし、最もインパクトのある部分だけを残すこと。
+
+### 実績のあるタイトルパターン（これらを創造的に組み合わせよ）
+
+* **秘密・暴露型 (The Secret/Revelation):** 最も強力なパターン。視聴者が知らないであろう情報を示唆する。
+    * *例:* `【名前】に隠された禁断の真実`
+    * *例:* `メディアが報じない【名前】の裏側`
+
+* **言い切り型 (The Bold Declaration):** 対象を大胆な言葉で定義し、強い印象を与える。
+    * *例:* `世界を騙した天才詐欺師【名前】`
+    * *例:* `歴史を塗り替えた男【名前】`
+
+* **問いかけ型 (The Question):** 視聴者に直接質問を投げかけ、考えさせることでエンゲージメントを高める。
+    * *例:* `なぜ【名前】は〇〇したのか？`
+
+### ⚠️絶対的なルール⚠️
+-   完成したタイトルのみを出力し、他のテキストは一切含めないこと。
+-   必ずトピックの固有名詞（名前）をタイトルに含めること。
+-   絵文字、句読点（、。）、記号（「」？！）は一切使用しない。
+
+### 悪い例 vs 良い例
+-   **トピック:** Donald Trump
+-   **悪いタイトル:** `物議を醸した大統領トランプ` (事実を述べているだけで、好奇心を刺激しない)
+-   **良いタイトル:** `トランプ 封印された過去` (「封印された過去」とは何か？と好奇心を煽る)
+
+
+### Input
+トピック: ニコラ・テスラ エジソンに消された悲劇の天才
+
+### Output Format:
+必ず次のフォーマットに従ってください。他のテキストは絶対に出力しないでください。
+
+```json
+{
+  "title": "Your generated title here"
+}```
+
+prompting local
+{"title": "テスラ 消された天才の真実"}
+END OF PROMPT  --------------------------------------------
+
+LLM output: {"title": "テスラ 消された天才の真実"}
+END OF LLM OUTPUT --------------------------------------------
+
+{'title': 'テスラ 消された天才の真実'} this is the extracted output
+Generating audio and images
+START OF PROMPT  --------------------------------------------
+ 
+You are an expert AI assistant specializing in visual storytelling. Your task is to analyze a video's title and a relevant quote to generate the **most visually effective Google Image search query**. This query should center on the core subject but can be made more specific if the context points to a highly famous, visually documented event associated with that subject.
+
+---
+## Critical Rules
+
+1.  **The Specificity Principle (Most Important Rule)**: Your primary goal is to identify the core subject's full, canonical name.
+    * **Default Behavior**: In most cases, the query will be **only** the subject's full name (e.g., a person, organization, or base event).
+    * **Exception for Famous Events**: If the title or quote *explicitly* references a **highly famous and visually distinct event, trial, scandal, or performance** uniquely associated with the subject, you should append that event to the name. This is only for events that have a rich, well-known visual record of their own (e.g., "O.J. Simpson trial," "Michael Jackson moonwalk").
+    * **What to Avoid**: **Never** add generic, descriptive words like "photo," "case," "incident," "childhood," or "perpetrator." The added context must be a proper noun or a widely recognized named event.
+
+2.  **Use the Subject's Native Language**: The language of the query must match the origin of the subject to find the most authentic and numerous images.
+    * If the subject is **Chinese**, the query must be in **Chinese characters**.
+    * If the subject is **American**, the query must be in **English**.
+    * If the subject is **Japanese**, the query must be in **Japanese**.
+
+3.  **Use Full, Canonical Names**: Always expand partial or incomplete names to their most recognizable, official form. For Western names, this includes first and last names.
+
+---
+## Step-by-Step Guide
+
+1.  **Identify the Core Subject**: Read the title and quote to determine the central person, event, or location being discussed.
+2.  **Analyze the Context**: Determine if the title or quote refers to a *specific, famous, and visually-rich event* directly associated with the core subject.
+3.  **Determine the Subject's Origin**: Based on the name and context, identify the subject's nationality or primary language.
+4.  **Construct the Query**:
+    * First, find the subject's full, canonical name in its native language (e.g., `周克华`, `Bernie Madoff`).
+    * If a famous associated event was identified in Step 2, append its common name to the query (e.g., `O.J. Simpson trial`).
+    * Otherwise, use only the subject's canonical name.
+5.  **Generate the Final Query**: The final query is the result from the previous step.
+
+---
+## Examples
+
+**Example 1: Default Behavior (Chinese Subject)**
+* **Title**: `チョウクホア最凶の強盗犯` (The Most Vicious Robber, Zhou Kehua)
+* **Quote**: `あなたは知っていますか。闇に生き、凶行を重ねた男を。` (Do you know the man who lived in darkness and committed heinous acts?)
+* **Correct Query**: `"周克华"`
+* **Reasoning**: The subject, Zhou Kehua, is Chinese. While he committed crimes, there isn't one single, named event famous enough to append. The most effective query is his canonical name in Chinese.
+
+**Example 2: Exception - Famous Trial (American Subject)**
+* **Title**: `The Trial of the Century: O.J.`
+* **Quote**: `The infamous Bronco chase and the glove that didn't fit.`
+* **Correct Query**: `"O.J. Simpson trial"`
+* **Reasoning**: The subject is O.J. Simpson, but the title and quote are not about his general life; they are specifically about his murder trial, an event with its own massive and distinct visual record. "O.J. Simpson" alone would be too broad.
+
+**Example 3: Exception - Famous Performance (American Subject)**
+* **Title**: `キング・オブ・ポップの伝説のムーンウォーク` (The King of Pop's Legendary Moonwalk)
+* **Quote**: `The moment he first performed the iconic dance during 'Billie Jean' at Motown 25.`
+* **Correct Query**: `"Michael Jackson moonwalk"`
+* **Reasoning**: The context is not just Michael Jackson, but his single most iconic performance. Searching for "Michael Jackson moonwalk" will yield far more relevant images for this specific story than just his name.
+
+**Example 4: Default Behavior (Japanese Event)**
+* **Title**: `地下鉄サリン事件の恐怖` (Terror of the Subway Sarin Incident)
+* **Quote**: `The attack on the Tokyo subway system.`
+* **Correct Query**: `"地下鉄サリン事件"`
+* **Reasoning**: The subject is the event itself. It's already a specific, proper noun. No further context is needed.
+
+---
+Input
+**Video Title**: テスラ消された天才の真実
+**Quote to Visualize**: もし、現代社会の電気のほとんどが、一人の天才のアイデアから生まれたとしたら、信じられますか？
+
+---
+## Output Format
+
+Your output must be in **strict JSON format only**, with no other text or explanations.
+
+```json
+{
+  "query": "Your generated search query here"
+}```
+
+END OF PROMPT  --------------------------------------------
+
+LLM output: ```json
+{
+  "query": "Nikola Tesla"
+}
+```
+
+END OF LLM OUTPUT --------------------------------------------
+
+{'query': 'Nikola Tesla'} this is the extracted output
+'Nikola Tesla' descriptions not in cache. Generating...
+Image directory not found. Downloading images for 'Nikola Tesla'.
+🔎 Searching for 30 images of 'Nikola Tesla'...
+✅ Successfully downloaded 30 images.
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_000.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a scene from a bustling marketplace.  Several vendors can be seen displaying their wares on colorful cloth-covered stalls, surrounded by shoppers browsing and interacting with them. Some people carry baskets or bags filled with goods, while others look intently at specific items. The overall style is vibrant and detailed, with bright colors used to depict the clothing, produce, and market stall decorations. The scene appears lively and energetic, capturing the atmosphere of a busy marketplace day.  
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_001.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling outdoor scene with people gathered around a large display structure.  Several individuals are interacting with the display, their hands reaching towards it. The overall style is vibrant and colorful, with bold lines and bright hues dominating the composition. A noticeable detail is the presence of several smaller figures in the background, appearing as silhouettes against a brighter area. 
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_002.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling marketplace scene. A vibrant array of stalls laden with colorful goods line both sides of a narrow street. People in traditional clothing navigate the crowded space, some interacting with vendors while others simply browse the offerings. The overall style is reminiscent of a folk art painting, characterized by bold colors, simplified forms, and a sense of lively movement. Sunlight streams through gaps in the awnings, casting dappled shadows on the cobblestone street below. Details like woven baskets overflowing with produce, intricately patterned textiles, and gleaming metal wares contribute to the impression of a vibrant and thriving community.  
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_003.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a scene seemingly set in a bustling marketplace.  Several figures clad in colorful clothing navigate through a crowded space filled with vibrant stalls overflowing with various goods. The artist employed a loose, impressionistic style, using bold brushstrokes and contrasting colors to capture the energy and vibrancy of the scene. A sense of movement is conveyed through the flowing drapery of garments and the scattered objects hinting at activity.  Sunlight streams through gaps in the awnings overhead, casting warm light onto the scene and highlighting the textures of fabrics and surfaces. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_004.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a group of people gathered together outdoors in a setting that appears to be a celebration or event.  They are dressed in colorful clothing and seem to be interacting with each other playfully. There is a sense of joy and movement captured in the scene, with figures leaping and gesturing excitedly. The style of the image is bright and vibrant, utilizing bold colors and dynamic lines to convey energy and enthusiasm. Some elements appear slightly cartoonish, suggesting a whimsical or playful tone.   
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_005.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling scene in a city square. Buildings with ornate facades and colorful awnings line the street, creating a vibrant atmosphere. People from different walks of life go about their daily activities, interacting with each other or simply enjoying the lively environment.  A horse-drawn carriage rolls through the cobblestone streets, adding to the historical feel of the scene. The overall style is reminiscent of 19th-century European art, characterized by detailed brushstrokes and a warm color palette.   
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_006.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a group of people gathered around a large table laden with various objects. The scene appears to be set in an indoor location with soft lighting, suggesting a warm and intimate atmosphere.  A colorful cloth covers the table, adorned with intricate patterns that catch the eye. Several dishes filled with food are prominently displayed, inviting the viewer's attention. People of diverse ages and appearances are seated around the table, engaged in conversation and seemingly enjoying each other's company. The overall mood captured in the image is one of celebration and togetherness.  
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_007.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling scene with a variety of individuals engaged in various activities. People are seen walking, talking, and interacting in different areas of a large space that appears to be indoors. A bright color scheme dominates the environment, with bold hues and contrasting elements adding vibrancy to the composition. The overall style suggests a sense of energetic movement and social interaction, capturing a snapshot of a lively gathering.  
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_008.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: A cartoon depicting two anthropomorphic figures engaged in a playful scuffle. One figure, rendered in vibrant blue hues, appears to be grappling with the other, whose form is dominated by fiery orange tones. Both characters have exaggerated features, wide eyes, and expressive grins, suggesting lightheartedness rather than aggression. The background is a simple white expanse, emphasizing the dynamic interaction between the two figures.  
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_009.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling street scene in an urban environment.  A variety of people can be seen going about their day, some walking, others standing in groups, and a few riding bicycles. The architectural style is modern with tall buildings dominating the skyline. The atmosphere appears lively and energetic, perhaps filled with the sounds of traffic and conversation. The image utilizes bright colors and has a slightly cartoonish feel to it.  
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_010.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: A young woman stands confidently in front of a vibrant purple backdrop. She wears a flowing white dress adorned with delicate embroidery and holds a silver microphone. Her expression is focused and determined as she looks towards the audience, which seems to be filled with cheering spectators. The image captures a moment of performance, likely from a stage show or concert, with bright lighting illuminating the scene and adding a sense of energy and excitement.  
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_011.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a vibrant and detailed scene set outdoors. A group of people appear to be gathered around a central object, possibly a table or stage, engaging in what looks like a performance or ceremony.  Several individuals hold aloft objects resembling musical instruments, while others appear to be dancing or singing. The overall style is whimsical and energetic, with bold colors and exaggerated features that suggest a fantastical setting. Intricate patterns and textures adorn the costumes and surroundings, adding to the image's richness and complexity.  
+
+
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_012.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a colorful scene with several figures engaged in various activities. The main focus appears to be on a group of people gathered around a table, their faces partially obscured by brightly colored fabric draped over the top.  Behind them, other figures move about in a bustling environment, suggesting a festive or celebratory atmosphere. The style is vibrant and energetic, with bold colors and dynamic poses. Delicate patterns and textures are evident in the fabrics and objects surrounding the scene, adding to its richness and detail. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_013.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a colorful scene with a bustling marketplace atmosphere. Numerous stalls line the street, overflowing with various goods.  Vendors can be seen interacting with customers, some haggling over prices while others browse through offerings like fabrics, fruits, and pottery. The overall style is vibrant and lively, capturing the energy of a thriving market. Intricate details adorn many of the objects displayed, showcasing craftsmanship and artistry. Sunlight bathes the scene, casting warm shadows and highlighting the textures of the goods and clothing.  
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_014.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling street scene painted in vibrant colors. Numerous figures, rendered in a stylized manner with exaggerated features, fill the street. Some individuals appear to be engaged in commerce, while others stroll leisurely or interact in groups. The architecture lining the street is characterized by intricate details and colorful facades, hinting at a fantasy world.  The overall composition suggests a lively atmosphere filled with energy and movement. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_015.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling marketplace scene with vibrant colors and intricate details. Numerous stalls selling various goods line both sides of a narrow pathway, overflowing with colorful fabrics, exotic fruits, and handcrafted items. People clad in traditional clothing haggle over prices while vendors energetically display their wares. The scene is lively and chaotic, with many figures moving about and interacting, creating a sense of energy and vibrancy. Sunlight streams through the canopy of cloth awnings covering the stalls, casting shadows and highlighting the rich textures of the marketplace environment. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_016.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a young woman seated on a stool at a table in front of an elaborate backdrop. She wears a flowing dress with intricate detailing, her hair styled elaborately. Her pose is confident and regal, as she holds a microphone in one hand and gazes towards the viewer. The backdrop features a vibrant, fantastical landscape with swirling colors and patterns reminiscent of a dreamlike scene. The overall style of the image is highly stylized and theatrical, emphasizing dramatic lighting and bold colors.  
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_017.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: A hand holding a paintbrush dips into a swirling pool of color, leaving behind streaks that resemble an abstract floral pattern. The background is a vibrant mix of blues and purples, suggesting a twilight sky.  The brushstroke itself seems to be captured in mid-air, frozen as if suspended by the tension between movement and stillness. The overall style is impressionistic, with loose, expressive strokes conveying a sense of energy and fluidity. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_018.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a scene of a bustling marketplace filled with vibrant colors and intricate details. Stalls overflow with an assortment of goods, ranging from exotic fruits and spices to handmade crafts and textiles.  People in colorful clothing move through the market, interacting with vendors and browsing the wares. The overall style is realistic, capturing the energy and vibrancy of a lively trading center. The artist has used light and shadow effectively to create depth and dimension, highlighting the textures of the goods and the bustling activity of the marketplace. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_019.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: A colorful, cartoonish illustration depicts two figures engaged in a playful interaction. One figure stands on their tiptoes, reaching towards the other who is holding something out at chest level. Both figures have large, expressive eyes and exaggerated features, conveying a sense of joy and excitement. The background is a vibrant expanse of color, suggesting a whimsical setting. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_020.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling cityscape at night, with towering skyscrapers casting long shadows against a dark sky speckled with stars. Bright lights illuminate windows on multiple floors, giving the city a vibrant glow. Vehicles move along busy streets below, their headlights creating streaks of light against the darkness. The overall style is realistic, capturing the detail and energy of urban life.  
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_021.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a scene of apparent chaos and conflict. Figures, rendered in a stylized cartoonish manner with bold lines and exaggerated features, clash amidst swirling clouds of bright colors.  Weapons, including large swords and projectile objects, are prominently displayed, contributing to the sense of aggression. The background is a vibrant mix of contrasting hues, further emphasizing the turbulent nature of the scene. A sense of movement and dynamism pervades the image, suggesting a high-octane battle in progress.   
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_022.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a vibrant scene with two figures engaged in an intense moment. One figure, depicted in profile, appears to be reaching out towards the other who stands facing away, their backs turned toward the viewer. Both figures are rendered in a dynamic, cartoonish style with exaggerated features and bold outlines. Their clothing is brightly colored and patterned, adding to the overall sense of energy and movement. The background behind them is a swirling mass of colors, suggesting a fantastical or dreamlike setting. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_023.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts two individuals engaged in an intimate embrace on a bed. The setting appears to be a bedroom with soft lighting and cozy furnishings. Both figures are partially obscured by shadows, creating a sense of mystery and intimacy. They are dressed casually, suggesting a private moment.  One figure's hand is resting gently on the other's shoulder, while their heads are tilted towards each other.  The overall style of the image leans towards romanticism, with a focus on soft colors and gentle textures. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_024.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a group of diverse individuals gathered around a table laden with various items. The scene appears to be indoors, illuminated by soft lighting that casts warm shadows across the room.  The subjects appear engaged in conversation and laughter, suggesting a convivial atmosphere. A prominent feature is a round object on a pedestal, likely a prize or focal point for their gathering. The overall style of the image leans towards realism, with attention given to capturing the texture and detail of the scene. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_025.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image portrays a scene seemingly set in an industrial environment with exposed brick walls and metal piping running along them. A figure clad in dark clothing stands centered within the frame, back to the viewer, facing a large, glowing panel filled with intricate circuitry and flashing lights. The figure holds a tool aloft towards the panel, illuminated by its vibrant glow. The overall style appears gritty and futuristic, suggesting a cyberpunk or dystopian aesthetic.   
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_026.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling city street scene at dusk.  A vibrant orange glow paints the sky as buildings with warm-toned facades line the road. Several people can be seen walking down the street, some carrying packages or talking animatedly. A brightly lit storefront displays goods in its window, attracting the attention of passersby. The overall style appears to be a realistic depiction with a focus on capturing the atmosphere and energy of urban life during twilight hours. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_027.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a scene set against a vibrant backdrop of purple and pink hues. Two figures stand prominently, their forms partially obscured by a shimmering veil of light that radiates from them. One figure appears to be reaching out towards the other, their outstretched hand adorned with intricate details. Both figures are outlined in silver, creating a luminous effect against the colorful background. The overall style suggests an ethereal and mystical atmosphere, hinting at a connection between the two figures. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_028.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a man sitting on a stool in front of a wooden desk cluttered with papers and books. He wears headphones over his ears and appears to be intently focused on a glowing computer screen placed before him.  The overall style is realistic, capturing the details of the environment and the subject's posture with precision. The lighting is soft and warm, casting subtle shadows across the room.  A sense of deep concentration pervades the scene, suggesting the man is engaged in a demanding task.   
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_029.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: A colorful illustration depicts two figures engaged in a dance-like sequence.  One figure stands tall with outstretched arms, seemingly leading, while the other leans gracefully backward, mirroring the pose. Both figures have distinct features, bright costumes with geometric patterns, and elaborate headdresses adorned with feathers or similar materials. The background is composed of swirling lines and vibrant hues, creating a sense of movement and energy.  The overall style suggests a fantastical or mythological theme, possibly inspired by traditional cultural celebrations. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+Saved descriptions to cache at /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/_descriptions.json
+[{'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_000.jpg', 'description': 'The image depicts a scene from a bustling marketplace.  Several vendors can be seen displaying their wares on colorful cloth-covered stalls, surrounded by shoppers browsing and interacting with them. Some people carry baskets or bags filled with goods, while others look intently at specific items. The overall style is vibrant and detailed, with bright colors used to depict the clothing, produce, and market stall decorations. The scene appears lively and energetic, capturing the atmosphere of a busy marketplace day.  \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_001.jpg', 'description': 'The image depicts a bustling outdoor scene with people gathered around a large display structure.  Several individuals are interacting with the display, their hands reaching towards it. The overall style is vibrant and colorful, with bold lines and bright hues dominating the composition. A noticeable detail is the presence of several smaller figures in the background, appearing as silhouettes against a brighter area. \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_002.jpg', 'description': 'The image depicts a bustling marketplace scene. A vibrant array of stalls laden with colorful goods line both sides of a narrow street. People in traditional clothing navigate the crowded space, some interacting with vendors while others simply browse the offerings. The overall style is reminiscent of a folk art painting, characterized by bold colors, simplified forms, and a sense of lively movement. Sunlight streams through gaps in the awnings, casting dappled shadows on the cobblestone street below. Details like woven baskets overflowing with produce, intricately patterned textiles, and gleaming metal wares contribute to the impression of a vibrant and thriving community.  \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_003.jpg', 'description': 'The image depicts a scene seemingly set in a bustling marketplace.  Several figures clad in colorful clothing navigate through a crowded space filled with vibrant stalls overflowing with various goods. The artist employed a loose, impressionistic style, using bold brushstrokes and contrasting colors to capture the energy and vibrancy of the scene. A sense of movement is conveyed through the flowing drapery of garments and the scattered objects hinting at activity.  Sunlight streams through gaps in the awnings overhead, casting warm light onto the scene and highlighting the textures of fabrics and surfaces. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_004.jpg', 'description': 'The image depicts a group of people gathered together outdoors in a setting that appears to be a celebration or event.  They are dressed in colorful clothing and seem to be interacting with each other playfully. There is a sense of joy and movement captured in the scene, with figures leaping and gesturing excitedly. The style of the image is bright and vibrant, utilizing bold colors and dynamic lines to convey energy and enthusiasm. Some elements appear slightly cartoonish, suggesting a whimsical or playful tone.   \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_005.jpg', 'description': 'The image depicts a bustling scene in a city square. Buildings with ornate facades and colorful awnings line the street, creating a vibrant atmosphere. People from different walks of life go about their daily activities, interacting with each other or simply enjoying the lively environment.  A horse-drawn carriage rolls through the cobblestone streets, adding to the historical feel of the scene. The overall style is reminiscent of 19th-century European art, characterized by detailed brushstrokes and a warm color palette.   \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_006.jpg', 'description': "The image depicts a group of people gathered around a large table laden with various objects. The scene appears to be set in an indoor location with soft lighting, suggesting a warm and intimate atmosphere.  A colorful cloth covers the table, adorned with intricate patterns that catch the eye. Several dishes filled with food are prominently displayed, inviting the viewer's attention. People of diverse ages and appearances are seated around the table, engaged in conversation and seemingly enjoying each other's company. The overall mood captured in the image is one of celebration and togetherness.  \n"}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_007.jpg', 'description': 'The image depicts a bustling scene with a variety of individuals engaged in various activities. People are seen walking, talking, and interacting in different areas of a large space that appears to be indoors. A bright color scheme dominates the environment, with bold hues and contrasting elements adding vibrancy to the composition. The overall style suggests a sense of energetic movement and social interaction, capturing a snapshot of a lively gathering.  \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_008.jpg', 'description': 'A cartoon depicting two anthropomorphic figures engaged in a playful scuffle. One figure, rendered in vibrant blue hues, appears to be grappling with the other, whose form is dominated by fiery orange tones. Both characters have exaggerated features, wide eyes, and expressive grins, suggesting lightheartedness rather than aggression. The background is a simple white expanse, emphasizing the dynamic interaction between the two figures.  \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_009.jpg', 'description': 'The image depicts a bustling street scene in an urban environment.  A variety of people can be seen going about their day, some walking, others standing in groups, and a few riding bicycles. The architectural style is modern with tall buildings dominating the skyline. The atmosphere appears lively and energetic, perhaps filled with the sounds of traffic and conversation. The image utilizes bright colors and has a slightly cartoonish feel to it.  \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_010.jpg', 'description': 'A young woman stands confidently in front of a vibrant purple backdrop. She wears a flowing white dress adorned with delicate embroidery and holds a silver microphone. Her expression is focused and determined as she looks towards the audience, which seems to be filled with cheering spectators. The image captures a moment of performance, likely from a stage show or concert, with bright lighting illuminating the scene and adding a sense of energy and excitement.  \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_011.jpg', 'description': "The image depicts a vibrant and detailed scene set outdoors. A group of people appear to be gathered around a central object, possibly a table or stage, engaging in what looks like a performance or ceremony.  Several individuals hold aloft objects resembling musical instruments, while others appear to be dancing or singing. The overall style is whimsical and energetic, with bold colors and exaggerated features that suggest a fantastical setting. Intricate patterns and textures adorn the costumes and surroundings, adding to the image's richness and complexity.  \n\n\n\n\n"}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_012.jpg', 'description': 'The image depicts a colorful scene with several figures engaged in various activities. The main focus appears to be on a group of people gathered around a table, their faces partially obscured by brightly colored fabric draped over the top.  Behind them, other figures move about in a bustling environment, suggesting a festive or celebratory atmosphere. The style is vibrant and energetic, with bold colors and dynamic poses. Delicate patterns and textures are evident in the fabrics and objects surrounding the scene, adding to its richness and detail. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_013.jpg', 'description': 'The image depicts a colorful scene with a bustling marketplace atmosphere. Numerous stalls line the street, overflowing with various goods.  Vendors can be seen interacting with customers, some haggling over prices while others browse through offerings like fabrics, fruits, and pottery. The overall style is vibrant and lively, capturing the energy of a thriving market. Intricate details adorn many of the objects displayed, showcasing craftsmanship and artistry. Sunlight bathes the scene, casting warm shadows and highlighting the textures of the goods and clothing.  \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_014.jpg', 'description': 'The image depicts a bustling street scene painted in vibrant colors. Numerous figures, rendered in a stylized manner with exaggerated features, fill the street. Some individuals appear to be engaged in commerce, while others stroll leisurely or interact in groups. The architecture lining the street is characterized by intricate details and colorful facades, hinting at a fantasy world.  The overall composition suggests a lively atmosphere filled with energy and movement. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_015.jpg', 'description': 'The image depicts a bustling marketplace scene with vibrant colors and intricate details. Numerous stalls selling various goods line both sides of a narrow pathway, overflowing with colorful fabrics, exotic fruits, and handcrafted items. People clad in traditional clothing haggle over prices while vendors energetically display their wares. The scene is lively and chaotic, with many figures moving about and interacting, creating a sense of energy and vibrancy. Sunlight streams through the canopy of cloth awnings covering the stalls, casting shadows and highlighting the rich textures of the marketplace environment. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_016.jpg', 'description': 'The image depicts a young woman seated on a stool at a table in front of an elaborate backdrop. She wears a flowing dress with intricate detailing, her hair styled elaborately. Her pose is confident and regal, as she holds a microphone in one hand and gazes towards the viewer. The backdrop features a vibrant, fantastical landscape with swirling colors and patterns reminiscent of a dreamlike scene. The overall style of the image is highly stylized and theatrical, emphasizing dramatic lighting and bold colors.  \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_017.jpg', 'description': 'A hand holding a paintbrush dips into a swirling pool of color, leaving behind streaks that resemble an abstract floral pattern. The background is a vibrant mix of blues and purples, suggesting a twilight sky.  The brushstroke itself seems to be captured in mid-air, frozen as if suspended by the tension between movement and stillness. The overall style is impressionistic, with loose, expressive strokes conveying a sense of energy and fluidity. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_018.jpg', 'description': 'The image depicts a scene of a bustling marketplace filled with vibrant colors and intricate details. Stalls overflow with an assortment of goods, ranging from exotic fruits and spices to handmade crafts and textiles.  People in colorful clothing move through the market, interacting with vendors and browsing the wares. The overall style is realistic, capturing the energy and vibrancy of a lively trading center. The artist has used light and shadow effectively to create depth and dimension, highlighting the textures of the goods and the bustling activity of the marketplace. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_019.jpg', 'description': 'A colorful, cartoonish illustration depicts two figures engaged in a playful interaction. One figure stands on their tiptoes, reaching towards the other who is holding something out at chest level. Both figures have large, expressive eyes and exaggerated features, conveying a sense of joy and excitement. The background is a vibrant expanse of color, suggesting a whimsical setting. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_020.jpg', 'description': 'The image depicts a bustling cityscape at night, with towering skyscrapers casting long shadows against a dark sky speckled with stars. Bright lights illuminate windows on multiple floors, giving the city a vibrant glow. Vehicles move along busy streets below, their headlights creating streaks of light against the darkness. The overall style is realistic, capturing the detail and energy of urban life.  \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_021.jpg', 'description': 'The image depicts a scene of apparent chaos and conflict. Figures, rendered in a stylized cartoonish manner with bold lines and exaggerated features, clash amidst swirling clouds of bright colors.  Weapons, including large swords and projectile objects, are prominently displayed, contributing to the sense of aggression. The background is a vibrant mix of contrasting hues, further emphasizing the turbulent nature of the scene. A sense of movement and dynamism pervades the image, suggesting a high-octane battle in progress.   \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_022.jpg', 'description': 'The image depicts a vibrant scene with two figures engaged in an intense moment. One figure, depicted in profile, appears to be reaching out towards the other who stands facing away, their backs turned toward the viewer. Both figures are rendered in a dynamic, cartoonish style with exaggerated features and bold outlines. Their clothing is brightly colored and patterned, adding to the overall sense of energy and movement. The background behind them is a swirling mass of colors, suggesting a fantastical or dreamlike setting. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_023.jpg', 'description': "The image depicts two individuals engaged in an intimate embrace on a bed. The setting appears to be a bedroom with soft lighting and cozy furnishings. Both figures are partially obscured by shadows, creating a sense of mystery and intimacy. They are dressed casually, suggesting a private moment.  One figure's hand is resting gently on the other's shoulder, while their heads are tilted towards each other.  The overall style of the image leans towards romanticism, with a focus on soft colors and gentle textures. \n\n\n"}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_024.jpg', 'description': 'The image depicts a group of diverse individuals gathered around a table laden with various items. The scene appears to be indoors, illuminated by soft lighting that casts warm shadows across the room.  The subjects appear engaged in conversation and laughter, suggesting a convivial atmosphere. A prominent feature is a round object on a pedestal, likely a prize or focal point for their gathering. The overall style of the image leans towards realism, with attention given to capturing the texture and detail of the scene. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_025.jpg', 'description': 'The image portrays a scene seemingly set in an industrial environment with exposed brick walls and metal piping running along them. A figure clad in dark clothing stands centered within the frame, back to the viewer, facing a large, glowing panel filled with intricate circuitry and flashing lights. The figure holds a tool aloft towards the panel, illuminated by its vibrant glow. The overall style appears gritty and futuristic, suggesting a cyberpunk or dystopian aesthetic.   \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_026.jpg', 'description': 'The image depicts a bustling city street scene at dusk.  A vibrant orange glow paints the sky as buildings with warm-toned facades line the road. Several people can be seen walking down the street, some carrying packages or talking animatedly. A brightly lit storefront displays goods in its window, attracting the attention of passersby. The overall style appears to be a realistic depiction with a focus on capturing the atmosphere and energy of urban life during twilight hours. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_027.jpg', 'description': 'The image depicts a scene set against a vibrant backdrop of purple and pink hues. Two figures stand prominently, their forms partially obscured by a shimmering veil of light that radiates from them. One figure appears to be reaching out towards the other, their outstretched hand adorned with intricate details. Both figures are outlined in silver, creating a luminous effect against the colorful background. The overall style suggests an ethereal and mystical atmosphere, hinting at a connection between the two figures. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_028.jpg', 'description': "The image depicts a man sitting on a stool in front of a wooden desk cluttered with papers and books. He wears headphones over his ears and appears to be intently focused on a glowing computer screen placed before him.  The overall style is realistic, capturing the details of the environment and the subject's posture with precision. The lighting is soft and warm, casting subtle shadows across the room.  A sense of deep concentration pervades the scene, suggesting the man is engaged in a demanding task.   \n\n\n"}, {'path': '/home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_029.jpg', 'description': 'A colorful illustration depicts two figures engaged in a dance-like sequence.  One figure stands tall with outstretched arms, seemingly leading, while the other leans gracefully backward, mirroring the pose. Both figures have distinct features, bright costumes with geometric patterns, and elaborate headdresses adorned with feathers or similar materials. The background is composed of swirling lines and vibrant hues, creating a sense of movement and energy.  The overall style suggests a fantastical or mythological theme, possibly inspired by traditional cultural celebrations. \n\n\n'}] AAAAABBBBBCCCC
+Found duplicate image: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_007.jpg is similar to /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_000.jpg
+Found duplicate image: /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_017.jpg is similar to /home/riosshin/code/videoAI/media/refImgs/Nikola Tesla/img_000.jpg

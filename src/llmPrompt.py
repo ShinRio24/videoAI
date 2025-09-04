@@ -24,9 +24,11 @@ GEMENIKEY = os.getenv("GEMENIKEY", "")
 genai.configure(api_key=GEMENIKEY)
 
 
-modelGemeni = genai.GenerativeModel('gemini-2.5-flash')
-ollamaModel = "gemma2-9b-long:latest"
-
+from .configFile import Config
+cfg = Config()
+uploadTimesPST= cfg.uploadTimesPST
+ollamaModel =  cfg.ollamaModel
+modelGemeni = genai.GenerativeModel(cfg.backupGemeniModel)
 
 
 #taken from sakana ai, ai scientist
@@ -198,29 +200,29 @@ def promptGemeni(prompt):
 
 
 
-def prompt(prompt, model = "ollama", printOutput=True, openDict=True):
-    if printOutput: print(f"START OF PROMPT  --------------------------------------------\n {prompt}")
+def prompt(inpPrompt, model = "ollama", printOutput=True, openDict=True):
+    if printOutput: print(f"START OF PROMPT  --------------------------------------------\n {inpPrompt}")
     if model == "gemeni-cli":
-        output = gemeniCli(prompt)
+        output = gemeniCli(inpPrompt)
     elif model=="gemeni-cli-pro":
-        output = gemeniCli(prompt, pro=True)
+        output = gemeniCli(inpPrompt, pro=True)
     elif model =="ollama":
-        output = ollama_prompt(prompt)
+        output = ollama_prompt(inpPrompt)
     elif model =='gemeni':
         today = date.today()
         last_failure = get_last_failure_date()
 
         if last_failure == today:
             # Already failed today, skip function_a
-            output = ollama_prompt(prompt)
+            output = ollama_prompt(inpPrompt)
         else:
             try:
-                output = promptGemeni(prompt)
+                output = promptGemeni(inpPrompt)
                 if printOutput: print('used gemeni')
             except Exception as e:
                 print(f"gemeni failed: {e}", file=sys.__stderr__)
                 set_last_failure_date(today)
-                output = ollama_prompt(prompt)
+                output = ollama_prompt(inpPrompt)
     else:
         raise ValueError("Model does not exist")
     
@@ -232,10 +234,13 @@ def prompt(prompt, model = "ollama", printOutput=True, openDict=True):
     if printOutput: print(extracted, "this is the extracted output")
 
     if extracted==None:
-        raise Exception("extracted output is blank")
+        output = gemeniCli(inpPrompt)
+        extracted = extract_json_between_markers(output)
+        if extracted==None:
+            raise Exception("extracted output is blank")
     if openDict:
         if len(extracted.keys())!=1:
-            raise Exception("extracted output has more than one keys")
+            return extracted
         else:
             #returns only the first value
             return next(iter(extracted.values()))

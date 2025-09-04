@@ -22,7 +22,7 @@ def removeUsedImgs(described_files: list[dict]) -> list[dict]:
     seen_images = []
 
     for item in described_files:
-        img1Path = item
+        img1Path = item['path']
         img1 = cv2.imread(img1Path, cv2.IMREAD_GRAYSCALE)
         if img1 is None:
             print(f"Image not readable: {img1Path}")
@@ -81,7 +81,7 @@ def imgSearch(title, quote, data):
 
     # 2. Define the cache directory for the current query
     cache_dir = os.path.join("/home/riosshin/code/videoAI/media/refImgs", outputQuery)
-    metadata_path = os.path.join(cache_dir, "_descriptions.json") # The "card catalog"
+    metadata_path = os.path.join(cache_dir, "_descriptions.json")
 
     import json
     # 3. Check if the cache directory exists
@@ -102,13 +102,9 @@ def imgSearch(title, quote, data):
     
     if available_files is None:
         print(f"'{outputQuery}' descriptions not in cache. Generating...")
-        if not os.path.exists(cache_dir):
-            print(f"Image directory not found. Downloading images for '{outputQuery}'.")
-            os.makedirs(cache_dir)
-            image_files = download(outputQuery, 30, cache_dir)
-        else:
-            print(f"Using existing images from {cache_dir}")
-            image_files = glob.glob(os.path.join(cache_dir, "*[.jpg,.jpeg,.png]"))
+        print(f"Image directory not found. Downloading images for '{outputQuery}'.")
+        os.makedirs(cache_dir, exist_ok=True)
+        image_files = download(outputQuery, 30, cache_dir)
 
         if not image_files:
             print(f"[ERROR] No images found or downloaded for query: {outputQuery}")
@@ -118,21 +114,26 @@ def imgSearch(title, quote, data):
         # This is the slow part that now only runs on a cache miss
         available_files = descriptions(image_files)
 
-        try:
-            with open(metadata_path, 'w', encoding='utf-8') as f:
-                json.dump(available_files, f, ensure_ascii=False, indent=4)
-            print(f"Saved descriptions to cache at {metadata_path}")
-        except IOError as e:
-            print(f"Error saving description cache file: {e}")
+        with open(metadata_path, 'w', encoding='utf-8') as f:
+            json.dump(available_files, f, ensure_ascii=False, indent=4)
+        print(f"Saved descriptions to cache at {metadata_path}")
 
+    print(available_files,"AAAAABBBBBCCCC")
     image_files = removeUsedImgs(available_files)
 
     # 7. Find the best image
     description_list = [item['description'] for item in available_files]
 
     correctIMG_prompt = correctIMG_template.format(quote=quote, description='\n'.join(description_list))
-    matchedImage_desc = prompt(correctIMG_prompt)
+    matchedImage_desc = prompt(correctIMG_prompt)['image_description']
     matchedImage = imgMatch(matchedImage_desc, description_list, available_files)
+
+
+    with open(metadata_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    new_data = [item for item in data if item.get("path") != matchedImage]
+    with open(metadata_path, 'w', encoding='utf-8') as f:
+        json.dump(new_data, f, ensure_ascii=False, indent=4)
 
     return matchedImage
 

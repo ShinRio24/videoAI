@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 configDir = "tools/config.json"
+outputDir = "outputLogs/"
 class Config:
     def __init__(self, filename=configDir):
         self.filename = filename
@@ -15,7 +16,7 @@ class Config:
     
     def nOutputStream(self):
         curDatTime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        self.data["curOutputStream"]=self.data['outputStream']+curDatTime+".txt"
+        self.data["curOutputStream"]=outputDir+curDatTime+".txt"
         with open(self.data["curOutputStream"], "w") as file:
             file.write('\n')
         
@@ -26,5 +27,3 @@ class Config:
         output = str(output)
         with open(self.data["curOutputStream"], 'a') as file:
             file.write(output)
-
-        self.data['outputStream']

@@ -1,0 +1,818 @@
+
+Generating script テニスの新星、大坂なおみ
+START OF PROMPT  --------------------------------------------
+ 
+あなたはプロの日本語YouTubeスクリプトライターです。複雑なテーマを、まるで一つの映画のように語るストーリーテリングの達人であり、視聴者を惹きつける具体的な事実や裏話を見つけ出すリサーチの専門家でもあります。
+
+### ⚠️ Core Principles ⚠️
+1.  **The Story Comes First:** あなたの最優先事項は、与えられたテーマを**起承転結**の構成に沿った、引き込まれる物語に変換することです。
+2.  **Ground the Story in Concrete Details (最重要):** 物語は必ず、**具体的で検証可能な事実**(名前、日付、数値、場所、出来事など)に基づいている必要があります。「すごい成功」のような抽象的な表現ではなく、「たった1ドルでCEOに復帰した」のような具体的な事実を語ってください。
+
+### Task Breakdown:
+**1. Classify the Theme:**
+まず、テーマ「テニスの新星、大坂なおみ」が「人物」「組織」「事件・出来事」のどれに該当するかを判断してください。
+
+**2. Build the Narrative using 起承転結 (with Specifics):**
+
+---
+#### **If the theme is a "Person" or "Organization":**
+-   **起 (Introduction):** 物語の冒頭で、視聴者の心を一瞬で掴む「最強のフック」を作ります。必ず主役のフルネームと、その人物を象徴する**具体的で強烈な事実**（数字、逸話、実績など）を組み合わせ、以下のいずれかの形式で提示してください。
+    -   **問いかけ型 (The Question):** 視聴者の好奇心を刺激し、答えが知りたくなるような問いを投げかける。「なぜ、資産100兆円の男、スティーブ・ジョブズは、毎日同じ服を着るのか?」
+    -   **衝撃の事実型 (The Shocking Fact):** 常識を覆すような、意外な事実を提示する。「実は彼、たった1ドルの年俸でCEOに復帰したんです。」
+    -   **断言型 (The Bold Declaration):** 人物の本質を大胆な言葉で断言し、強烈な印象を与える。「歴史上、世界を最も騙した天才、それがバーナード・マドフです。」
+-  **承 (Development):** 物語を遡り、**特定の日付や場所**を挙げて起源を描きます。「〇〇年、ガレージから始まった」のように、現在の姿からは想像もつかない、しかし事実に基づいた過去を語ります。
+-  **転 (Twist/Turning Point):** 物語の核心です。成功を決定づけた**「ある一つの製品」**や、その裏に隠された**「特定の人物との逸話」**など、衝撃的で具体的な転機を明かします。
+-  **結 (Conclusion):** そして現在。その成功や失敗が、**具体的な製品やサービス**を通して、今の私たちにどのような「影響」を与え続けているのかを語り、物語を締めくくります。
+
+#### **If the theme is an "Event" or "Incident":**
+-  **起 (Introduction):** 事件発生の**具体的な日時**を示し、その瞬間の衝撃的な光景や**統計データ**を提示します。「〇〇年〇月〇日、わずか数分で〇〇人が影響を受けた」のように、事実で視聴者の興味を引きます。
+-  **承 (Development):** 時間を巻き戻し、事件の背景にある**具体的な原因や社会情勢**を掘り下げます。事件の数年前から起きていた「ある社会問題」や、水面下で進んでいた計画など、具体的な火種を描写します。
+-  **転 (Twist/Trigger):** 物語が動く瞬間です。事件発生の直接的な引き金となった**「たった一つの出来事」**や、関わった**「キーパーソンの意外な行動」**を語り、緊張感を高めます。
+-  **結 (Conclusion):** 事件のその後。社会に与えた**法改正や新しいルール**といった具体的な「影響」や、そこから私たちが学ぶべき教訓を語り、深い余韻を残します。
+---
+
+### Bad vs. Good Example (How to use details)
+-   **Theme:** Steve Jobs
+-   **Bad (Vague):** 「彼は、世界を変える大きな決断をしました。」 (He made a big decision that would change the world.)
+-   **Good (Specific):** 「実は彼、たった1ドルの年俸でCEOに復帰したんです。」 (Actually, he returned as CEO for an annual salary of just $1.)
+
+### Technical & Style Requirements:
+-  **Length & Structure:** スクリプト全体おおよそ9〜13個のフレーズに分割してください。
+-  **JSON Output:** 各フレーズ(30〜45文字)をJSONリストの要素として出力してください。
+-  **Conversational Tone:** です・ます調を基本とし、「なんです」「だったんですね」といった多様な語尾で会話のリズムを作る。読点（、）を効果的に多めに使い、テンポの良い語り口を演出する。「実は」「そして」といった接続詞で、フレーズ間を滑らかにつなぐ。
+-  **Prohibitions:** 引用符（「」『』""）、（笑）や特殊記号は一切使用しないこと。
+
+### Output Format:
+必ず次のフォーマットに従ってください。他のテキストは絶対に出力しないでください。
+
+```json
+{
+ "Script": [
+  "ここに「起」のパートが入ります。",
+  "次に「承」のパートが続きます。",
+  "そして物語の転換点である「転」。",
+  "最後に「結」で締めくくります。"
+ ]
+}```
+
+used gemeni
+END OF PROMPT  --------------------------------------------
+
+LLM output: ```json
+{
+ "Script": [
+  "世界ランク１位、わずか２年でグランドスラムを４度も制した天才、大坂なおみ。",
+  "なぜ彼女は、突如としてテニス界の表舞台から姿を消したのでしょうか？",
+  "物語は１９９７年１０月１６日、大阪で幕を開けます。",
+  "３歳でアメリカに移住した彼女は、父レオナルド氏の指導のもと、英才教育を受けます。",
+  "フロリダのコートで、ひたすらボールを追い続ける日々だったんです。",
+  "そして２０１３年、わずか１５歳でプロへと転向しました。",
+  "転機は２０１８年、全米オープン決勝。女王セリーナを破り、世界にその名を轟かせたんです。",
+  "しかし２０２１年、全仏オープン。メンタルヘルス問題の告白が、アスリート像を大きく変える転換点となります。",
+  "自身の心の声に耳を傾け、彼女は一度、ラケットを置く決断をしたんですね。",
+  "そして２０２４年、母となりコートに戻った大坂なおみは、新たな挑戦者です。",
+  "彼女の勇気ある行動は、スポーツ界だけでなく社会全体に影響を与えています。",
+  "多様性とメンタルヘルスへの深い理解を促し続けているんですね。"
+ ]
+}
+```
+END OF LLM OUTPUT --------------------------------------------
+
+{'Script': ['世界ランク１位、わずか２年でグランドスラムを４度も制した天才、大坂なおみ。', 'なぜ彼女は、突如としてテニス界の表舞台から姿を消したのでしょうか？', '物語は１９９７年１０月１６日、大阪で幕を開けます。', '３歳でアメリカに移住した彼女は、父レオナルド氏の指導のもと、英才教育を受けます。', 'フロリダのコートで、ひたすらボールを追い続ける日々だったんです。', 'そして２０１３年、わずか１５歳でプロへと転向しました。', '転機は２０１８年、全米オープン決勝。女王セリーナを破り、世界にその名を轟かせたんです。', 'しかし２０２１年、全仏オープン。メンタルヘルス問題の告白が、アスリート像を大きく変える転換点となります。', '自身の心の声に耳を傾け、彼女は一度、ラケットを置く決断をしたんですね。', 'そして２０２４年、母となりコートに戻った大坂なおみは、新たな挑戦者です。', '彼女の勇気ある行動は、スポーツ界だけでなく社会全体に影響を与えています。', '多様性とメンタルヘルスへの深い理解を促し続けているんですね。']} this is the extracted output
+['世界ランク１位、わずか２年でグランドスラムを４度も制した天才、大坂なおみ。', 'なぜ彼女は、突如としてテニス界の表舞台から姿を消したのでしょうか？', '物語は１９９７年１０月１６日、大阪で幕を開けます。', '３歳でアメリカに移住した彼女は、父レオナルド氏の指導のもと、英才教育を受けます。', 'フロリダのコートで、ひたすらボールを追い続ける日々だったんです。', 'そして２０１３年、わずか１５歳でプロへと転向しました。', '転機は２０１８年、全米オープン決勝。女王セリーナを破り、世界にその名を轟かせたんです。', 'しかし２０２１年、全仏オープン。メンタルヘルス問題の告白が、アスリート像を大きく変える転換点となります。', '自身の心の声に耳を傾け、彼女は一度、ラケットを置く決断をしたんですね。', 'そして２０２４年、母となりコートに戻った大坂なおみは、新たな挑戦者です。', '彼女の勇気ある行動は、スポーツ界だけでなく社会全体に影響を与えています。', '多様性とメンタルヘルスへの深い理解を促し続けているんですね。']
+START OF PROMPT  --------------------------------------------
+ 
+あなたは、数々のショート動画を100万回再生させてきた、プロの日本語YouTubeプロデューサーです。
+
+### タスク
+以下のトピックを基に、視聴者の知的好奇心を強烈に刺激し、思わずクリックしてしまうような**日本語タイトルを1つだけ**考案してください。
+
+### 最高のタイトルを作るための原則
+
+1.  **好奇心を最大化せよ:** 「〇〇の真実」「〇〇に隠された秘密」のように、視聴者が「答えを知りたい！」と思うような、謎や秘密をほのめかすこと。事実を説明するのではなく、好奇心を煽ること。
+2. 物語のトーンに合う「パワーワード」を選ぶ (Choose a "Power Word" that Fits the Story's Tone)
+
+タイトルに読者の感情を揺さぶるような強力な単語（パワーワード）を使い、一瞬で興味を引くことが重要です。物語が持つ雰囲気（ポジティブ、ネガティブ、ミステリアスなど）に合わせて、最適な言葉を選びましょう。
+
+* **感動・希望を与える物語 (For inspiring or hopeful stories):**
+    * **例:** `伝説 (Legend), 奇跡 (Miracle), 天才 (Genius), 覚醒 (Awakening), 栄光 (Glory), 希望 (Hope), 革命 (Revolution)`
+
+* **衝撃・悲劇性を強調する物語 (For shocking or tragic stories):**
+    * **例:** `悲劇 (Tragedy), 衝撃 (Shock), 禁断 (Forbidden), 闇 (Darkness), 崩壊 (Collapse), 絶望 (Despair), 孤独 (Loneliness)`
+
+* **謎・真実を追求する物語 (For mysterious or truth-seeking stories):**
+    * **例:** `真実 (Truth), 謎 (Mystery), 秘密 (Secret), 裏側 (The Other Side), 運命 (Destiny), 正体 (True Identity)`
+3.  **簡潔に、しかし強力に:** タイトルは**20文字以内**を目安に、不要な言葉を削ぎ落とし、最もインパクトのある部分だけを残すこと。
+
+### 実績のあるタイトルパターン（これらを創造的に組み合わせよ）
+
+* **秘密・暴露型 (The Secret/Revelation):** 最も強力なパターン。視聴者が知らないであろう情報を示唆する。
+    * *例:* `【名前】に隠された禁断の真実`
+    * *例:* `メディアが報じない【名前】の裏側`
+
+* **言い切り型 (The Bold Declaration):** 対象を大胆な言葉で定義し、強い印象を与える。
+    * *例:* `世界を騙した天才詐欺師【名前】`
+    * *例:* `歴史を塗り替えた男【名前】`
+
+* **問いかけ型 (The Question):** 視聴者に直接質問を投げかけ、考えさせることでエンゲージメントを高める。
+    * *例:* `なぜ【名前】は〇〇したのか？`
+
+### ⚠️絶対的なルール⚠️
+-   完成したタイトルのみを出力し、他のテキストは一切含めないこと。
+-   必ずトピックの固有名詞（名前）をタイトルに含めること。
+-   絵文字、句読点（、。）、記号（「」？！）は一切使用しない。
+
+### 悪い例 vs 良い例
+-   **トピック:** Donald Trump
+-   **悪いタイトル:** `物議を醸した大統領トランプ` (事実を述べているだけで、好奇心を刺激しない)
+-   **良いタイトル:** `トランプ 封印された過去` (「封印された過去」とは何か？と好奇心を煽る)
+
+
+### Input
+トピック: テニスの新星、大坂なおみ
+
+### Output Format:
+必ず次のフォーマットに従ってください。他のテキストは絶対に出力しないでください。
+
+```json
+{
+  "title": "Your generated title here"
+}```
+
+prompting local
+{
+  "title": "大坂なおみの真実 隠された才能"
+}
+END OF PROMPT  --------------------------------------------
+
+LLM output: {
+  "title": "大坂なおみの真実 隠された才能"
+}
+END OF LLM OUTPUT --------------------------------------------
+
+{'title': '大坂なおみの真実 隠された才能'} this is the extracted output
+Generating audio and images
+START OF PROMPT  --------------------------------------------
+ 
+You are an expert AI assistant specializing in visual storytelling. Your task is to analyze a video's title and a relevant quote to generate the **most visually effective Google Image search query**. This query should center on the core subject but can be made more specific if the context points to a highly famous, visually documented event associated with that subject.
+
+---
+## Critical Rules
+
+1.  **The Specificity Principle (Most Important Rule)**: Your primary goal is to identify the core subject's full, canonical name.
+    * **Default Behavior**: In most cases, the query will be **only** the subject's full name (e.g., a person, organization, or base event).
+    * **Exception for Famous Events**: If the title or quote *explicitly* references a **highly famous and visually distinct event, trial, scandal, or performance** uniquely associated with the subject, you should append that event to the name. This is only for events that have a rich, well-known visual record of their own (e.g., "O.J. Simpson trial," "Michael Jackson moonwalk").
+    * **What to Avoid**: **Never** add generic, descriptive words like "photo," "case," "incident," "childhood," or "perpetrator." The added context must be a proper noun or a widely recognized named event.
+
+2.  **Use the Subject's Native Language**: The language of the query must match the origin of the subject to find the most authentic and numerous images.
+    * If the subject is **Chinese**, the query must be in **Chinese characters**.
+    * If the subject is **American**, the query must be in **English**.
+    * If the subject is **Japanese**, the query must be in **Japanese**.
+
+3.  **Use Full, Canonical Names**: Always expand partial or incomplete names to their most recognizable, official form. For Western names, this includes first and last names.
+
+---
+## Step-by-Step Guide
+
+1.  **Identify the Core Subject**: Read the title and quote to determine the central person, event, or location being discussed.
+2.  **Analyze the Context**: Determine if the title or quote refers to a *specific, famous, and visually-rich event* directly associated with the core subject.
+3.  **Determine the Subject's Origin**: Based on the name and context, identify the subject's nationality or primary language.
+4.  **Construct the Query**:
+    * First, find the subject's full, canonical name in its native language (e.g., `周克华`, `Bernie Madoff`).
+    * If a famous associated event was identified in Step 2, append its common name to the query (e.g., `O.J. Simpson trial`).
+    * Otherwise, use only the subject's canonical name.
+5.  **Generate the Final Query**: The final query is the result from the previous step.
+
+---
+## Examples
+
+**Example 1: Default Behavior (Chinese Subject)**
+* **Title**: `チョウクホア最凶の強盗犯` (The Most Vicious Robber, Zhou Kehua)
+* **Quote**: `あなたは知っていますか。闇に生き、凶行を重ねた男を。` (Do you know the man who lived in darkness and committed heinous acts?)
+* **Correct Query**: `"周克华"`
+* **Reasoning**: The subject, Zhou Kehua, is Chinese. While he committed crimes, there isn't one single, named event famous enough to append. The most effective query is his canonical name in Chinese.
+
+**Example 2: Exception - Famous Trial (American Subject)**
+* **Title**: `The Trial of the Century: O.J.`
+* **Quote**: `The infamous Bronco chase and the glove that didn't fit.`
+* **Correct Query**: `"O.J. Simpson trial"`
+* **Reasoning**: The subject is O.J. Simpson, but the title and quote are not about his general life; they are specifically about his murder trial, an event with its own massive and distinct visual record. "O.J. Simpson" alone would be too broad.
+
+**Example 3: Exception - Famous Performance (American Subject)**
+* **Title**: `キング・オブ・ポップの伝説のムーンウォーク` (The King of Pop's Legendary Moonwalk)
+* **Quote**: `The moment he first performed the iconic dance during 'Billie Jean' at Motown 25.`
+* **Correct Query**: `"Michael Jackson moonwalk"`
+* **Reasoning**: The context is not just Michael Jackson, but his single most iconic performance. Searching for "Michael Jackson moonwalk" will yield far more relevant images for this specific story than just his name.
+
+**Example 4: Default Behavior (Japanese Event)**
+* **Title**: `地下鉄サリン事件の恐怖` (Terror of the Subway Sarin Incident)
+* **Quote**: `The attack on the Tokyo subway system.`
+* **Correct Query**: `"地下鉄サリン事件"`
+* **Reasoning**: The subject is the event itself. It's already a specific, proper noun. No further context is needed.
+
+---
+Input
+**Video Title**: 大坂なおみの真実隠された才能
+**Quote to Visualize**: 世界ランク１位、わずか２年でグランドスラムを４度も制した天才、大坂なおみ。
+
+---
+## Output Format
+
+Your output must be in **strict JSON format only**, with no other text or explanations.
+
+```json
+{
+  "query": "Your generated search query here"
+}```
+
+END OF PROMPT  --------------------------------------------
+
+LLM output: ```json
+{
+  "query": "大坂なおみ"
+}
+```
+
+END OF LLM OUTPUT --------------------------------------------
+
+{'query': '大坂なおみ'} this is the extracted output
+'大坂なおみ' descriptions not in cache. Generating...
+Image directory not found. Downloading images for '大坂なおみ'.
+🔎 Searching for 30 images of '大坂なおみ'...
+✅ Successfully downloaded 30 images.
+⚠️ Skipping /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_001.jpg: cannot identify image file '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_001.jpg'
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_000.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a vibrant street scene bathed in warm light, likely at sunset.  A bustling crowd of people fills the foreground, their colorful clothing adding to the lively atmosphere. Buildings on either side of the street feature ornate architectural details and display brightly lit windows. A large sign with glowing letters hangs above the street, advertising something unseen. The overall style is reminiscent of impressionistic art, with loose brushstrokes creating a sense of movement and energy.  
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_002.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling scene within a large, brightly lit indoor space. Numerous figures, both men and women, are engaged in various activities. Some stand around tables laden with food and drink, while others converse animatedly or participate in games. The overall atmosphere is one of lively celebration and camaraderie.  Soft lighting illuminates the scene, creating a warm and inviting ambiance. The style of the image appears to be realistic, capturing details like intricate patterns on clothing and expressions on faces. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_003.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: A colorful illustration depicts a bustling scene with a diverse group of individuals engaged in various activities. Two figures stand prominently at the center, one holding a microphone and the other wielding a paintbrush, suggesting a performance or artistic expression. Surrounding them are smaller figures interacting with instruments, tools, and abstract shapes, hinting at music, creation, and collaboration. The overall style is vibrant and stylized, employing bold colors and dynamic lines to convey energy and movement.  
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_004.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: A young woman stands in a bustling city street, gazing up at a towering glass skyscraper adorned with colorful advertisements.  She wears modern clothing and her expression is a mix of awe and contemplation as she looks at the massive structure. The cityscape behind her is vibrant, filled with numerous buildings of varying heights and styles, while cars and people move throughout the scene below. The overall style of the image is realistic with sharp details and a sense of depth.  
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_005.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts two figures engaged in a seemingly friendly interaction. Both individuals are dressed in colorful attire, with intricate patterns adorning their garments. One figure appears to be gesturing towards something off-screen, while the other looks on with a curious expression. The scene is rendered in a vibrant and stylized manner, suggesting a whimsical or fantastical setting.  Background elements hint at a bustling marketplace or urban environment, with various structures and signs visible. 
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_006.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling marketplace scene, filled with vibrant colors and intricate details. Stalls overflowing with various goods line narrow paths, creating a labyrinthine network for shoppers to navigate. People in colorful attire barter and haggle with vendors, their expressions conveying a mix of excitement and determination. The overall style is realistic, capturing the lively atmosphere and sensory richness of the marketplace.  Sunlight streams through gaps in awnings, casting dappled shadows on the ground. 
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_007.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a woman standing in a lush green field. Her body is positioned facing slightly away from the viewer, with her arms outstretched towards the sky. She is wearing flowing clothing that appears to be white, billowing gently in a light breeze.  A faint golden light bathes the scene, casting long shadows and creating a warm, ethereal atmosphere. The background is dominated by rolling hills and a bright blue sky dotted with fluffy clouds.  
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_008.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a large, open space with a bright sun shining down from above. A group of people are gathered in the foreground, some standing and others sitting on wooden benches. They appear to be engaged in a lively conversation, gesturing animatedly with their hands.  The overall style is colorful and cheerful, with vibrant hues used for both the backgrounds and the clothing worn by the individuals. The scene exudes a sense of community and shared enjoyment, with smiles evident on many faces.   
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_009.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: A vibrant digital illustration depicts a dynamic scene set against a backdrop of swirling nebulae with hues of purple, pink, and blue.  In the foreground, two figures stand facing each other, their bodies composed of intricate geometric shapes that radiate light. One figure appears larger, wielding what resembles a sword crafted from energy, while the other raises their hand in defense, surrounded by glowing orbs. The overall style is reminiscent of science fiction fantasy, with bold lines and exaggerated proportions contributing to a sense of epic scale and action.   
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_010.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a cartoonish scene with vibrant colors and bold lines. A group of characters, each with exaggerated features and simple designs, are gathered in a circular formation. They appear to be engaged in some sort of playful interaction, possibly a game or competition, as indicated by their animated expressions and gestures. The background is filled with abstract shapes and patterns, adding to the whimsical and energetic atmosphere. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_011.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: This image depicts a scene within a bustling marketplace. Stalls overflowing with colorful fabrics, spices, and other goods line cobblestone streets.  People in brightly colored clothing haggle over prices and carry various items through the crowded space. The overall style of the image appears to be realistic, with intricate details capturing the textures and movement of the scene. Sunbeams cast warm light across the marketplace, illuminating dust motes dancing in the air.   
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_012.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a colorful scene with a distinct anime aesthetic.  A young woman with vibrant blue hair stands prominently, her expression determined as she raises a fist in front of a backdrop of swirling purple energy. Behind her, several other figures, each with unique hairstyles and outfits, seem to be engaged in combat against shadowy creatures. The overall style is dynamic and energetic, suggesting a moment of intense action within a fantasy setting.   
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_013.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a vibrant scene featuring two figures engaged in conversation against a backdrop of a bustling city.  One figure appears to be animatedly gesturing with their hands while the other leans in attentively. The style is clearly cartoonish, with exaggerated features and bold colors. Buildings in the background are rendered in simplified shapes, conveying a sense of urban energy without detailed realism. Light streams from windows and streetlamps, illuminating the scene in warm tones.  
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_014.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image features two individuals standing against a vibrant backdrop of colorful, swirling lights. One figure is holding aloft a microphone, its metallic surface reflecting the luminous environment. Both figures are dressed in sleek, futuristic attire adorned with glowing accents that seem to harmonize with the surrounding spectacle. The overall style of the image evokes a sense of energetic performance and electrifying atmosphere, suggesting a concert or stage event. 
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_015.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: A colorful illustration depicts a busy market scene teeming with activity. Stalls overflow with various goods, from vibrant fruits and vegetables to shimmering fabrics and intricate crafts. People in a variety of attire navigate the bustling crowds, their expressions conveying a mix of excitement and haggling.  The artwork features a dynamic composition with bold lines and a whimsical, almost cartoonish style. The background showcases a sun-drenched cityscape with towering structures and winding streets. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_016.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling city street scene at night.  Streetlights illuminate the wet pavement reflecting neon signs advertising various businesses. Cars drive down the road with their headlights illuminating the dark buildings on either side. People walk along the sidewalks, some appearing to be hurrying and others taking in the sights and sounds of the city. The overall style is realistic with a touch of vibrancy from the colorful lights.  There is a sense of movement and energy captured in the scene. 
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_017.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image features a woman seated on a stool with her back to the viewer. She's wearing a flowing white dress that cascades down around her. Her hair is styled in elaborate braids adorned with vibrant beads and feathers, cascading down her back. The background is composed of a textured, earthen surface that appears to be clay or terracotta.  The overall style evokes a sense of ancient ritual or ceremony, possibly inspired by indigenous cultures. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_018.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a scene set against a vibrant sunset sky filled with orange and purple hues. In the foreground, a group of people stand around a campfire, their faces illuminated by the warm flames. They appear to be gathered for a social gathering, laughing and talking amongst themselves.  The figures are stylized, with exaggerated features and simplified shapes, giving the image a whimsical and cartoonish feel.  In the background, silhouettes of trees and hills can be seen against the fiery sky, adding depth to the scene. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_019.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a whimsical scene with vibrant colors and a cartoonish style. Two figures, one taller than the other, stand facing each other, their bodies elongated and limbs bent at unusual angles. They seem to be engaged in an interaction, possibly a dance or playful chase. The background is filled with abstract shapes and swirling patterns, adding to the overall sense of surrealism.  There are bright spots of color scattered throughout the scene, further enhancing its playful and imaginative nature. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_020.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a colorful scene with several figures gathered around a table laden with food. The setting appears to be an outdoor celebration with vibrant decorations strung across a backdrop.  People in various poses interact joyfully, some seated at the table while others stand and hold glasses aloft. The overall style is lighthearted and cheerful, suggesting a festive occasion.  The scene is rendered in a way that emphasizes bright colors and playful brushstrokes, giving it a whimsical feel. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_021.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: A whimsical illustration depicts a fantastical creature with vibrant, feathery wings perched atop a cloud. Its body appears to be constructed from swirling patterns of purple and blue, resembling nebulae or cosmic dust.  Intricate details adorn its features, such as glowing eyes and horns that seem to spiral into infinity. The background showcases a starry night sky filled with twinkling lights and distant galaxies, creating a sense of awe and wonder. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_022.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a scene set at night with a cityscape visible in the distance. Several glowing figures stand on a rooftop overlooking the city, seemingly engaged in conversation or celebration. The figures appear stylized and cartoonish, rendered with bold outlines and vibrant colors against a dark background.  There are various objects scattered around the rooftop, adding to the sense of activity and perhaps hinting at a specific event or purpose for the gathering. The overall style is reminiscent of comic book art or animation, conveying a playful and energetic atmosphere. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_023.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling street scene with diverse people going about their daily lives. The style suggests a vibrant, modern city setting with brightly colored buildings and a clear blue sky. People of various ages and appearances walk, sit on benches, and interact in groups, creating a lively atmosphere. Vehicles like cars and buses move along the paved road, adding to the sense of movement and activity. 
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_024.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a vibrant, fantastical scene with characters seemingly engaged in a battle. A large, winged creature with fiery hues dominates the foreground, its outstretched wings casting shadows across the scene.  Smaller figures, some wielding weapons and shields, appear to be battling against it amidst swirling energy effects and bursts of light. The overall style is dynamic and highly detailed, suggesting a digital painting or illustration.   The background features an ethereal landscape with glowing structures and swirling nebulae, hinting at a magical or futuristic setting. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_025.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a lively scene with numerous people dressed in colorful clothing, engaged in various activities.  A central stage features someone performing, likely singing or playing an instrument, surrounded by attentive audience members. The overall style is vibrant and energetic, suggesting a festive gathering. Details like intricate patterns on clothing, decorative elements around the stage, and animated expressions of the performers and onlookers contribute to the sense of excitement and celebration. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_026.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a cartoon scene with bright colors and bold outlines.  Two figures stand facing each other, their poses suggesting playful confrontation. One figure appears to be holding something aloft, while the other raises its hands in mock surrender or defense. The background is filled with swirling patterns and geometric shapes, adding to the whimsical and energetic atmosphere of the illustration. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_027.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a whimsical scene with a fantastical creature holding aloft a glowing orb. The creature has feathery wings and a delicate, almost translucent body, its colors shimmering in hues of blue, pink, and purple. It stands upon a cloud-like platform surrounded by swirling mist, its expression one of joyful wonder. Behind the creature, a starry night sky unfolds, dotted with twinkling lights. The overall style of the image is ethereal and dreamlike, rendered in soft, pastel tones with delicate brushstrokes.  
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_028.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a scene set outdoors in the daytime. A large, brightly colored structure resembling a playground or amusement park ride dominates the foreground. It features multiple levels connected by winding paths and platforms, with children playing on various parts of it. The overall style is cartoonish and whimsical, with exaggerated proportions and bright colors. Sunlight shines down from a clear blue sky, casting long shadows across the scene. In the background, trees and hills can be seen, suggesting a natural setting. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_029.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling outdoor scene filled with colorful stalls and vibrant decorations. People from diverse backgrounds interact animatedly, some browsing goods while others engage in conversation or savor snacks. The overall style is lively and festive, with a warm color palette that suggests a celebratory atmosphere. Intricate patterns adorn the fabric awnings and banners, adding to the visual richness of the scene. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+Saved descriptions to cache at /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/_descriptions.json
+[{'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_000.jpg', 'description': 'The image depicts a vibrant street scene bathed in warm light, likely at sunset.  A bustling crowd of people fills the foreground, their colorful clothing adding to the lively atmosphere. Buildings on either side of the street feature ornate architectural details and display brightly lit windows. A large sign with glowing letters hangs above the street, advertising something unseen. The overall style is reminiscent of impressionistic art, with loose brushstrokes creating a sense of movement and energy.  \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_002.jpg', 'description': 'The image depicts a bustling scene within a large, brightly lit indoor space. Numerous figures, both men and women, are engaged in various activities. Some stand around tables laden with food and drink, while others converse animatedly or participate in games. The overall atmosphere is one of lively celebration and camaraderie.  Soft lighting illuminates the scene, creating a warm and inviting ambiance. The style of the image appears to be realistic, capturing details like intricate patterns on clothing and expressions on faces. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_003.jpg', 'description': 'A colorful illustration depicts a bustling scene with a diverse group of individuals engaged in various activities. Two figures stand prominently at the center, one holding a microphone and the other wielding a paintbrush, suggesting a performance or artistic expression. Surrounding them are smaller figures interacting with instruments, tools, and abstract shapes, hinting at music, creation, and collaboration. The overall style is vibrant and stylized, employing bold colors and dynamic lines to convey energy and movement.  \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_004.jpg', 'description': 'A young woman stands in a bustling city street, gazing up at a towering glass skyscraper adorned with colorful advertisements.  She wears modern clothing and her expression is a mix of awe and contemplation as she looks at the massive structure. The cityscape behind her is vibrant, filled with numerous buildings of varying heights and styles, while cars and people move throughout the scene below. The overall style of the image is realistic with sharp details and a sense of depth.  \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_005.jpg', 'description': 'The image depicts two figures engaged in a seemingly friendly interaction. Both individuals are dressed in colorful attire, with intricate patterns adorning their garments. One figure appears to be gesturing towards something off-screen, while the other looks on with a curious expression. The scene is rendered in a vibrant and stylized manner, suggesting a whimsical or fantastical setting.  Background elements hint at a bustling marketplace or urban environment, with various structures and signs visible. \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_006.jpg', 'description': 'The image depicts a bustling marketplace scene, filled with vibrant colors and intricate details. Stalls overflowing with various goods line narrow paths, creating a labyrinthine network for shoppers to navigate. People in colorful attire barter and haggle with vendors, their expressions conveying a mix of excitement and determination. The overall style is realistic, capturing the lively atmosphere and sensory richness of the marketplace.  Sunlight streams through gaps in awnings, casting dappled shadows on the ground. \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_007.jpg', 'description': 'The image depicts a woman standing in a lush green field. Her body is positioned facing slightly away from the viewer, with her arms outstretched towards the sky. She is wearing flowing clothing that appears to be white, billowing gently in a light breeze.  A faint golden light bathes the scene, casting long shadows and creating a warm, ethereal atmosphere. The background is dominated by rolling hills and a bright blue sky dotted with fluffy clouds.  \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_008.jpg', 'description': 'The image depicts a large, open space with a bright sun shining down from above. A group of people are gathered in the foreground, some standing and others sitting on wooden benches. They appear to be engaged in a lively conversation, gesturing animatedly with their hands.  The overall style is colorful and cheerful, with vibrant hues used for both the backgrounds and the clothing worn by the individuals. The scene exudes a sense of community and shared enjoyment, with smiles evident on many faces.   \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_009.jpg', 'description': 'A vibrant digital illustration depicts a dynamic scene set against a backdrop of swirling nebulae with hues of purple, pink, and blue.  In the foreground, two figures stand facing each other, their bodies composed of intricate geometric shapes that radiate light. One figure appears larger, wielding what resembles a sword crafted from energy, while the other raises their hand in defense, surrounded by glowing orbs. The overall style is reminiscent of science fiction fantasy, with bold lines and exaggerated proportions contributing to a sense of epic scale and action.   \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_010.jpg', 'description': 'The image depicts a cartoonish scene with vibrant colors and bold lines. A group of characters, each with exaggerated features and simple designs, are gathered in a circular formation. They appear to be engaged in some sort of playful interaction, possibly a game or competition, as indicated by their animated expressions and gestures. The background is filled with abstract shapes and patterns, adding to the whimsical and energetic atmosphere. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_011.jpg', 'description': 'This image depicts a scene within a bustling marketplace. Stalls overflowing with colorful fabrics, spices, and other goods line cobblestone streets.  People in brightly colored clothing haggle over prices and carry various items through the crowded space. The overall style of the image appears to be realistic, with intricate details capturing the textures and movement of the scene. Sunbeams cast warm light across the marketplace, illuminating dust motes dancing in the air.   \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_012.jpg', 'description': 'The image depicts a colorful scene with a distinct anime aesthetic.  A young woman with vibrant blue hair stands prominently, her expression determined as she raises a fist in front of a backdrop of swirling purple energy. Behind her, several other figures, each with unique hairstyles and outfits, seem to be engaged in combat against shadowy creatures. The overall style is dynamic and energetic, suggesting a moment of intense action within a fantasy setting.   \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_013.jpg', 'description': 'The image depicts a vibrant scene featuring two figures engaged in conversation against a backdrop of a bustling city.  One figure appears to be animatedly gesturing with their hands while the other leans in attentively. The style is clearly cartoonish, with exaggerated features and bold colors. Buildings in the background are rendered in simplified shapes, conveying a sense of urban energy without detailed realism. Light streams from windows and streetlamps, illuminating the scene in warm tones.  \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_014.jpg', 'description': 'The image features two individuals standing against a vibrant backdrop of colorful, swirling lights. One figure is holding aloft a microphone, its metallic surface reflecting the luminous environment. Both figures are dressed in sleek, futuristic attire adorned with glowing accents that seem to harmonize with the surrounding spectacle. The overall style of the image evokes a sense of energetic performance and electrifying atmosphere, suggesting a concert or stage event. \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_015.jpg', 'description': 'A colorful illustration depicts a busy market scene teeming with activity. Stalls overflow with various goods, from vibrant fruits and vegetables to shimmering fabrics and intricate crafts. People in a variety of attire navigate the bustling crowds, their expressions conveying a mix of excitement and haggling.  The artwork features a dynamic composition with bold lines and a whimsical, almost cartoonish style. The background showcases a sun-drenched cityscape with towering structures and winding streets. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_016.jpg', 'description': 'The image depicts a bustling city street scene at night.  Streetlights illuminate the wet pavement reflecting neon signs advertising various businesses. Cars drive down the road with their headlights illuminating the dark buildings on either side. People walk along the sidewalks, some appearing to be hurrying and others taking in the sights and sounds of the city. The overall style is realistic with a touch of vibrancy from the colorful lights.  There is a sense of movement and energy captured in the scene. \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_017.jpg', 'description': "The image features a woman seated on a stool with her back to the viewer. She's wearing a flowing white dress that cascades down around her. Her hair is styled in elaborate braids adorned with vibrant beads and feathers, cascading down her back. The background is composed of a textured, earthen surface that appears to be clay or terracotta.  The overall style evokes a sense of ancient ritual or ceremony, possibly inspired by indigenous cultures. \n\n\n"}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_018.jpg', 'description': 'The image depicts a scene set against a vibrant sunset sky filled with orange and purple hues. In the foreground, a group of people stand around a campfire, their faces illuminated by the warm flames. They appear to be gathered for a social gathering, laughing and talking amongst themselves.  The figures are stylized, with exaggerated features and simplified shapes, giving the image a whimsical and cartoonish feel.  In the background, silhouettes of trees and hills can be seen against the fiery sky, adding depth to the scene. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_019.jpg', 'description': 'The image depicts a whimsical scene with vibrant colors and a cartoonish style. Two figures, one taller than the other, stand facing each other, their bodies elongated and limbs bent at unusual angles. They seem to be engaged in an interaction, possibly a dance or playful chase. The background is filled with abstract shapes and swirling patterns, adding to the overall sense of surrealism.  There are bright spots of color scattered throughout the scene, further enhancing its playful and imaginative nature. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_020.jpg', 'description': 'The image depicts a colorful scene with several figures gathered around a table laden with food. The setting appears to be an outdoor celebration with vibrant decorations strung across a backdrop.  People in various poses interact joyfully, some seated at the table while others stand and hold glasses aloft. The overall style is lighthearted and cheerful, suggesting a festive occasion.  The scene is rendered in a way that emphasizes bright colors and playful brushstrokes, giving it a whimsical feel. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_021.jpg', 'description': 'A whimsical illustration depicts a fantastical creature with vibrant, feathery wings perched atop a cloud. Its body appears to be constructed from swirling patterns of purple and blue, resembling nebulae or cosmic dust.  Intricate details adorn its features, such as glowing eyes and horns that seem to spiral into infinity. The background showcases a starry night sky filled with twinkling lights and distant galaxies, creating a sense of awe and wonder. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_022.jpg', 'description': 'The image depicts a scene set at night with a cityscape visible in the distance. Several glowing figures stand on a rooftop overlooking the city, seemingly engaged in conversation or celebration. The figures appear stylized and cartoonish, rendered with bold outlines and vibrant colors against a dark background.  There are various objects scattered around the rooftop, adding to the sense of activity and perhaps hinting at a specific event or purpose for the gathering. The overall style is reminiscent of comic book art or animation, conveying a playful and energetic atmosphere. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_023.jpg', 'description': 'The image depicts a bustling street scene with diverse people going about their daily lives. The style suggests a vibrant, modern city setting with brightly colored buildings and a clear blue sky. People of various ages and appearances walk, sit on benches, and interact in groups, creating a lively atmosphere. Vehicles like cars and buses move along the paved road, adding to the sense of movement and activity. \n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_024.jpg', 'description': 'The image depicts a vibrant, fantastical scene with characters seemingly engaged in a battle. A large, winged creature with fiery hues dominates the foreground, its outstretched wings casting shadows across the scene.  Smaller figures, some wielding weapons and shields, appear to be battling against it amidst swirling energy effects and bursts of light. The overall style is dynamic and highly detailed, suggesting a digital painting or illustration.   The background features an ethereal landscape with glowing structures and swirling nebulae, hinting at a magical or futuristic setting. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_025.jpg', 'description': 'The image depicts a lively scene with numerous people dressed in colorful clothing, engaged in various activities.  A central stage features someone performing, likely singing or playing an instrument, surrounded by attentive audience members. The overall style is vibrant and energetic, suggesting a festive gathering. Details like intricate patterns on clothing, decorative elements around the stage, and animated expressions of the performers and onlookers contribute to the sense of excitement and celebration. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_026.jpg', 'description': 'The image depicts a cartoon scene with bright colors and bold outlines.  Two figures stand facing each other, their poses suggesting playful confrontation. One figure appears to be holding something aloft, while the other raises its hands in mock surrender or defense. The background is filled with swirling patterns and geometric shapes, adding to the whimsical and energetic atmosphere of the illustration. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_027.jpg', 'description': 'The image depicts a whimsical scene with a fantastical creature holding aloft a glowing orb. The creature has feathery wings and a delicate, almost translucent body, its colors shimmering in hues of blue, pink, and purple. It stands upon a cloud-like platform surrounded by swirling mist, its expression one of joyful wonder. Behind the creature, a starry night sky unfolds, dotted with twinkling lights. The overall style of the image is ethereal and dreamlike, rendered in soft, pastel tones with delicate brushstrokes.  \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_028.jpg', 'description': 'The image depicts a scene set outdoors in the daytime. A large, brightly colored structure resembling a playground or amusement park ride dominates the foreground. It features multiple levels connected by winding paths and platforms, with children playing on various parts of it. The overall style is cartoonish and whimsical, with exaggerated proportions and bright colors. Sunlight shines down from a clear blue sky, casting long shadows across the scene. In the background, trees and hills can be seen, suggesting a natural setting. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_029.jpg', 'description': 'The image depicts a bustling outdoor scene filled with colorful stalls and vibrant decorations. People from diverse backgrounds interact animatedly, some browsing goods while others engage in conversation or savor snacks. The overall style is lively and festive, with a warm color palette that suggests a celebratory atmosphere. Intricate patterns adorn the fabric awnings and banners, adding to the visual richness of the scene. \n\n\n'}] AAAAABBBBBCCCC
+[ERROR] Attempt 1 failed!
+Exception type: error
+Exception message: OpenCV(4.12.0) :-1: error: (-5:Bad argument) in function 'imread'
+> Overload resolution failed:
+>  - Expected 'filename' to be a str or path-like object
+>  - Expected 'filename' to be a str or path-like object
+>  - Expected 'filename' to be a str or path-like object
+
+Stack trace:
+Traceback (most recent call last):
+  File "/home/riosshin/code/videoAI/src/main.py", line 50, in run
+    return func(*params)
+  File "/home/riosshin/code/videoAI/src/contextImgSearcher.py", line 122, in imgSearch
+    image_files = removeUsedImgs(available_files)
+  File "/home/riosshin/code/videoAI/src/contextImgSearcher.py", line 26, in removeUsedImgs
+    img1 = cv2.imread(img1Path, cv2.IMREAD_GRAYSCALE)
+cv2.error: OpenCV(4.12.0) :-1: error: (-5:Bad argument) in function 'imread'
+> Overload resolution failed:
+>  - Expected 'filename' to be a str or path-like object
+>  - Expected 'filename' to be a str or path-like object
+>  - Expected 'filename' to be a str or path-like object
+
+START OF PROMPT  --------------------------------------------
+ 
+You are an expert AI assistant specializing in visual storytelling. Your task is to analyze a video's title and a relevant quote to generate the **most visually effective Google Image search query**. This query should center on the core subject but can be made more specific if the context points to a highly famous, visually documented event associated with that subject.
+
+---
+## Critical Rules
+
+1.  **The Specificity Principle (Most Important Rule)**: Your primary goal is to identify the core subject's full, canonical name.
+    * **Default Behavior**: In most cases, the query will be **only** the subject's full name (e.g., a person, organization, or base event).
+    * **Exception for Famous Events**: If the title or quote *explicitly* references a **highly famous and visually distinct event, trial, scandal, or performance** uniquely associated with the subject, you should append that event to the name. This is only for events that have a rich, well-known visual record of their own (e.g., "O.J. Simpson trial," "Michael Jackson moonwalk").
+    * **What to Avoid**: **Never** add generic, descriptive words like "photo," "case," "incident," "childhood," or "perpetrator." The added context must be a proper noun or a widely recognized named event.
+
+2.  **Use the Subject's Native Language**: The language of the query must match the origin of the subject to find the most authentic and numerous images.
+    * If the subject is **Chinese**, the query must be in **Chinese characters**.
+    * If the subject is **American**, the query must be in **English**.
+    * If the subject is **Japanese**, the query must be in **Japanese**.
+
+3.  **Use Full, Canonical Names**: Always expand partial or incomplete names to their most recognizable, official form. For Western names, this includes first and last names.
+
+---
+## Step-by-Step Guide
+
+1.  **Identify the Core Subject**: Read the title and quote to determine the central person, event, or location being discussed.
+2.  **Analyze the Context**: Determine if the title or quote refers to a *specific, famous, and visually-rich event* directly associated with the core subject.
+3.  **Determine the Subject's Origin**: Based on the name and context, identify the subject's nationality or primary language.
+4.  **Construct the Query**:
+    * First, find the subject's full, canonical name in its native language (e.g., `周克华`, `Bernie Madoff`).
+    * If a famous associated event was identified in Step 2, append its common name to the query (e.g., `O.J. Simpson trial`).
+    * Otherwise, use only the subject's canonical name.
+5.  **Generate the Final Query**: The final query is the result from the previous step.
+
+---
+## Examples
+
+**Example 1: Default Behavior (Chinese Subject)**
+* **Title**: `チョウクホア最凶の強盗犯` (The Most Vicious Robber, Zhou Kehua)
+* **Quote**: `あなたは知っていますか。闇に生き、凶行を重ねた男を。` (Do you know the man who lived in darkness and committed heinous acts?)
+* **Correct Query**: `"周克华"`
+* **Reasoning**: The subject, Zhou Kehua, is Chinese. While he committed crimes, there isn't one single, named event famous enough to append. The most effective query is his canonical name in Chinese.
+
+**Example 2: Exception - Famous Trial (American Subject)**
+* **Title**: `The Trial of the Century: O.J.`
+* **Quote**: `The infamous Bronco chase and the glove that didn't fit.`
+* **Correct Query**: `"O.J. Simpson trial"`
+* **Reasoning**: The subject is O.J. Simpson, but the title and quote are not about his general life; they are specifically about his murder trial, an event with its own massive and distinct visual record. "O.J. Simpson" alone would be too broad.
+
+**Example 3: Exception - Famous Performance (American Subject)**
+* **Title**: `キング・オブ・ポップの伝説のムーンウォーク` (The King of Pop's Legendary Moonwalk)
+* **Quote**: `The moment he first performed the iconic dance during 'Billie Jean' at Motown 25.`
+* **Correct Query**: `"Michael Jackson moonwalk"`
+* **Reasoning**: The context is not just Michael Jackson, but his single most iconic performance. Searching for "Michael Jackson moonwalk" will yield far more relevant images for this specific story than just his name.
+
+**Example 4: Default Behavior (Japanese Event)**
+* **Title**: `地下鉄サリン事件の恐怖` (Terror of the Subway Sarin Incident)
+* **Quote**: `The attack on the Tokyo subway system.`
+* **Correct Query**: `"地下鉄サリン事件"`
+* **Reasoning**: The subject is the event itself. It's already a specific, proper noun. No further context is needed.
+
+---
+Input
+**Video Title**: 大坂なおみの真実隠された才能
+**Quote to Visualize**: 世界ランク１位、わずか２年でグランドスラムを４度も制した天才、大坂なおみ。
+
+---
+## Output Format
+
+Your output must be in **strict JSON format only**, with no other text or explanations.
+
+```json
+{
+  "query": "Your generated search query here"
+}```
+
+END OF PROMPT  --------------------------------------------
+
+LLM output: ```json
+{
+  "query": "大坂なおみ"
+}
+```
+
+END OF LLM OUTPUT --------------------------------------------
+
+{'query': '大坂なおみ'} this is the extracted output
+'大坂なおみ' descriptions found in cache. Loading from /home/riosshin/code/videoAI/media/refImgs/大坂なおみ/_descriptions.json
+[{'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_000.jpg', 'description': 'The image depicts a vibrant street scene bathed in warm light, likely at sunset.  A bustling crowd of people fills the foreground, their colorful clothing adding to the lively atmosphere. Buildings on either side of the street feature ornate architectural details and display brightly lit windows. A large sign with glowing letters hangs above the street, advertising something unseen. The overall style is reminiscent of impressionistic art, with loose brushstrokes creating a sense of movement and energy.  \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_002.jpg', 'description': 'The image depicts a bustling scene within a large, brightly lit indoor space. Numerous figures, both men and women, are engaged in various activities. Some stand around tables laden with food and drink, while others converse animatedly or participate in games. The overall atmosphere is one of lively celebration and camaraderie.  Soft lighting illuminates the scene, creating a warm and inviting ambiance. The style of the image appears to be realistic, capturing details like intricate patterns on clothing and expressions on faces. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_003.jpg', 'description': 'A colorful illustration depicts a bustling scene with a diverse group of individuals engaged in various activities. Two figures stand prominently at the center, one holding a microphone and the other wielding a paintbrush, suggesting a performance or artistic expression. Surrounding them are smaller figures interacting with instruments, tools, and abstract shapes, hinting at music, creation, and collaboration. The overall style is vibrant and stylized, employing bold colors and dynamic lines to convey energy and movement.  \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_004.jpg', 'description': 'A young woman stands in a bustling city street, gazing up at a towering glass skyscraper adorned with colorful advertisements.  She wears modern clothing and her expression is a mix of awe and contemplation as she looks at the massive structure. The cityscape behind her is vibrant, filled with numerous buildings of varying heights and styles, while cars and people move throughout the scene below. The overall style of the image is realistic with sharp details and a sense of depth.  \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_005.jpg', 'description': 'The image depicts two figures engaged in a seemingly friendly interaction. Both individuals are dressed in colorful attire, with intricate patterns adorning their garments. One figure appears to be gesturing towards something off-screen, while the other looks on with a curious expression. The scene is rendered in a vibrant and stylized manner, suggesting a whimsical or fantastical setting.  Background elements hint at a bustling marketplace or urban environment, with various structures and signs visible. \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_006.jpg', 'description': 'The image depicts a bustling marketplace scene, filled with vibrant colors and intricate details. Stalls overflowing with various goods line narrow paths, creating a labyrinthine network for shoppers to navigate. People in colorful attire barter and haggle with vendors, their expressions conveying a mix of excitement and determination. The overall style is realistic, capturing the lively atmosphere and sensory richness of the marketplace.  Sunlight streams through gaps in awnings, casting dappled shadows on the ground. \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_007.jpg', 'description': 'The image depicts a woman standing in a lush green field. Her body is positioned facing slightly away from the viewer, with her arms outstretched towards the sky. She is wearing flowing clothing that appears to be white, billowing gently in a light breeze.  A faint golden light bathes the scene, casting long shadows and creating a warm, ethereal atmosphere. The background is dominated by rolling hills and a bright blue sky dotted with fluffy clouds.  \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_008.jpg', 'description': 'The image depicts a large, open space with a bright sun shining down from above. A group of people are gathered in the foreground, some standing and others sitting on wooden benches. They appear to be engaged in a lively conversation, gesturing animatedly with their hands.  The overall style is colorful and cheerful, with vibrant hues used for both the backgrounds and the clothing worn by the individuals. The scene exudes a sense of community and shared enjoyment, with smiles evident on many faces.   \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_009.jpg', 'description': 'A vibrant digital illustration depicts a dynamic scene set against a backdrop of swirling nebulae with hues of purple, pink, and blue.  In the foreground, two figures stand facing each other, their bodies composed of intricate geometric shapes that radiate light. One figure appears larger, wielding what resembles a sword crafted from energy, while the other raises their hand in defense, surrounded by glowing orbs. The overall style is reminiscent of science fiction fantasy, with bold lines and exaggerated proportions contributing to a sense of epic scale and action.   \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_010.jpg', 'description': 'The image depicts a cartoonish scene with vibrant colors and bold lines. A group of characters, each with exaggerated features and simple designs, are gathered in a circular formation. They appear to be engaged in some sort of playful interaction, possibly a game or competition, as indicated by their animated expressions and gestures. The background is filled with abstract shapes and patterns, adding to the whimsical and energetic atmosphere. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_011.jpg', 'description': 'This image depicts a scene within a bustling marketplace. Stalls overflowing with colorful fabrics, spices, and other goods line cobblestone streets.  People in brightly colored clothing haggle over prices and carry various items through the crowded space. The overall style of the image appears to be realistic, with intricate details capturing the textures and movement of the scene. Sunbeams cast warm light across the marketplace, illuminating dust motes dancing in the air.   \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_012.jpg', 'description': 'The image depicts a colorful scene with a distinct anime aesthetic.  A young woman with vibrant blue hair stands prominently, her expression determined as she raises a fist in front of a backdrop of swirling purple energy. Behind her, several other figures, each with unique hairstyles and outfits, seem to be engaged in combat against shadowy creatures. The overall style is dynamic and energetic, suggesting a moment of intense action within a fantasy setting.   \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_013.jpg', 'description': 'The image depicts a vibrant scene featuring two figures engaged in conversation against a backdrop of a bustling city.  One figure appears to be animatedly gesturing with their hands while the other leans in attentively. The style is clearly cartoonish, with exaggerated features and bold colors. Buildings in the background are rendered in simplified shapes, conveying a sense of urban energy without detailed realism. Light streams from windows and streetlamps, illuminating the scene in warm tones.  \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_014.jpg', 'description': 'The image features two individuals standing against a vibrant backdrop of colorful, swirling lights. One figure is holding aloft a microphone, its metallic surface reflecting the luminous environment. Both figures are dressed in sleek, futuristic attire adorned with glowing accents that seem to harmonize with the surrounding spectacle. The overall style of the image evokes a sense of energetic performance and electrifying atmosphere, suggesting a concert or stage event. \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_015.jpg', 'description': 'A colorful illustration depicts a busy market scene teeming with activity. Stalls overflow with various goods, from vibrant fruits and vegetables to shimmering fabrics and intricate crafts. People in a variety of attire navigate the bustling crowds, their expressions conveying a mix of excitement and haggling.  The artwork features a dynamic composition with bold lines and a whimsical, almost cartoonish style. The background showcases a sun-drenched cityscape with towering structures and winding streets. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_016.jpg', 'description': 'The image depicts a bustling city street scene at night.  Streetlights illuminate the wet pavement reflecting neon signs advertising various businesses. Cars drive down the road with their headlights illuminating the dark buildings on either side. People walk along the sidewalks, some appearing to be hurrying and others taking in the sights and sounds of the city. The overall style is realistic with a touch of vibrancy from the colorful lights.  There is a sense of movement and energy captured in the scene. \n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_017.jpg', 'description': "The image features a woman seated on a stool with her back to the viewer. She's wearing a flowing white dress that cascades down around her. Her hair is styled in elaborate braids adorned with vibrant beads and feathers, cascading down her back. The background is composed of a textured, earthen surface that appears to be clay or terracotta.  The overall style evokes a sense of ancient ritual or ceremony, possibly inspired by indigenous cultures. \n\n\n"}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_018.jpg', 'description': 'The image depicts a scene set against a vibrant sunset sky filled with orange and purple hues. In the foreground, a group of people stand around a campfire, their faces illuminated by the warm flames. They appear to be gathered for a social gathering, laughing and talking amongst themselves.  The figures are stylized, with exaggerated features and simplified shapes, giving the image a whimsical and cartoonish feel.  In the background, silhouettes of trees and hills can be seen against the fiery sky, adding depth to the scene. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_019.jpg', 'description': 'The image depicts a whimsical scene with vibrant colors and a cartoonish style. Two figures, one taller than the other, stand facing each other, their bodies elongated and limbs bent at unusual angles. They seem to be engaged in an interaction, possibly a dance or playful chase. The background is filled with abstract shapes and swirling patterns, adding to the overall sense of surrealism.  There are bright spots of color scattered throughout the scene, further enhancing its playful and imaginative nature. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_020.jpg', 'description': 'The image depicts a colorful scene with several figures gathered around a table laden with food. The setting appears to be an outdoor celebration with vibrant decorations strung across a backdrop.  People in various poses interact joyfully, some seated at the table while others stand and hold glasses aloft. The overall style is lighthearted and cheerful, suggesting a festive occasion.  The scene is rendered in a way that emphasizes bright colors and playful brushstrokes, giving it a whimsical feel. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_021.jpg', 'description': 'A whimsical illustration depicts a fantastical creature with vibrant, feathery wings perched atop a cloud. Its body appears to be constructed from swirling patterns of purple and blue, resembling nebulae or cosmic dust.  Intricate details adorn its features, such as glowing eyes and horns that seem to spiral into infinity. The background showcases a starry night sky filled with twinkling lights and distant galaxies, creating a sense of awe and wonder. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_022.jpg', 'description': 'The image depicts a scene set at night with a cityscape visible in the distance. Several glowing figures stand on a rooftop overlooking the city, seemingly engaged in conversation or celebration. The figures appear stylized and cartoonish, rendered with bold outlines and vibrant colors against a dark background.  There are various objects scattered around the rooftop, adding to the sense of activity and perhaps hinting at a specific event or purpose for the gathering. The overall style is reminiscent of comic book art or animation, conveying a playful and energetic atmosphere. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_023.jpg', 'description': 'The image depicts a bustling street scene with diverse people going about their daily lives. The style suggests a vibrant, modern city setting with brightly colored buildings and a clear blue sky. People of various ages and appearances walk, sit on benches, and interact in groups, creating a lively atmosphere. Vehicles like cars and buses move along the paved road, adding to the sense of movement and activity. \n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_024.jpg', 'description': 'The image depicts a vibrant, fantastical scene with characters seemingly engaged in a battle. A large, winged creature with fiery hues dominates the foreground, its outstretched wings casting shadows across the scene.  Smaller figures, some wielding weapons and shields, appear to be battling against it amidst swirling energy effects and bursts of light. The overall style is dynamic and highly detailed, suggesting a digital painting or illustration.   The background features an ethereal landscape with glowing structures and swirling nebulae, hinting at a magical or futuristic setting. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_025.jpg', 'description': 'The image depicts a lively scene with numerous people dressed in colorful clothing, engaged in various activities.  A central stage features someone performing, likely singing or playing an instrument, surrounded by attentive audience members. The overall style is vibrant and energetic, suggesting a festive gathering. Details like intricate patterns on clothing, decorative elements around the stage, and animated expressions of the performers and onlookers contribute to the sense of excitement and celebration. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_026.jpg', 'description': 'The image depicts a cartoon scene with bright colors and bold outlines.  Two figures stand facing each other, their poses suggesting playful confrontation. One figure appears to be holding something aloft, while the other raises its hands in mock surrender or defense. The background is filled with swirling patterns and geometric shapes, adding to the whimsical and energetic atmosphere of the illustration. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_027.jpg', 'description': 'The image depicts a whimsical scene with a fantastical creature holding aloft a glowing orb. The creature has feathery wings and a delicate, almost translucent body, its colors shimmering in hues of blue, pink, and purple. It stands upon a cloud-like platform surrounded by swirling mist, its expression one of joyful wonder. Behind the creature, a starry night sky unfolds, dotted with twinkling lights. The overall style of the image is ethereal and dreamlike, rendered in soft, pastel tones with delicate brushstrokes.  \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_028.jpg', 'description': 'The image depicts a scene set outdoors in the daytime. A large, brightly colored structure resembling a playground or amusement park ride dominates the foreground. It features multiple levels connected by winding paths and platforms, with children playing on various parts of it. The overall style is cartoonish and whimsical, with exaggerated proportions and bright colors. Sunlight shines down from a clear blue sky, casting long shadows across the scene. In the background, trees and hills can be seen, suggesting a natural setting. \n\n\n'}, {'path': '/home/riosshin/code/videoAI/media/refImgs/大坂なおみ/img_029.jpg', 'description': 'The image depicts a bustling outdoor scene filled with colorful stalls and vibrant decorations. People from diverse backgrounds interact animatedly, some browsing goods while others engage in conversation or savor snacks. The overall style is lively and festive, with a warm color palette that suggests a celebratory atmosphere. Intricate patterns adorn the fabric awnings and banners, adding to the visual richness of the scene. \n\n\n'}] AAAAABBBBBCCCC
+[ERROR] Attempt 2 failed!
+Exception type: error
+Exception message: OpenCV(4.12.0) :-1: error: (-5:Bad argument) in function 'imread'
+> Overload resolution failed:
+>  - Expected 'filename' to be a str or path-like object
+>  - Expected 'filename' to be a str or path-like object
+>  - Expected 'filename' to be a str or path-like object
+
+Stack trace:
+Traceback (most recent call last):
+  File "/home/riosshin/code/videoAI/src/main.py", line 50, in run
+    return func(*params)
+  File "/home/riosshin/code/videoAI/src/contextImgSearcher.py", line 122, in imgSearch
+    image_files = removeUsedImgs(available_files)
+  File "/home/riosshin/code/videoAI/src/contextImgSearcher.py", line 26, in removeUsedImgs
+    img1 = cv2.imread(img1Path, cv2.IMREAD_GRAYSCALE)
+cv2.error: OpenCV(4.12.0) :-1: error: (-5:Bad argument) in function 'imread'
+> Overload resolution failed:
+>  - Expected 'filename' to be a str or path-like object
+>  - Expected 'filename' to be a str or path-like object
+>  - Expected 'filename' to be a str or path-like object
+

@@ -17,9 +17,9 @@ import os
 from datetime import datetime, timedelta
 
 from .configFile import Config
-config = Config
-uploadTimesPST= config.uploadTimesPST
-uploadTimesJST= config.uploadTimesJST
+cfg = Config()
+uploadTimesPST= cfg.uploadTimesPST
+uploadTimesJST= cfg.uploadTimesJST
 
 STATE_FILE = "tools/time.json"
 

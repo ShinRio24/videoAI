@@ -185,8 +185,7 @@ async def run_main_subprocess(title: str) -> int:
             line = await asyncio.wait_for(current_proc.stdout.readline(), timeout=1.0)
 
             if not line:
-                # EOF (End of File) means the process finished
-                print("[SUBPROCESS] EOF detected. Process finished.")
+                print("[SUBPROCESS] Process finished.")
                 break
 
             # Print the output from the subprocess in real-time
@@ -239,7 +238,7 @@ async def queue_worker():
             else:
                 # FAILURE: The task failed.
                 print(f"[QUEUE] ❌ Task '{current_task}' failed. It will remain in the queue file for the next run.")
-                sendUpdate(f"❌ Task FAILED (Code {exit_code}): {current_task}\nIt will be retried on next start.")
+                sendUpdate(f"❌ Task FAILED (Code {exit_code}): {current_task}\nIt will be retried on next start.",main=True)
                 # We do not modify the in-memory queue, it will be saved on shutdown.
                 # To prevent immediate retry, you can add a sleep or move to a failed queue.
 

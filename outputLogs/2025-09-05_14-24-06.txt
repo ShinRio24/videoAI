@@ -1,0 +1,522 @@
+
+Generating script abe shinzo
+START OF PROMPT  --------------------------------------------
+ 
+あなたはプロの日本語YouTubeスクリプトライターです。与えられた人物について、視聴者の興味を引く短い事実をまとめたスクリプトを作成します。
+
+### Task Breakdown:
+**Theme:**
+まず、テーマ「abe shinzo」
+
+⚠️ Core Principles ⚠️
+名前から始める (Start with the Name): スクリプトの最初のフレーズは、必ず主役のフルネームから始めてください。
+
+例:「大谷翔平は、平均的な会社員の100倍稼ぎながら、ユニクロの500円のシャツを着ています。」
+
+事実のみを語る (Tell only Facts): 提示する情報は、すべて具体的で検証可能な事実にしてください。噂や抽象的な表現は使わず、数字や固有名詞を盛り込みます。
+
+事実を物語にする (Narrate with Facts): スクリプト全体の構成として、3〜4つの意外な事実を選び出します。1つの事実は、文脈を作ったり詳細を加えたりするために、複数のフレーズに分けて説明することができます。
+
+⚙️ Technical & Style Requirements ⚙️
+Length & Structure: スクリプトは全体で合計8〜14個のフレーズで構成してください。これらのフレーズで、3〜4つの中心的な事実を説明します。
+
+Phrase Length: 各フレーズは、30〜50文字程度にしてください。
+
+Conversational Tone: です・ます調を基本に、「なんです」「だったんですね」のような多様な語尾で会話のリズムを作ります。読点（、）を効果的に使い、テンポを演出してください。
+
+Prohibitions: 引用符（「」『』""）、（笑）や特殊記号は一切使用しないでください。
+
+### Output Format:
+必ず次のJSONフォーマットに従ってください。他のテキストは絶対に出力しないでください。
+
+```json
+{
+ "Script": [
+  "ここに「起」のパートが入ります。",
+  "次に「承」のパートが続きます。",
+  "そして物語の転換点である「転」。",
+  "最後に「結」で締めくくります。"
+ ]
+}```
+
+
+used gemeni
+END OF PROMPT  --------------------------------------------
+
+LLM output: ```json
+{
+ "Script": [
+  "安倍晋三は、祖父に岸信介元総理、大叔父に佐藤栄作元総理を持つ政治家でした。",
+  "彼ら二人は日本の歴史に名を刻んだ、偉大な総理大臣だったんです。",
+  "彼は戦後歴代総理の中で、最も若い５２歳で初当選を果たしました。",
+  "そして、再登板後は通算在職日数が歴代最長となる３１８８日を記録したんですね。",
+  "政治家になる前は、神戸製鋼所で会社員として勤務していた時期がありました。",
+  "ビジネス経験を積んだ後、秘書官として政治の道へ進んだのです。",
+  "持病である潰瘍性大腸炎により、二度にわたり総理の座を辞任しています。",
+  "体調と向き合いながら、日本の舵を取り続けた人物だったんですね。"
+ ]
+}
+```
+END OF LLM OUTPUT --------------------------------------------
+
+{'Script': ['安倍晋三は、祖父に岸信介元総理、大叔父に佐藤栄作元総理を持つ政治家でした。', '彼ら二人は日本の歴史に名を刻んだ、偉大な総理大臣だったんです。', '彼は戦後歴代総理の中で、最も若い５２歳で初当選を果たしました。', 'そして、再登板後は通算在職日数が歴代最長となる３１８８日を記録したんですね。', '政治家になる前は、神戸製鋼所で会社員として勤務していた時期がありました。', 'ビジネス経験を積んだ後、秘書官として政治の道へ進んだのです。', '持病である潰瘍性大腸炎により、二度にわたり総理の座を辞任しています。', '体調と向き合いながら、日本の舵を取り続けた人物だったんですね。']} this is the extracted output
+['安倍晋三は、祖父に岸信介元総理、大叔父に佐藤栄作元総理を持つ政治家でした。', '彼ら二人は日本の歴史に名を刻んだ、偉大な総理大臣だったんです。', '彼は戦後歴代総理の中で、最も若い５２歳で初当選を果たしました。', 'そして、再登板後は通算在職日数が歴代最長となる３１８８日を記録したんですね。', '政治家になる前は、神戸製鋼所で会社員として勤務していた時期がありました。', 'ビジネス経験を積んだ後、秘書官として政治の道へ進んだのです。', '持病である潰瘍性大腸炎により、二度にわたり総理の座を辞任しています。', '体調と向き合いながら、日本の舵を取り続けた人物だったんですね。']
+START OF PROMPT  --------------------------------------------
+ 
+あなたは、数々のショート動画を100万回再生させてきた、プロの日本語YouTubeプロデューサーです。
+
+### タスク
+以下のトピックを基に、視聴者の知的好奇心を強烈に刺激し、思わずクリックしてしまうような**日本語タイトルを1つだけ**考案してください。
+
+### 最高のタイトルを作るための原則
+
+1.  **好奇心を最大化せよ:** 「〇〇の真実」「〇〇に隠された秘密」のように、視聴者が「答えを知りたい！」と思うような、謎や秘密をほのめかすこと。事実を説明するのではなく、好奇心を煽ること。
+2. 物語のトーンに合う「パワーワード」を選ぶ (Choose a "Power Word" that Fits the Story's Tone)
+
+タイトルに読者の感情を揺さぶるような強力な単語（パワーワード）を使い、一瞬で興味を引くことが重要です。物語が持つ雰囲気（ポジティブ、ネガティブ、ミステリアスなど）に合わせて、最適な言葉を選びましょう。
+
+* **感動・希望を与える物語 (For inspiring or hopeful stories):**
+    * **例:** `伝説 (Legend), 奇跡 (Miracle), 天才 (Genius), 覚醒 (Awakening), 栄光 (Glory), 希望 (Hope), 革命 (Revolution)`
+
+* **衝撃・悲劇性を強調する物語 (For shocking or tragic stories):**
+    * **例:** `悲劇 (Tragedy), 衝撃 (Shock), 禁断 (Forbidden), 闇 (Darkness), 崩壊 (Collapse), 絶望 (Despair), 孤独 (Loneliness)`
+
+* **謎・真実を追求する物語 (For mysterious or truth-seeking stories):**
+    * **例:** `真実 (Truth), 謎 (Mystery), 秘密 (Secret), 裏側 (The Other Side), 運命 (Destiny), 正体 (True Identity)`
+3.  **簡潔に、しかし強力に:** タイトルは**20文字以内**を目安に、不要な言葉を削ぎ落とし、最もインパクトのある部分だけを残すこと。
+
+### 実績のあるタイトルパターン（これらを創造的に組み合わせよ）
+
+* **秘密・暴露型 (The Secret/Revelation):** 最も強力なパターン。視聴者が知らないであろう情報を示唆する。
+    * *例:* `【名前】に隠された禁断の真実`
+    * *例:* `メディアが報じない【名前】の裏側`
+
+* **言い切り型 (The Bold Declaration):** 対象を大胆な言葉で定義し、強い印象を与える。
+    * *例:* `世界を騙した天才詐欺師【名前】`
+    * *例:* `歴史を塗り替えた男【名前】`
+
+* **問いかけ型 (The Question):** 視聴者に直接質問を投げかけ、考えさせることでエンゲージメントを高める。
+    * *例:* `なぜ【名前】は〇〇したのか？`
+
+### ⚠️絶対的なルール⚠️
+-   完成したタイトルのみを出力し、他のテキストは一切含めないこと。
+-   必ずトピックの固有名詞（名前）をタイトルに含めること。
+-   絵文字、句読点（、。）、記号（「」？！）は一切使用しない。
+
+### 悪い例 vs 良い例
+-   **トピック:** Donald Trump
+-   **悪いタイトル:** `物議を醸した大統領トランプ` (事実を述べているだけで、好奇心を刺激しない)
+-   **良いタイトル:** `トランプ 封印された過去` (「封印された過去」とは何か？と好奇心を煽る)
+
+
+### Input
+トピック: abe shinzo
+
+### Output Format:
+必ず次のフォーマットに従ってください。他のテキストは絶対に出力しないでください。
+
+```json
+{
+  "title": "Your generated title here"
+}```
+
+prompting local
+{
+  "title": "安倍晋三 隠された陰謀"
+}
+END OF PROMPT  --------------------------------------------
+
+LLM output: {
+  "title": "安倍晋三 隠された陰謀"
+}
+END OF LLM OUTPUT --------------------------------------------
+
+{'title': '安倍晋三 隠された陰謀'} this is the extracted output
+Generating audio and images
+START OF PROMPT  --------------------------------------------
+ 
+You are an expert AI assistant specializing in visual storytelling. Your task is to analyze a video's title and a relevant quote to generate the **most visually effective Google Image search query**. This query should center on the core subject but can be made more specific if the context points to a highly famous, visually documented event associated with that subject.
+
+---
+## Critical Rules
+
+1.  **The Specificity Principle (Most Important Rule)**: Your primary goal is to identify the core subject's full, canonical name.
+    * **Default Behavior**: In most cases, the query will be **only** the subject's full name (e.g., a person, organization, or base event).
+    * **Exception for Famous Events**: If the title or quote *explicitly* references a **highly famous and visually distinct event, trial, scandal, or performance** uniquely associated with the subject, you should append that event to the name. This is only for events that have a rich, well-known visual record of their own (e.g., "O.J. Simpson trial," "Michael Jackson moonwalk").
+    * **What to Avoid**: **Never** add generic, descriptive words like "photo," "case," "incident," "childhood," or "perpetrator." The added context must be a proper noun or a widely recognized named event.
+
+2.  **Use the Subject's Native Language**: The language of the query must match the origin of the subject to find the most authentic and numerous images.
+    * If the subject is **Chinese**, the query must be in **Chinese characters**.
+    * If the subject is **American**, the query must be in **English**.
+    * If the subject is **Japanese**, the query must be in **Japanese**.
+
+3.  **Use Full, Canonical Names**: Always expand partial or incomplete names to their most recognizable, official form. For Western names, this includes first and last names.
+
+---
+## Step-by-Step Guide
+
+1.  **Identify the Core Subject**: Read the title and quote to determine the central person, event, or location being discussed.
+2.  **Analyze the Context**: Determine if the title or quote refers to a *specific, famous, and visually-rich event* directly associated with the core subject.
+3.  **Determine the Subject's Origin**: Based on the name and context, identify the subject's nationality or primary language.
+4.  **Construct the Query**:
+    * First, find the subject's full, canonical name in its native language (e.g., `周克华`, `Bernie Madoff`).
+    * If a famous associated event was identified in Step 2, append its common name to the query (e.g., `O.J. Simpson trial`).
+    * Otherwise, use only the subject's canonical name.
+5.  **Generate the Final Query**: The final query is the result from the previous step.
+
+---
+## Examples
+
+**Example 1: Default Behavior (Chinese Subject)**
+* **Title**: `チョウクホア最凶の強盗犯` (The Most Vicious Robber, Zhou Kehua)
+* **Quote**: `あなたは知っていますか。闇に生き、凶行を重ねた男を。` (Do you know the man who lived in darkness and committed heinous acts?)
+* **Correct Query**: `"周克华"`
+* **Reasoning**: The subject, Zhou Kehua, is Chinese. While he committed crimes, there isn't one single, named event famous enough to append. The most effective query is his canonical name in Chinese.
+
+**Example 2: Exception - Famous Trial (American Subject)**
+* **Title**: `The Trial of the Century: O.J.`
+* **Quote**: `The infamous Bronco chase and the glove that didn't fit.`
+* **Correct Query**: `"O.J. Simpson trial"`
+* **Reasoning**: The subject is O.J. Simpson, but the title and quote are not about his general life; they are specifically about his murder trial, an event with its own massive and distinct visual record. "O.J. Simpson" alone would be too broad.
+
+**Example 3: Exception - Famous Performance (American Subject)**
+* **Title**: `キング・オブ・ポップの伝説のムーンウォーク` (The King of Pop's Legendary Moonwalk)
+* **Quote**: `The moment he first performed the iconic dance during 'Billie Jean' at Motown 25.`
+* **Correct Query**: `"Michael Jackson moonwalk"`
+* **Reasoning**: The context is not just Michael Jackson, but his single most iconic performance. Searching for "Michael Jackson moonwalk" will yield far more relevant images for this specific story than just his name.
+
+**Example 4: Default Behavior (Japanese Event)**
+* **Title**: `地下鉄サリン事件の恐怖` (Terror of the Subway Sarin Incident)
+* **Quote**: `The attack on the Tokyo subway system.`
+* **Correct Query**: `"地下鉄サリン事件"`
+* **Reasoning**: The subject is the event itself. It's already a specific, proper noun. No further context is needed.
+
+---
+Input
+**Video Title**: 安倍晋三隠された陰謀
+**Quote to Visualize**: 安倍晋三は、祖父に岸信介元総理、大叔父に佐藤栄作元総理を持つ政治家でした。
+
+---
+## Output Format
+
+Your output must be in **strict JSON format only**, with no other text or explanations.
+
+```json
+{
+  "query": "Your generated search query here"
+}```
+
+END OF PROMPT  --------------------------------------------
+
+LLM output: ```json
+{
+  "query": "安倍晋三"
+}
+```
+
+END OF LLM OUTPUT --------------------------------------------
+
+{'query': '安倍晋三'} this is the extracted output
+'安倍晋三' descriptions not in cache. Generating...
+Image directory not found. Downloading images for '安倍晋三'.
+🔎 Searching for 30 images of '安倍晋三'...
+✅ Successfully downloaded 30 images.
+⚠️ Skipping /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_027.jpg: cannot identify image file '/home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_027.jpg'
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_000.jpg
+Error generating description for /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_000.jpg: 500 Server Error: Internal Server Error for url: http://localhost:11434/api/generate
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_001.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a lively scene with two figures engaging in an energetic dance.  They wear colorful, flowing garments adorned with intricate patterns, suggesting a traditional or theatrical performance. Their movements are captured mid-twirl, creating a sense of motion and dynamism. The background features a blurred cityscape with glowing lights, hinting at a vibrant urban setting. The overall style is bright and stylized, with exaggerated proportions and bold colors that evoke a sense of fantasy and spectacle. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_002.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling marketplace scene.  People clad in colorful clothing mill about, engaging in lively commerce. Stalls overflowing with vibrant fabrics, pottery, and exotic fruits line the narrow pathways. A sense of energy and excitement pervades the scene, captured through the dynamic poses of the figures and the intricate details of the surroundings. The overall style evokes a traditional or folk-art aesthetic, emphasizing rich textures and bold colors.  
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_003.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a brightly colored scene with two figures facing each other. They appear to be engaged in a friendly interaction, perhaps conversing or exchanging objects. The background is a vibrant mix of hues, suggesting a fantastical or dreamlike setting. Both figures wear distinct outfits, adorned with intricate details and patterns, hinting at their unique personalities or roles within the scene.  The overall style of the image leans towards stylized realism, capturing movement and emotion while maintaining a sense of whimsical charm. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_004.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image features a brightly lit, bustling scene taking place inside a large building with tall ceilings. Numerous people are gathered in various areas, engaged in conversation or activities. A long, wooden counter runs along one wall, and behind it, individuals are preparing food and drinks. The overall style of the image is vibrant and energetic, capturing a sense of lively interaction and movement.  
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_005.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts two figures standing against a vibrant backdrop. One figure appears taller and leans towards the other, their arms outstretched in a gesture that could be interpreted as either support or playful interaction. Both figures seem to be wearing brightly colored clothing, with patterns and textures that suggest movement and energy. The overall style of the image is stylized and cartoonish, with exaggerated features and simplified shapes.  The background is a swirling mass of color and light, adding to the sense of dynamism and wonder. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_006.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling outdoor scene with a warm, inviting atmosphere.  People dressed in casual clothing can be seen walking, sitting, and interacting in various locations throughout the space. Some gather around tables adorned with colorful tablecloths, while others stroll along a path lined with trees and flowers. The overall style is vibrant and cheerful, with bright colors and a sense of movement. A prominent feature in the foreground is a large structure resembling a fountain or water feature, cascading down into a pool below.  
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_007.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling scene with individuals engaged in various activities. A central figure stands out, clad in vibrant attire, against a backdrop of colorful buildings and intricate architecture. The overall style is characterized by a blend of realism and fantastical elements, creating a surreal and captivating atmosphere.   
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_008.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling scene with numerous people engaged in activities within a large indoor space. The dominant feature is a raised platform at the center, surrounded by spectators sitting on chairs or standing.  Several individuals are performing energetically on the platform, illuminated by bright spotlights. The background showcases a backdrop adorned with colorful designs and decorative elements. The overall style is vibrant and lively, suggesting a performance or entertainment event. 
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_009.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a vibrant outdoor scene with lush green foliage surrounding a central gathering area.  Several figures are present, some seated on benches or chairs while others stand and interact. The overall style appears to be illustrative, with bold lines and saturated colors creating a cheerful and lively atmosphere.  In the background, architectural details suggest a garden setting with pathways winding through the greenery. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_010.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: A colorful illustration depicts a bustling marketplace scene. Stalls brimming with various goods line a cobblestone street, creating a vibrant tapestry of colors and textures.  People in varied attire navigate the crowded space, their expressions filled with a mix of curiosity, excitement, and intent as they browse the wares. Sunlight streams through a clear sky, illuminating the scene with a warm glow. The overall style is whimsical and detailed, capturing the energy and charm of a lively marketplace. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_011.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling marketplace scene filled with diverse people engaged in various activities. The setting appears to be sunny and vibrant, with colorful awnings shading stalls overflowing with fruits, vegetables, and other goods. People interact amongst the stalls, some haggling over prices, others browsing through wares, while children play amidst the crowd.  The overall style of the image is realistic, capturing a lively and energetic atmosphere. Detailed textures on fabrics and surfaces add to the sense of immersion. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_012.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a chaotic scene with numerous individuals engaged in various activities. A large crowd gathers in front of a towering structure, its facade adorned with intricate designs. Some figures stand on raised platforms, while others move about the ground level, carrying objects and interacting with one another.  The overall style is vibrant and detailed, with rich colors and sharp outlines. 
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_013.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a woman wearing a flowing white dress standing on a platform. She is holding a bouquet of vibrant flowers, which she appears to be presenting or offering to someone off-screen. The setting appears to be outdoors, with lush greenery surrounding the platform and a clear blue sky above. The overall style of the image is soft and romantic, with warm lighting and a gentle focus.  
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_014.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a scene from a fantasy world. A group of warriors stand on a grassy hilltop overlooking a vast battlefield below.  They are clad in armor with intricate designs and wield a variety of weapons, including swords, bows, and shields. The sky above is filled with dark clouds, suggesting an impending storm or battle. In the distance, two large armies clash, their movements creating a chaotic swirl of color against the green landscape. The style of the image is highly detailed and realistic, with a dramatic lighting scheme that emphasizes the tension of the scene.  
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_015.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling scene at an outdoor marketplace filled with colorful stalls and diverse people going about their daily lives. Vibrant fabrics hang from makeshift stands, alongside baskets overflowing with fresh produce and fragrant spices.  People of different ages and appearances navigate the crowded space, engaged in conversations or browsing the goods on offer. The overall style is reminiscent of a traditional watercolor painting, with soft edges and a gentle, dreamlike quality.   
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_016.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a cartoonish scene featuring two figures engaged in a playful scuffle. One figure, depicted with exaggerated limbs and bright colors, appears to be wrestling or playfully tackling the other. Both figures have wide smiles, suggesting merriment rather than aggression. The background is simple and brightly colored, perhaps hinting at a fantastical or dreamlike setting. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_017.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts a bustling cityscape at night, illuminated by bright streetlights and the warm glow of building windows.  Tall skyscrapers pierce the dark sky, their glass facades reflecting the city lights. Below, cars stream along busy roads, creating streaks of light that crisscross the asphalt.  People can be seen walking along sidewalks, some hurrying toward destinations while others pause to chat or gaze at the cityscape. The overall style is realistic and detailed, capturing a sense of energy and movement in the urban environment.  The color palette leans towards cool tones with pops of warm yellow from the streetlights and building windows. 
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_018.jpg
+END OF PROMPT  --------------------------------------------
+
+LLM output: The image depicts two figures engaged in conversation.  They are rendered in a stylized, cartoonish manner with bold outlines and vibrant colors. The setting appears to be an urban environment, with tall buildings and streetlamps visible in the background. One figure is gesturing animatedly with their hands, while the other appears to be listening intently. A sense of dynamic energy pervades the scene, captured through the figures' poses and expressions.  
+
+
+
+END OF LLM OUTPUT --------------------------------------------
+
+START OF PROMPT  --------------------------------------------
+ 
+Describe the content of this image in plain text, in a single paragraph.
+Be descriptive about what is happening, the style of the image, and any noticeable details.
+Do not mention names unless you are completely certain.
+
+
+Image path: /home/riosshin/code/videoAI/media/refImgs/安倍晋三/img_019.jpg

@@ -23,32 +23,57 @@ uploadTimesJST= cfg.uploadTimesJST
 
 STATE_FILE = "tools/time.json"
 
-def get_next_item():
-    with open(STATE_FILE, "r") as f:
-        state = json.load(f)
-        index = state.get("index", -1)
 
-    # Move to next index
-    index = (index + 1) % len(uploadTimesPST)
-    item = uploadTimesPST[index]
+import random
 
-    # Save updated index
+MAX_UPLOADS_PER_DAY = 3
+
+def get_state():
+    """Load state file with index, last_upload_date, and uploads_today."""
+    if os.path.exists(STATE_FILE):
+        with open(STATE_FILE, "r") as f:
+            return json.load(f)
+    return {"last_upload_date": None, "uploads_today": 0}
+
+def save_state(state):
     with open(STATE_FILE, "w") as f:
-        json.dump({"index": index}, f)
+        json.dump(state, f)
 
-    return item
+def get_next_item():
+    state = get_state()
+    today_str = datetime.now().strftime("%Y-%m-%d")
+
+    # Reset uploads_today if it's a new day
+    if state["last_upload_date"] != today_str:
+        state["uploads_today"] = 0
+        state["last_upload_date"] = today_str
+
+    # If we've already hit the daily max → push to tomorrow
+    if state["uploads_today"] >= MAX_UPLOADS_PER_DAY:
+        tomorrow = (datetime.now() + timedelta(days=1)).replace(
+            hour=random.choice(uploadTimesJST), minute=0, second=0, microsecond=0
+        )
+        return tomorrow
+
+    # Pick a random upload time today
+    hour = random.choice(uploadTimesJST)
+    upload_time = datetime.now().replace(
+        hour=hour, minute=0, second=0, microsecond=0
+    )
+
+    # If chosen time is already past → push to tomorrow
+    if upload_time <= datetime.now():
+        upload_time += timedelta(days=1)
+
+    # Update state
+    state["uploads_today"] += 1
+    save_state(state)
+
+    return upload_time
 
 def nextTime():
-    hour = get_next_item()
-
-    now = datetime.now()
-
-    today = now.replace(hour=hour, minute=0, second=0, microsecond=0)
-
-    if now >= today:
-        return (today + timedelta(days=1)).isoformat()
-    else:
-        return today.isoformat()
+    upload_time = get_next_item()
+    return upload_time.isoformat()
 
 
 

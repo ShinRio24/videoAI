@@ -29,6 +29,7 @@ uploadTimesPST= cfg.uploadTimesPST
 CHANNEL_ID = cfg.CHANNEL_ID
 MAINTHREAD_ID = cfg.MAINTHREAD_ID
 SUBTHREAD_ID = cfg.SUBTHREAD_ID
+videoFormat = cfg.VIDEOFORMAT
 
 
 QUEUE_FILE = "tools/topics.txt"
@@ -100,7 +101,6 @@ async def postToTelegram(video_path: str, caption: str = ""):
         return None
 
 
-# NOTE: This function uses synchronous `requests`.
 async def update_progress(message_id: int, title: str, current: int, total: int):
     """Edit a Telegram message to show a progress bar."""
     import requests  # Local import to highlight synchronous nature
@@ -161,7 +161,7 @@ async def run_main_subprocess(title: str) -> int:
     Returns the final exit code of the subprocess.
     """
     global current_proc, skip_flag
-    command = f'python -u -m src.main "{title}"'
+    command = f'python -u -m src.main --topic "{title}" --format "{videoFormat}"'
     print(f"[SUBPROCESS] Executing command: {command}")
 
     # Using create_subprocess_shell to properly handle commands and quoting
@@ -1243,3 +1243,38 @@ async def command_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         message_thread_id=update.effective_message.message_thread_id,
         disable_notification=True,
     )
+
+
+async def command_format(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    global cfg
+    if not context.args:
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text=f"Provide a valid prompt format\n The current format is: {cfg.VIDEOFORMAT}\n\nHere are a list of valid promtps:\n "+listScriptFormats(),
+            message_thread_id=update.effective_message.message_thread_id,
+        )
+        return
+
+    idea = " ".join(context.args)
+
+    try:
+        var = getScriptFormat(idea)
+        global videoFormat
+        videoFormat = var
+        cfg.update_and_save("VIDEOFORMAT", idea)
+
+        cfg= Config()
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text="new format set to "+idea,
+            message_thread_id=update.effective_message.message_thread_id,
+        )
+        return
+
+    except:
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text="Provide a valid prompt format, here are a list of valid promtps: "+listScriptFormats(),
+            message_thread_id=update.effective_message.message_thread_id,
+        )
+        return

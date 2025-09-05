@@ -58,80 +58,6 @@ genTitle = """
 }}```
 """
 
-
-
-
-gScriptGeneral_template = """
-あなたはプロの日本語YouTubeスクリプトライターです。複雑なテーマを、映画のような物語に仕立てるストーリーテリングとリサーチの専門家です。
-
-### ⚠️ Core Principles ⚠️
-1.  **物語が最優先:** 与えられたテーマを、必ず**起承転結**の構成で、引き込まれる物語にしてください。
-2.  **事実に根差す (最重要):** 物語は、名前、日付、数値などの**具体的で検証可能な事実**に根差してください。抽象的な「すごい成功」ではなく、具体的な「年俸1ドルでのCEO復帰」のように語ります。
-3.  **視点の一貫性:** 人物を語る際は、その人物を**英雄**として描くか、**悪役**として描くか、一貫した視点を決めてください。物語の途中で視点を変えてはいけません。
-
-### Task Breakdown:
-**1. Classify the Theme:**
-まず、テーマ「{theme}」が「人物」「組織」「事件・出来事」のどれに該当するかを判断してください。
-
-**2. Build the Narrative using 起承転結 (with Specifics):**
-
----
-#### **If the theme is a "Person" or "Organization":**
--   **起 (Introduction):** 物語の冒頭で、視聴者を一瞬で掴む「最強のフック」を作ります。主役のフルネームと、その人物を象徴する**具体的で強烈な事実**（数字、逸話、実績）を組み合わせ、以下の形式で提示します。
-    -   **問いかけ型:** 「なぜ、資産100兆円の男、スティーブ・ジョブズは、毎日同じ服を着るのか？」
-    -   **衝撃の事実型:** 「実は彼、たった1ドルの年俸でCEOに復帰したんです。」
-    -   **断言型:** 「歴史上、世界を最も騙した天才、それがバーナード・マドフです。」
--  **承 (Development):** 物語の起源へ。**特定の日付や場所**を挙げ、現在の姿からは想像もつかない、事実に基づいた過去を語ります。例：「1976年、実家のガレージにて」。
--   **転 (Twist/Turning Point):** 物語の核心です。成功を決定づけた**「ある一つの製品」**や、その裏の**「特定の人物との逸話」**など、衝撃的で具体的な転機を明かします。
--   **結 (Conclusion):** そして現在。その成功や失敗が、**具体的な製品やサービス**を通して、今の私たちにどんな「影響」を与えているのかを語り、物語を締めくくります。
-- **【日本の偉人・組織への特別ルール】** もしテーマが称賛に値する日本の対象である場合、物語の最後に、主役へ直接語りかけるような力強いメッセージで締めくくってください。例：「〇〇さん、どうかその手で、日本の未来を創り続けてください。」
-
-#### **If the theme is an "Event" or "Incident":**
--   **起 (Introduction):** 事件発生の**具体的な日時**と、その瞬間の衝撃的な**統計データ**を提示します。「〇〇年〇月〇日、わずか数分で〇〇人が影響を受けた」のように、事実で興味を引きます。
--   **承 (Development):** 事件の背景へ。事件の数年前に起きていた**具体的な社会問題**や、水面下で進んでいた計画など、根本的な原因を描写します。
--   **転 (Twist/Trigger):** 物語が動く瞬間。事件の引き金となった**「たった一つの出来事」**や、関わった**「キーパーソンの意外な行動」**を語り、緊張感を高めます。
--   **結 (Conclusion):** 事件のその後。社会に与えた**法改正や新ルール**といった具体的な「影響」や、私たちが学ぶべき教訓を語り、深い余韻を残します。
-- **【日本の偉人・組織への特別ルール】** もしテーマが称賛に値する日本の対象である場合、物語の最後に、主役へ直接語りかけるような力強いメッセージで締めくくってください。例：「〇〇さん、どうかその手で、日本の未来を創り続けてください。」
----
-
-### Bad vs. Good Example (How to use details)
--   **Theme:** Steve Jobs
--   **Bad (Vague):** 「彼は、世界を変える大きな決断をしました。」
--   **Good (Specific):** 「実は彼、たった1ドルの年俸でCEOに復帰したんです。」
-
-### Technical & Style Requirements:
--   **Length & Structure:** スクリプトは全体で9〜13個のフレーズで構成してください。
--   **JSON Output:** 各フレーズは30〜45文字とし、JSONリストの要素として出力します。
--   **Conversational Tone:** です・ます調を基本に、「なんです」「だったんですね」のような多様な語尾で会話のリズムを作ります。読点（、）を効果的に多めに使い、テンポを演出。「実は」「そして」といった接続詞で、フレーズ間を滑らかにつなげてください。
--   **Prohibitions:** 引用符（「」『』""）、（笑）や特殊記号は一切使用しないでください。
-
-### Output Format:
-必ず次のJSONフォーマットに従ってください。他のテキストは絶対に出力しないでください。
-
-```json
-{{
- "Script": [
-  "ここに「起」のパートが入ります。",
-  "次に「承」のパートが続きます。",
-  "そして物語の転換点である「転」。",
-  "最後に「結」で締めくくります。"
- ]
-}}```
-"""
-
-
-
-gScriptCharacter_templateOLD = """
-"""
-
-gScriptOrganization_template = """
-"""
-
-gScriptEvent_template = """
-"""
-
-
-
 queryPrompt_template = """
 You are an expert AI assistant specializing in visual storytelling. Your task is to analyze a video's title and a relevant quote to generate the **most visually effective Google Image search query**. This query should center on the core subject but can be made more specific if the context points to a highly famous, visually documented event associated with that subject.
 
@@ -204,8 +130,6 @@ Your output must be in **strict JSON format only**, with no other text or explan
   "query": "Your generated search query here"
 }}```
 """
-
-
 
 correctIMG_template = """
 You are an AI assistant tasked with selecting the most suitable image for a quote in a video.

@@ -33,6 +33,7 @@ def main(args) -> None:
         {"func": command_rframe, "name": "rframe", "num": None},
         {"func": command_end, "name": "end", "num": None},
         {"func": command_topics, "name": "topics", "num": "16"},
+        {"func": command_format, "name": "format", "num": None},
     ]
 
     # --- Dynamically add all handlers ---

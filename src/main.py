@@ -13,7 +13,6 @@ from .llmPrompt import prompt
 from .genAudio import genAUDIO
 from .combineMedia import combineMedia
 from .contextImgSearcher import imgSearch
-from .prompts import *
 from .communicator import sendUpdate, update_progress
 import asyncio
 
@@ -115,19 +114,28 @@ async def genAudioImages(title,data):
 
     return imgAudioData
 
+from . import scriptPrompts
+def getScriptFormat(contentFormat):
+
+    if hasattr(scriptPrompts, contentFormat):
+        retrieved_object = getattr(scriptPrompts, contentFormat)
+        return retrieved_object
+    else:
+        raise KeyError(f"❌ Error: Variable '{contentFormat}' not found in prompts.py.")
+
 import asyncio
 import re
-
-def generate_youtube_short_video(topic):         
+from . import prompts
+def generate_youtube_short_video(topic, contentFormat):         
     resetSystem()
+    scriptFormat = getScriptFormat(contentFormat)
 
     print("Generating script",topic)
-
-    data = prompt(gScriptGeneral_template.format(theme=topic), model = 'gemeni')
+    data = prompt(scriptFormat.format(theme=topic), model = 'gemeni')
     print(data)
     allowed_pattern = re.compile(r'[^A-Za-z0-9\u3040-\u309F\u30A0-\u30FF\uFF65-\uFF9F\u4E00-\u9FFF]')
 
-    title = prompt(genTitle.format(theme = topic))
+    title = prompt(prompts.genTitle.format(theme = topic))
     title = allowed_pattern.sub('',title)
     sendUpdate("Generated Title: "+title+" for topic: "+topic)
     sendUpdate('\n'.join(data))
@@ -144,19 +152,14 @@ def generate_youtube_short_video(topic):
     return videoObj
 
 
-def main():
-    try:
-        topic = " ".join(sys.argv[1:])
-    except IndexError:
-        print("No topic provided")
-        exit()
+def main(topic, format):
     
     tt = time.time()
     
     with log_file:
         try:
             with redirect_stdout(log_file), redirect_stderr(log_file):
-                videoObj = generate_youtube_short_video(topic)
+                videoObj = generate_youtube_short_video(topic, format)
                 if videoObj:
                     print(f"✅ Success! Video obj: {videoObj}")
 
@@ -181,10 +184,16 @@ def main():
     return videoObj
 
 
-if __name__ =='__main__':
+import argparse
 
+if __name__ =='__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--topic", type=str,required=True)
+    parser.add_argument("--format", type=str, default="general")
+
+    args = parser.parse_args()
     try:
-        main()
+        main(**vars(args))
     except Exception as e:
         print(f"An error occurred: {e}")
         sendUpdate("Video generation failed for title!\nError: " + str(e))

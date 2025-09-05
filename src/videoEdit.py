@@ -213,5 +213,22 @@ def genTopics(idea):
     response = prompt(genTopics_template.format(idea=idea),model="gemeni-cli", printOutput=False)
     return response
 
+from . import scriptPrompts
+def getScriptFormat(contentFormat):
+
+    if hasattr(scriptPrompts, contentFormat):
+        retrieved_object = getattr(scriptPrompts, contentFormat)
+        return contentFormat
+    else:
+        raise KeyError(f"❌ Error: Variable '{contentFormat}' not found in prompts.py.")
+    
+def listScriptFormats():
+    variable_list = [
+    attr for attr in dir(scriptPrompts) if not attr.startswith('__')
+]
+
+    return("\n".join(variable_list))
+
+
 if __name__ == '__main__':
     pass

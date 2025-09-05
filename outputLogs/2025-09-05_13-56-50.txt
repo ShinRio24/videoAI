@@ -1,0 +1,202 @@
+
+Generating script shohei ohtani
+START OF PROMPT  --------------------------------------------
+ 
+あなたはプロの日本語YouTubeスクリプトライターです。与えられた人物について、視聴者の興味を引く短い事実をまとめたスクリプトを作成します。
+
+⚠️ Core Principles ⚠️
+名前から始める (Start with the Name): スクリプトの最初のフレーズは、必ず主役のフルネームから始めてください。
+
+例:「大谷翔平は、平均的な会社員の100倍稼ぎながら、ユニクロの500円のシャツを着ています。」
+
+事実のみを語る (Tell only Facts): 提示する情報は、すべて具体的で検証可能な事実にしてください。噂や抽象的な表現は使わず、数字や固有名詞を盛り込みます。
+
+事実を物語にする (Narrate with Facts): スクリプト全体の構成として、3〜4つの意外な事実を選び出します。1つの事実は、文脈を作ったり詳細を加えたりするために、複数のフレーズに分けて説明することができます。
+
+⚙️ Technical & Style Requirements ⚙️
+Length & Structure: スクリプトは全体で合計6〜10個のフレーズで構成してください。これらのフレーズで、3〜4つの中心的な事実を説明します。
+
+Phrase Length: 各フレーズは、30〜50文字程度にしてください。
+
+Conversational Tone: です・ます調を基本に、「なんです」「だったんですね」のような多様な語尾で会話のリズムを作ります。読点（、）を効果的に使い、テンポを演出してください。
+
+Prohibitions: 引用符（「」『』""）、（笑）や特殊記号は一切使用しないでください。
+
+### Output Format:
+必ず次のJSONフォーマットに従ってください。他のテキストは絶対に出力しないでください。
+
+```json
+{
+ "Script": [
+  "ここに「起」のパートが入ります。",
+  "次に「承」のパートが続きます。",
+  "そして物語の転換点である「転」。",
+  "最後に「結」で締めくくります。"
+ ]
+}```
+
+
+used gemeni
+END OF PROMPT  --------------------------------------------
+
+LLM output: ```json
+{
+ "Script": [
+  "坂本龍馬は、幕末の志士として知られていますが、実は当時としてはかなりの長身でした。",
+  "その身長はなんと178cmにも及び、現代人でも高いと感じるほどだったんですね。",
+  "大の甘党で、好物のカステラを頻繁に食べていたという記録が残されています。",
+  "さらに、日本の歴史上の人物としては珍しく、洋服やブーツを好んで身につけていたんです。",
+  "日本初の株式会社とも言われる亀山社中、後の海援隊を設立したんですよ。",
+  "そして、最新式のピストル、スミス＆ウェッソン社のリボルバーを常に携帯していたと言われています。"
+ ]
+}
+```
+END OF LLM OUTPUT --------------------------------------------
+
+{'Script': ['坂本龍馬は、幕末の志士として知られていますが、実は当時としてはかなりの長身でした。', 'その身長はなんと178cmにも及び、現代人でも高いと感じるほどだったんですね。', '大の甘党で、好物のカステラを頻繁に食べていたという記録が残されています。', 'さらに、日本の歴史上の人物としては珍しく、洋服やブーツを好んで身につけていたんです。', '日本初の株式会社とも言われる亀山社中、後の海援隊を設立したんですよ。', 'そして、最新式のピストル、スミス＆ウェッソン社のリボルバーを常に携帯していたと言われています。']} this is the extracted output
+['坂本龍馬は、幕末の志士として知られていますが、実は当時としてはかなりの長身でした。', 'その身長はなんと178cmにも及び、現代人でも高いと感じるほどだったんですね。', '大の甘党で、好物のカステラを頻繁に食べていたという記録が残されています。', 'さらに、日本の歴史上の人物としては珍しく、洋服やブーツを好んで身につけていたんです。', '日本初の株式会社とも言われる亀山社中、後の海援隊を設立したんですよ。', 'そして、最新式のピストル、スミス＆ウェッソン社のリボルバーを常に携帯していたと言われています。']
+START OF PROMPT  --------------------------------------------
+ 
+あなたは、数々のショート動画を100万回再生させてきた、プロの日本語YouTubeプロデューサーです。
+
+### タスク
+以下のトピックを基に、視聴者の知的好奇心を強烈に刺激し、思わずクリックしてしまうような**日本語タイトルを1つだけ**考案してください。
+
+### 最高のタイトルを作るための原則
+
+1.  **好奇心を最大化せよ:** 「〇〇の真実」「〇〇に隠された秘密」のように、視聴者が「答えを知りたい！」と思うような、謎や秘密をほのめかすこと。事実を説明するのではなく、好奇心を煽ること。
+2. 物語のトーンに合う「パワーワード」を選ぶ (Choose a "Power Word" that Fits the Story's Tone)
+
+タイトルに読者の感情を揺さぶるような強力な単語（パワーワード）を使い、一瞬で興味を引くことが重要です。物語が持つ雰囲気（ポジティブ、ネガティブ、ミステリアスなど）に合わせて、最適な言葉を選びましょう。
+
+* **感動・希望を与える物語 (For inspiring or hopeful stories):**
+    * **例:** `伝説 (Legend), 奇跡 (Miracle), 天才 (Genius), 覚醒 (Awakening), 栄光 (Glory), 希望 (Hope), 革命 (Revolution)`
+
+* **衝撃・悲劇性を強調する物語 (For shocking or tragic stories):**
+    * **例:** `悲劇 (Tragedy), 衝撃 (Shock), 禁断 (Forbidden), 闇 (Darkness), 崩壊 (Collapse), 絶望 (Despair), 孤独 (Loneliness)`
+
+* **謎・真実を追求する物語 (For mysterious or truth-seeking stories):**
+    * **例:** `真実 (Truth), 謎 (Mystery), 秘密 (Secret), 裏側 (The Other Side), 運命 (Destiny), 正体 (True Identity)`
+3.  **簡潔に、しかし強力に:** タイトルは**20文字以内**を目安に、不要な言葉を削ぎ落とし、最もインパクトのある部分だけを残すこと。
+
+### 実績のあるタイトルパターン（これらを創造的に組み合わせよ）
+
+* **秘密・暴露型 (The Secret/Revelation):** 最も強力なパターン。視聴者が知らないであろう情報を示唆する。
+    * *例:* `【名前】に隠された禁断の真実`
+    * *例:* `メディアが報じない【名前】の裏側`
+
+* **言い切り型 (The Bold Declaration):** 対象を大胆な言葉で定義し、強い印象を与える。
+    * *例:* `世界を騙した天才詐欺師【名前】`
+    * *例:* `歴史を塗り替えた男【名前】`
+
+* **問いかけ型 (The Question):** 視聴者に直接質問を投げかけ、考えさせることでエンゲージメントを高める。
+    * *例:* `なぜ【名前】は〇〇したのか？`
+
+### ⚠️絶対的なルール⚠️
+-   完成したタイトルのみを出力し、他のテキストは一切含めないこと。
+-   必ずトピックの固有名詞（名前）をタイトルに含めること。
+-   絵文字、句読点（、。）、記号（「」？！）は一切使用しない。
+
+### 悪い例 vs 良い例
+-   **トピック:** Donald Trump
+-   **悪いタイトル:** `物議を醸した大統領トランプ` (事実を述べているだけで、好奇心を刺激しない)
+-   **良いタイトル:** `トランプ 封印された過去` (「封印された過去」とは何か？と好奇心を煽る)
+
+
+### Input
+トピック: shohei ohtani
+
+### Output Format:
+必ず次のフォーマットに従ってください。他のテキストは絶対に出力しないでください。
+
+```json
+{
+  "title": "Your generated title here"
+}```
+
+prompting local
+{
+  "title": "大谷翔平 隠された才能の秘密"
+}
+END OF PROMPT  --------------------------------------------
+
+LLM output: {
+  "title": "大谷翔平 隠された才能の秘密"
+}
+END OF LLM OUTPUT --------------------------------------------
+
+{'title': '大谷翔平 隠された才能の秘密'} this is the extracted output
+Generating audio and images
+START OF PROMPT  --------------------------------------------
+ 
+You are an expert AI assistant specializing in visual storytelling. Your task is to analyze a video's title and a relevant quote to generate the **most visually effective Google Image search query**. This query should center on the core subject but can be made more specific if the context points to a highly famous, visually documented event associated with that subject.
+
+---
+## Critical Rules
+
+1.  **The Specificity Principle (Most Important Rule)**: Your primary goal is to identify the core subject's full, canonical name.
+    * **Default Behavior**: In most cases, the query will be **only** the subject's full name (e.g., a person, organization, or base event).
+    * **Exception for Famous Events**: If the title or quote *explicitly* references a **highly famous and visually distinct event, trial, scandal, or performance** uniquely associated with the subject, you should append that event to the name. This is only for events that have a rich, well-known visual record of their own (e.g., "O.J. Simpson trial," "Michael Jackson moonwalk").
+    * **What to Avoid**: **Never** add generic, descriptive words like "photo," "case," "incident," "childhood," or "perpetrator." The added context must be a proper noun or a widely recognized named event.
+
+2.  **Use the Subject's Native Language**: The language of the query must match the origin of the subject to find the most authentic and numerous images.
+    * If the subject is **Chinese**, the query must be in **Chinese characters**.
+    * If the subject is **American**, the query must be in **English**.
+    * If the subject is **Japanese**, the query must be in **Japanese**.
+
+3.  **Use Full, Canonical Names**: Always expand partial or incomplete names to their most recognizable, official form. For Western names, this includes first and last names.
+
+---
+## Step-by-Step Guide
+
+1.  **Identify the Core Subject**: Read the title and quote to determine the central person, event, or location being discussed.
+2.  **Analyze the Context**: Determine if the title or quote refers to a *specific, famous, and visually-rich event* directly associated with the core subject.
+3.  **Determine the Subject's Origin**: Based on the name and context, identify the subject's nationality or primary language.
+4.  **Construct the Query**:
+    * First, find the subject's full, canonical name in its native language (e.g., `周克华`, `Bernie Madoff`).
+    * If a famous associated event was identified in Step 2, append its common name to the query (e.g., `O.J. Simpson trial`).
+    * Otherwise, use only the subject's canonical name.
+5.  **Generate the Final Query**: The final query is the result from the previous step.
+
+---
+## Examples
+
+**Example 1: Default Behavior (Chinese Subject)**
+* **Title**: `チョウクホア最凶の強盗犯` (The Most Vicious Robber, Zhou Kehua)
+* **Quote**: `あなたは知っていますか。闇に生き、凶行を重ねた男を。` (Do you know the man who lived in darkness and committed heinous acts?)
+* **Correct Query**: `"周克华"`
+* **Reasoning**: The subject, Zhou Kehua, is Chinese. While he committed crimes, there isn't one single, named event famous enough to append. The most effective query is his canonical name in Chinese.
+
+**Example 2: Exception - Famous Trial (American Subject)**
+* **Title**: `The Trial of the Century: O.J.`
+* **Quote**: `The infamous Bronco chase and the glove that didn't fit.`
+* **Correct Query**: `"O.J. Simpson trial"`
+* **Reasoning**: The subject is O.J. Simpson, but the title and quote are not about his general life; they are specifically about his murder trial, an event with its own massive and distinct visual record. "O.J. Simpson" alone would be too broad.
+
+**Example 3: Exception - Famous Performance (American Subject)**
+* **Title**: `キング・オブ・ポップの伝説のムーンウォーク` (The King of Pop's Legendary Moonwalk)
+* **Quote**: `The moment he first performed the iconic dance during 'Billie Jean' at Motown 25.`
+* **Correct Query**: `"Michael Jackson moonwalk"`
+* **Reasoning**: The context is not just Michael Jackson, but his single most iconic performance. Searching for "Michael Jackson moonwalk" will yield far more relevant images for this specific story than just his name.
+
+**Example 4: Default Behavior (Japanese Event)**
+* **Title**: `地下鉄サリン事件の恐怖` (Terror of the Subway Sarin Incident)
+* **Quote**: `The attack on the Tokyo subway system.`
+* **Correct Query**: `"地下鉄サリン事件"`
+* **Reasoning**: The subject is the event itself. It's already a specific, proper noun. No further context is needed.
+
+---
+Input
+**Video Title**: 大谷翔平隠された才能の秘密
+**Quote to Visualize**: 坂本龍馬は、幕末の志士として知られていますが、実は当時としてはかなりの長身でした。
+
+---
+## Output Format
+
+Your output must be in **strict JSON format only**, with no other text or explanations.
+
+```json
+{
+  "query": "Your generated search query here"
+}```
+
